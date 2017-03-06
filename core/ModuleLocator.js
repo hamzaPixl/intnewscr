@@ -33,10 +33,10 @@ ModuleLocator.prototype = {
      * @return null if it doesnt exists
      * @return {{*}} module Model
      */
-    getModuleModel: function getModuleModel(moduleName) {
+    getModuleModel: function getModuleModel(moduleName, modelName) {
         if (!this.moduleExists(moduleName))
             return null;
-        return require(this.dirmoduleRoutePath + moduleName + '/models/Model');
+        return require(this.dirmoduleRoutePath + moduleName + '/models/' + modelName);
     },
 
     /**
