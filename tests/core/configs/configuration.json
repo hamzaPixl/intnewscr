@@ -1,0 +1,22 @@
+{
+
+    "services": {
+
+        "test": {
+            "foo": "bar"
+        }
+
+    },
+
+    "config": {
+
+        "test": {
+            "name": "foo",
+            "default": "/",
+            "type": "string",
+            "require": true
+        }
+
+    }
+
+}
