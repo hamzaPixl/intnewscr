@@ -78,7 +78,7 @@ describe('ModuleLocator::getModuleModel', function() {
 
     it('getModuleModel() should return object because the module exists', function() {
         var locator = new ModuleLocator(modulespath, dirpath);
-        var Model = locator.getModuleModel('foo');
+        var Model = locator.getModuleModel('foo', 'Model');
         var ob = new Model();
         expect(ob.getName()).to.equal('bar');
     });
