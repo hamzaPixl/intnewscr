@@ -1,0 +1,6 @@
+{
+    "foo": {
+        "check": "foo/config.json",
+        "value": "value.json"
+    }
+}
