@@ -3,24 +3,36 @@ var fs = require("fs");
 function Repository(model, databasePath) {
     this.model = model;
     this.databasePath = databasePath || './database/';
-    this.items;
+    this.items = [];
 }
 
 Repository.prototype = {
 
     /**
+     * return boolean of test if the items is empty or not
+     * 
+     * @private
+     * 
+     * @return false if is not empty
+     * @return true the array is empty
+     */
+    emptyItems: function emptyItems() {
+        return this.items.length == 0;
+    },
+
+    /**
      * returns the content of the json file
      * 
      * @return null if nothing 
-     * @return {[NewsItem]} array of result
+     * @return {[*]} array of result
      */
     findAll: function findAll() {
-        if (!this.items) {
+        if (this.emptyItems()) {
             var data = this.read();
             if (data) {
                 this.items = data.map(function(rawItemData) {
                     var item = new this.model;
-                    item.fromJson(rawItemData);
+                    item.fromData(rawItemData);
                     return item;
                 }.bind(this));
             }
@@ -38,11 +50,41 @@ Repository.prototype = {
      * @return {{*}} array of result
      */
     findAllBy: function findAllBy(key, value) {
-        return this.findAll().filter(function(newsItem) {
-            return newsItem[key] === value;
-        });
+        this.findAll();
+        if (!this.emptyItems()) {
+            return this.items.filter(function(selectItem) {
+                return selectItem[key] === value;
+            });
+        }
+        return null;
     },
 
+    /**
+     * return the object if it exists
+     * 
+     * @see Repository::findAll()
+     * 
+     * @private
+     * 
+     * @return null if nothing 
+     * @return {} object
+     */
+    itemExists: function itemExists(key, value) {
+        if (!this.findAllBy(key, value) || this.findAllBy(key, value).length == 0) {
+            return false;
+        }
+        return true;
+    },
+
+    /**
+     * add the object to the items
+     * 
+     * @private
+     * 
+     */
+    add: function add(item) {
+        this.items.push(item);
+    },
     /**
      * save the item in a file 
      * 
@@ -50,9 +92,7 @@ Repository.prototype = {
      *
      **/
     update: function update(item) {
-        if (!this.items) {
-            this.findAll();
-        }
+        this.findAll();
         this.items = this.items.map(function(itemTemp) {
             if (item.id === itemTemp.id) {
                 itemTemp = item;
@@ -73,7 +113,11 @@ Repository.prototype = {
                 var item = new this.model();
                 item.fromJson(itemData);
             }
-            this.update(item);
+            if (this.itemExists('id', item.id)) {
+                this.update(item);
+            } else {
+                this.add(item);
+            }
         }.bind(this));
         this.write();
     },
