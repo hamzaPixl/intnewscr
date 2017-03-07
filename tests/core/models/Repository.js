@@ -41,8 +41,12 @@ describe('Repository::findAll', function() {
         model.prototype = {
             fromJson: function fromJson(rawData) {
                 this.value = rawData.value;
+                this.id = rawData.id;
             },
-
+            fromData: function fromData(rawData) {
+                this.value = rawData.value;
+                this.id = rawData.id;
+            },
             getFoo: function getFoo() {
                 return this.foo;
             }
@@ -68,8 +72,12 @@ describe('Repository::findAllBy', function() {
         model.prototype = {
             fromJson: function fromJson(rawData) {
                 this.id = rawData.id;
+                this.value = rawData.value;
             },
-
+            fromData: function fromData(rawData) {
+                this.value = rawData.value;
+                this.id = rawData.id;
+            },
             getFoo: function getFoo() {
                 return this.foo;
             }
@@ -88,9 +96,13 @@ describe('Repository::findAllBy', function() {
         }
         model.prototype = {
             fromJson: function fromJson(rawData) {
+                this.value = rawData.value;
                 this.id = rawData.id;
             },
-
+            fromData: function fromData(rawData) {
+                this.value = rawData.value;
+                this.id = rawData.id;
+            },
             getFoo: function getFoo() {
                 return this.foo;
             }
@@ -107,9 +119,13 @@ describe('Repository::findAllBy', function() {
         }
         model.prototype = {
             fromJson: function fromJson(rawData) {
+                this.value = rawData.value;
                 this.id = rawData.id;
             },
-
+            fromData: function fromData(rawData) {
+                this.value = rawData.value;
+                this.id = rawData.id;
+            },
             getFoo: function getFoo() {
                 return this.foo;
             }
@@ -134,6 +150,10 @@ describe('Repository::saveAll', function() {
             fromJson: function fromJson(rawData) {
                 this.id = rawData.id;
                 this.value = rawData.value;
+            },
+            fromData: function fromData(rawData) {
+                this.value = rawData.value;
+                this.id = rawData.id;
             },
             toJson: function toJson() {
                 return JSON.stringify(this);

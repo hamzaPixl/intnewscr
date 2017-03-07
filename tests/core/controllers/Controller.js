@@ -10,12 +10,8 @@ var cont = new Controller();
 
 function Request() {
     this.method = 'GET';
-    this.baseUrl = "/news/news/techcrunch";
-    this.path = "/news";
-    this.params = {
-        source: "techcrunch",
-        language: "fr"
-    };
+    this.baseUrl = "/news";
+    this.path = "/trafic";
 }
 Request.prototype = {
     param: function param(str) {
@@ -24,9 +20,9 @@ Request.prototype = {
 };
 
 var req = new Request();
-
+/*
 cont.request(req).then(function(result) {
-    //console.log(result);
+    console.log(result);
 }, function(err) {
     console.log(err);
-});
+});*/
