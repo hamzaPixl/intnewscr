@@ -1,0 +1,6 @@
+{
+    "news": {
+        "check": "news/config.json",
+        "value": "news.json"
+    }
+}
