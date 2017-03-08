@@ -6,9 +6,9 @@ const controller = new Controller();
 
 io.on('connection', function(client) {
 
-    client.on('request', function(request) {
-        controller.request(request).then(function(data) {
-            client.emit('response', data);
+    client.on('request', function(requestClient) {
+        controller.request(requestClient).then(function(data) {
+            client.emit('response', { 'data': data, 'id': requestClient.baseUrl });
         }, function(err) {
             console.log(err);
         });
