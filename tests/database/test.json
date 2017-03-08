@@ -1,1 +1,1 @@
-[{"id":"foo1","value":"bar"},{"id":"foo2","value":"bar2"},{"id":"foo3","value":"bar5"},{"id":"foo4","value":"bar6"}]
+[{"value":"bar","id":"foo1"},{"value":"bar2","id":"foo"},{"id":"foo3","value":"bar5"},{"id":"foo4","value":"bar6"}]
