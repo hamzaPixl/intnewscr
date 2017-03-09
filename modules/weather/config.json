@@ -1,0 +1,11 @@
+{
+    "services": {
+        "weatherJs": {
+            "name": "weather-js"
+        }
+    },
+
+    "config": {
+
+    }
+}
