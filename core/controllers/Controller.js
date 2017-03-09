@@ -123,7 +123,7 @@ Controller.prototype = {
      */
     argumentsIsValid: function argumentsIsValid(request, routeConfig) {
         for (var key in routeConfig.query) {
-            if (!request.param(key) || typeof(request.param(key)) !== routeConfig.query[key])
+            if (!request.params[key] || typeof(request.params[key]) !== routeConfig.query[key])
                 return false;
         }
         return true;
