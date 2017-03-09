@@ -17,8 +17,9 @@
     "mocha": "^3.2.0"
   },
   "dependencies": {
+    "cheerio": "^0.22.0",
     "lodash": "^4.17.4",
-    "request": "^2.79.0",
+    "request": "^2.80.0",
     "rss-parser": "^2.5.2",
     "socket.io": "^1.7.3"
   }
