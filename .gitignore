@@ -8,6 +8,9 @@
 ## File-based project format:
 *.iws
 
+## Database
+database/
+
 ## Plugin-specific files:
 
 # IntelliJ
