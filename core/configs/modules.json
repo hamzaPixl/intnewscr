@@ -2,5 +2,9 @@
     "news": {
         "check": "news/config.json",
         "value": "news.json"
+    },
+    "weather": {
+        "check": "weather/config.json",
+        "value": "weather.json"
     }
 }
