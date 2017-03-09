@@ -10,8 +10,8 @@ var cont = new Controller();
 
 function Request() {
     this.method = 'GET';
-    this.baseUrl = "/news";
-    this.path = "/trafic";
+    this.baseUrl = "/weather";
+    this.path = "/weather";
 }
 Request.prototype = {
     param: function param(str) {
@@ -20,9 +20,9 @@ Request.prototype = {
 };
 
 var req = new Request();
-/*
+
 cont.request(req).then(function(result) {
     console.log(result);
 }, function(err) {
     console.log(err);
-});*/
+});
