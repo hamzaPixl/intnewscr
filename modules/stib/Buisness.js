@@ -1,3 +1,8 @@
+/**
+ * This constructor use params to be able to call api 
+ * @param config is the array object that contains all value as variable, url ..
+ * @param services is used to require services that the module need
+ * */
 function Buisness(services, config) {
     this.services = services;
     this.config = config;
@@ -7,7 +12,6 @@ function Buisness(services, config) {
 }
 
 Buisness.prototype = {
-
     /**
      * This function scrapp the HTML code to exports data
      * 
@@ -21,7 +25,6 @@ Buisness.prototype = {
      * 
      * @return  the promis that contains data
      */
-
     scrapping: function scrapping(url, indice, line, destination) {
         return new Promise(function(resolve, reject) {
             this.request(url, function(error, response, body) {
@@ -66,7 +69,6 @@ Buisness.prototype = {
                 });
             }.bind(this));
         }
-
         if (line == 94) {
             return new Promise(function(resolve, reject) {
                 this.scrapping(this.config.stib_94_louise, 1, line, 'LOUISE').then(function(result_louise) {
@@ -81,13 +83,10 @@ Buisness.prototype = {
                 });
             }.bind(this));
         }
-
         if (line == 95) {
             return this.scrapping(this.config.stib_95_gp, 1, line, 'GRANDE PLACE');
         }
     }
-
-
 };
 
 module.exports = Buisness;
