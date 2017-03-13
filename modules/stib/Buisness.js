@@ -1,3 +1,8 @@
+const scrappIndiceDefault = 1,
+    scrappIndiceBeaulieu = 3,
+    line17 = 17,
+    line95 = 95,
+    line94 = 94;
 /**
  * This constructor use params to be able to call api 
  * @param config is the array object that contains all value as variable, url ..
@@ -55,10 +60,8 @@ Buisness.prototype = {
      */
     getLine: function getLine(line) {
         var result = [];
-        var scrappIndiceDefault = 1,
-            scrappIndiceBeaulieu = 3;
 
-        if (line == 17) {
+        if (line == line17) {
             return new Promise(function(resolve, reject) {
                 this.scrapping(this.config.stib_17_heli, scrappIndiceDefault, line, 'HEILIGENBORRE').then(function(result_heli) {
                     this.scrapping(this.config.stib_17_beaulieu, scrappIndiceBeaulieu, line, 'BEAULIEU').then(function(result_beaulieu) {
@@ -72,7 +75,7 @@ Buisness.prototype = {
                 });
             }.bind(this));
         }
-        if (line == 94) {
+        if (line == line94) {
             return new Promise(function(resolve, reject) {
                 this.scrapping(this.config.stib_94_louise, scrappIndiceDefault, line, 'LOUISE').then(function(result_louise) {
                     this.scrapping(this.config.stib_94_mt, scrappIndiceDefault, line, 'MUSEE DU TRAM').then(function(result_mt) {
@@ -86,7 +89,7 @@ Buisness.prototype = {
                 });
             }.bind(this));
         }
-        if (line == 95) {
+        if (line == line95) {
             return this.scrapping(this.config.stib_95_gp, scrappIndiceDefault, line, 'GRANDE PLACE');
         }
     }
