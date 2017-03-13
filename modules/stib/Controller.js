@@ -1,10 +1,8 @@
 const Buisness = require('./Buisness');
 
-
-function Controller(moduleLocator, config, services) {
+function Controller(config, services) {
     this.config = config;
     this.services = services;
-    this.moduleLocator = moduleLocator;
     this.buisness = new Buisness(this.services, this.config);
 }
 
@@ -17,8 +15,6 @@ Controller.prototype = {
     getLine: function getLine(params) {
         return this.buisness.getLine(params.line);
     }
-
-
 };
 
 module.exports = Controller;
