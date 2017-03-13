@@ -6,5 +6,9 @@
     "stib": {
         "check": "stib/config.json",
         "value": "stib.json"
+    },
+    "weather": {
+        "check": "weather/config.json",
+        "value": "weather.json"
     }
 }

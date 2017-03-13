@@ -8,11 +8,21 @@ function TraficItem() {
     this.source = '';
 }
 
+/**
+ * @private
+ * 
+ * @return the name of the model item
+ */
 TraficItem.getName = function getName() {
     return 'trafic';
 }
 
 
+/**
+ * @private
+ * 
+ * @return the name of the model item
+ */
 TraficItem.getTTL = function getTTL() {
     return 14400;
 }

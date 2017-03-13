@@ -8,7 +8,7 @@ io.on('connection', function(client) {
 
     client.on('request', function(requestClient) {
         controller.request(requestClient).then(function(data) {
-            client.emit('response', { 'data': data, 'id': requestClient.baseUrl });
+            client.emit('response', { 'data': data, 'name': requestClient.name });
         }, function(err) {
             console.log(err);
         });
