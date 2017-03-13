@@ -1,3 +1,8 @@
+/**
+ * This constructor use params to be able to call api 
+ * @param config is the array object that contains all value as variable, url ..
+ * @param services is used to require services that the module need
+ * */
 function Buisness(services, config) {
     this.services = services;
     this.config = config;
