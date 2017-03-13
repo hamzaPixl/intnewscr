@@ -4,10 +4,9 @@ const NewsItem = require('./models/NewsItem');
 const TraficItem = require('./models/TraficItem');
 
 
-function Controller(moduleLocator, config, services) {
+function Controller(config, services) {
     this.config = config;
     this.services = services;
-    this.moduleLocator = moduleLocator;
     this.buisness = new Buisness(this.services, this.config);
     this.repositoryNews = new Repository(NewsItem);
     this.repositoryTrafic = new Repository(TraficItem);

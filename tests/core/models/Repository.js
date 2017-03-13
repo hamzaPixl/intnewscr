@@ -13,7 +13,7 @@ describe('Repository::read', function() {
             getName: function getName() {
                 return 'test';
             }
-        }
+        };
         var repo = new Repository(model, './tests/database/');
         var data = repo.read();
         expect(data[0].value).to.equal('bar');
@@ -142,7 +142,7 @@ describe('Repository::findAllBy', function() {
 describe('Repository::saveAll', function() {
 
     it('saveAll() should save the new items', function() {
-        var model = function() {};
+        function model() {};
         model.getName = function getName() {
             return 'test';
         }

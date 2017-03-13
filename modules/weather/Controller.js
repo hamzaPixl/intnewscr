@@ -3,10 +3,9 @@ const Repository = require('./../../core/models/Repository');
 const WeatherItem = require('./models/WeatherItem');
 
 
-function Controller(moduleLocator, config, services) {
+function Controller(config, services) {
     this.config = config;
     this.services = services;
-    this.moduleLocator = moduleLocator;
     this.buisness = new Buisness(this.services, this.config);
     this.repository = new Repository(WeatherItem);
 }
