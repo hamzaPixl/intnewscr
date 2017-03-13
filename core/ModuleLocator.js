@@ -18,8 +18,9 @@ ModuleLocator.prototype = {
      * @return {{*}} module Controller
      */
     getModuleController: function getModuleController(moduleName) {
-        if (!this.moduleExists(moduleName))
+        if (!this.moduleExists(moduleName)) {
             return null;
+        }
         return require(this.dirmoduleRoutePath + moduleName + '/Controller');
     },
 

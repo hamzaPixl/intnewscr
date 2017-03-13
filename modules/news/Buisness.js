@@ -1,3 +1,8 @@
+/**
+ * This constructor use params to be able to call api 
+ * @param config is the array object that contains all value as variable, url ..
+ * @param services is used to require services that the module need
+ * */
 function Buisness(services, config) {
     this.services = services;
     this.config = config;
@@ -7,9 +12,7 @@ function Buisness(services, config) {
 }
 
 Buisness.prototype = {
-
     getNews: function getNews(params) {
-
         if (params.language == 'fr') {
             return this.getNewsFr();
         } else if (params.language == 'nl') {
@@ -17,7 +20,6 @@ Buisness.prototype = {
         }
 
     },
-
     getNewsFr: function getNewsFr() {
         return new Promise(function(resolve, reject) {
             this.rss.parseURL(this.config.url_fr, function(err, parsed) {
@@ -29,7 +31,6 @@ Buisness.prototype = {
             });
         }.bind(this));
     },
-
     getNewsNl: function getNewsNl() {
         return new Promise(function(resolve, reject) {
             this.rss.parseURL(this.config.url_nl, function(err, parsed) {
@@ -41,7 +42,6 @@ Buisness.prototype = {
             });
         }.bind(this));
     },
-
     getNewsApi: function getNewsApi(params) {
         var url = this.config.url_api.replace('sourceinput', params.source);
         return new Promise(function(resolve, reject) {
