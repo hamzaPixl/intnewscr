@@ -12,11 +12,22 @@ function WeatherItem() {
     this.day;
 }
 
+/**
+ * @private
+ * 
+ * @return the name of the model item
+ */
 WeatherItem.getName = function getName() {
     return 'weather';
 }
 
 
+
+/**
+ * @private
+ * 
+ * @return the ttl of the data
+ */
 WeatherItem.getTTL = function getTTL() {
     return 14400;
 }
@@ -54,7 +65,6 @@ WeatherItem.prototype = {
         this.created = data.created;
         this.ttl = data.ttl;
         this.model = data.model;
-
         this.date = data.date;
         this.max = data.max;
         this.min = data.min;
