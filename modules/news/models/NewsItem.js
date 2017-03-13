@@ -9,11 +9,21 @@ function NewsItem() {
     this.source = '';
 }
 
+/**
+ * @private
+ * 
+ * @return the name of the model item
+ */
 NewsItem.getName = function getName() {
     return 'news';
 }
 
 
+/**
+ * @private
+ * 
+ * @return the name of the model item
+ */
 NewsItem.getTTL = function getTTL() {
     return 14400;
 }
