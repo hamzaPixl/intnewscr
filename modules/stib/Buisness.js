@@ -55,10 +55,13 @@ Buisness.prototype = {
      */
     getLine: function getLine(line) {
         var result = [];
+        var scrappIndiceDefault = 1,
+            scrappIndiceBeaulieu = 3;
+
         if (line == 17) {
             return new Promise(function(resolve, reject) {
-                this.scrapping(this.config.stib_17_heli, 1, line, 'HEILIGENBORRE').then(function(result_heli) {
-                    this.scrapping(this.config.stib_17_beaulieu, 3, line, 'BEAULIEU').then(function(result_beaulieu) {
+                this.scrapping(this.config.stib_17_heli, scrappIndiceDefault, line, 'HEILIGENBORRE').then(function(result_heli) {
+                    this.scrapping(this.config.stib_17_beaulieu, scrappIndiceBeaulieu, line, 'BEAULIEU').then(function(result_beaulieu) {
                         result = result_beaulieu.concat(result_heli);
                         resolve(result);
                     }, function(err) {
@@ -71,8 +74,8 @@ Buisness.prototype = {
         }
         if (line == 94) {
             return new Promise(function(resolve, reject) {
-                this.scrapping(this.config.stib_94_louise, 1, line, 'LOUISE').then(function(result_louise) {
-                    this.scrapping(this.config.stib_94_mt, 1, line, 'MUSEE DU TRAM').then(function(result_mt) {
+                this.scrapping(this.config.stib_94_louise, scrappIndiceDefault, line, 'LOUISE').then(function(result_louise) {
+                    this.scrapping(this.config.stib_94_mt, scrappIndiceDefault, line, 'MUSEE DU TRAM').then(function(result_mt) {
                         result = result_louise.concat(result_mt);
                         resolve(result);
                     }, function(err) {
@@ -84,7 +87,7 @@ Buisness.prototype = {
             }.bind(this));
         }
         if (line == 95) {
-            return this.scrapping(this.config.stib_95_gp, 1, line, 'GRANDE PLACE');
+            return this.scrapping(this.config.stib_95_gp, scrappIndiceDefault, line, 'GRANDE PLACE');
         }
     }
 };
