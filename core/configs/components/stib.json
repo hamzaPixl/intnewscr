@@ -1,9 +1,7 @@
 {
-
     "stib_95_gp": "http://m.stib.be/stop.php?lang=fr&line=17&stop=4351&iti=2",
     "stib_94_louise": "http://m.stib.be/stop.php?lang=fr&line=94&stop=5452&iti=2",
     "stib_94_mt": "http://m.stib.be/stop.php?lang=fr&line=94&stop=5422&iti=2",
     "stib_17_beaulieu": "http://m.stib.be/stop.php?lang=fr&line=17&stop=4351&iti=2",
     "stib_17_heli": "http://m.stib.be/stop.php?lang=fr&line=17&stop=4349&iti=2"
-
 }
