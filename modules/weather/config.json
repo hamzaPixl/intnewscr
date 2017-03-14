@@ -1,10 +1,9 @@
 {
     "services": {
         "weatherJs": {
-            "name": "weather-js"
+            "name": "yahoo-weather"
         }
     },
-
     "config": {
 
     }
