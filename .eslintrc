@@ -1,0 +1,8 @@
+{
+    "extends": "airbnb",
+    "rules": {
+        "valid-typeof":"warn",
+        "global-require": "off",
+        "import/no-dynamic-require": "off"
+    }
+}
