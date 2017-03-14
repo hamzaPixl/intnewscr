@@ -11,7 +11,6 @@ function NewsItem() {
 
 /**
  * @private
- * 
  * @return the name of the model item
  */
 NewsItem.getName = function getName() {
@@ -20,7 +19,6 @@ NewsItem.getName = function getName() {
 
 /**
  * @private
- * 
  * @return the name of the model item
  */
 NewsItem.getTTL = function getTTL() {
@@ -87,7 +85,7 @@ NewsItem.prototype = {
       this.date = json.pubDate;
       this.link = json.guid;
       this.language = 'fr';
-      this.source = 'bel' + this.language;
+      this.source = `bel${this.language}`;
     } else {
       this.content = json.contentSnippet;
       this.title = json.title;
@@ -95,7 +93,7 @@ NewsItem.prototype = {
       this.date = json.pubDate;
       this.link = json.link;
       this.language = 'nl';
-      this.source = 'bel' + this.language;
+      this.source = `bel${this.language}`;
     }
   },
 
