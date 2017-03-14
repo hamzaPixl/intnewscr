@@ -27,11 +27,17 @@ Controller.prototype = {
     const news = this.repositoryNews.findAllBy('source', params.source + (params.language || ''));
     if (news && news.length > 0) {
       return new Promise((resolve, reject) => {
+        if (!news) {
+          reject(news);
+        }
         resolve(news);
       });
     }
     return new Promise((resolve, reject) => {
       this.buisness.getNews(params).then((newsBuis) => {
+        if (!newsBuis) {
+          reject(newsBuis);
+        }
         this.repositoryNews.saveAll(newsBuis);
         resolve(this.repositoryNews.findAllBy('source', params.source + (params.language || '')));
       });
@@ -52,11 +58,17 @@ Controller.prototype = {
     const news = this.repositoryNews.findAllBy('source', params.source);
     if (news && news.length > 0) {
       return new Promise((resolve, reject) => {
+        if (!news) {
+          reject(news);
+        }
         resolve(news);
       });
     }
     return new Promise((resolve, reject) => {
       this.buisness.getNewsApi(params).then((newsBuis) => {
+        if (!newsBuis) {
+          reject(news);
+        }
         this.repositoryNews.saveAll(newsBuis);
         resolve(this.repositoryNews.findAllBy('source', params.source));
       });
@@ -74,12 +86,18 @@ Controller.prototype = {
     const trafic = this.repositoryTrafic.findAllBy('model', TraficItem.getName());
     if (trafic && trafic.length > 0) {
       return new Promise((resolve, reject) => {
+        if (!trafic) {
+          reject(trafic);
+        }
         resolve(trafic);
       });
     }
 
     return new Promise((resolve, reject) => {
       this.buisness.getNewsTrafic().then((traficBuis) => {
+        if (!traficBuis) {
+          reject(traficBuis);
+        }
         this.repositoryTrafic.saveAll(traficBuis);
         resolve(this.repositoryTrafic.findAllBy('model', TraficItem.getName()));
       });
