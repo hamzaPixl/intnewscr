@@ -44,7 +44,6 @@ WeatherItem.prototype = {
       day: this.day,
       max: this.max,
       min: this.min,
-      precip: this.precip,
       description: this.description,
     });
   },
@@ -62,14 +61,13 @@ WeatherItem.prototype = {
     this.date = data.date;
     this.max = data.max;
     this.min = data.min;
-    this.precip = data.precip;
     this.description = data.description;
     this.day = data.day;
   },
 
     /**
      * It convert the json on a WeatherItem format
-     * @json is the object that it will be converted
+     * @param json is the object that it will be converted
      */
   fromJson: function fromJson(json) {
     this.created = Date.now();
@@ -79,8 +77,7 @@ WeatherItem.prototype = {
     this.date = json.date;
     this.max = json.high;
     this.min = json.low;
-    this.precip = json.precip;
-    this.description = json.skytextday;
+    this.description = json.text;
     this.day = json.day;
   },
 
