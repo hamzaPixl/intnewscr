@@ -1,0 +1,21 @@
+{
+    "services":{
+        "request": {
+            "name": "request"
+        },
+        "cheerio": {
+            "name": "cheerio"
+        },
+        "cheerioTableparser": {
+            "name": "cheerio-tableparser"
+        }
+    },
+    "config": {
+        "barasoupe": {
+            "name": "barasoupe",
+            "default": "/",
+            "type": "string",
+            "require": true
+        }
+    }
+}
