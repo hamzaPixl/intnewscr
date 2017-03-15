@@ -10,5 +10,9 @@
     "weather": {
         "check": "weather/config.json",
         "value": "weather.json"
+    },
+    "menus": {
+        "check": "menus/config.json",
+        "value": "menus.json"
     }
 }
