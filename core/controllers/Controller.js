@@ -33,7 +33,6 @@ Controller.prototype = {
     }
     const controller = new ModuleController(reader.getConfig(),
                                             reader.getServices());
-
     return this.getResult(controller, requestClient, main);
   },
 
