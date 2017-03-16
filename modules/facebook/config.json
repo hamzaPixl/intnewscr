@@ -1,0 +1,27 @@
+{
+    "services": {
+        "request": {
+            "name": "request"
+        }
+    },
+    "config": {
+        "clientid": {
+            "name": "clientid",
+            "default": "/",
+            "type": "string",
+            "require": true
+        },
+        "clienttoken": {
+            "name": "clienttoken",
+            "default": "/",
+            "type": "string",
+            "require": true
+        },
+        "secret": {
+            "name": "secret",
+            "default": "/",
+            "type": "string",
+            "require": true
+        }
+    }
+}
