@@ -71,8 +71,8 @@ MenusItem.prototype = {
       this.soupe = json.soupe;
     } else {
       this.source = 'gustine';
-      this.suggestion = json.data;
-      this.id = this.created;
+      this.suggestion = json.message;
+      this.id = json.id;
       this.soupe = '';
     }
   },
