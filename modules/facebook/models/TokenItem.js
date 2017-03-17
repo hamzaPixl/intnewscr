@@ -1,34 +1,30 @@
-function WeatherItem() {
+function TokenItem() {
     // properties of a specific instance
   this.id = '';
   this.created = '';
   this.ttl = '';
   this.model = '';
-  this.date = '';
-  this.max = '';
-  this.min = '';
-  this.precip = '';
-  this.description = '';
-  this.day = '';
+  this.expires_in = '';
+  this.token = '';
 }
 
 /**
  * @private
  * @return the name of the model item
  */
-WeatherItem.getName = function getName() {
-  return 'weather';
+TokenItem.getName = function getName() {
+  return 'facebook';
 };
 
 /**
  * @private
  * @return the ttl of the data
  */
-WeatherItem.getTTL = function getTTL() {
+TokenItem.getTTL = function getTTL() {
   return 14400;
 };
 
-WeatherItem.prototype = {
+TokenItem.prototype = {
 
     /**
      * It convert the the current object model
@@ -40,11 +36,8 @@ WeatherItem.prototype = {
       created: this.created,
       ttl: this.ttl,
       model: this.model,
-      date: this.date,
-      day: this.day,
-      max: this.max,
-      min: this.min,
-      description: this.description,
+      token: this.token,
+      expires_in: this.expires_in,
     });
   },
 
@@ -58,29 +51,23 @@ WeatherItem.prototype = {
     this.created = data.created;
     this.ttl = data.ttl;
     this.model = data.model;
-    this.date = data.date;
-    this.max = data.max;
-    this.min = data.min;
-    this.description = data.description;
-    this.day = data.day;
+    this.token = data.token;
+    this.expires_in = data.expires_in;
   },
 
     /**
      * It convert the json on a WeatherItem format
-     * @param json is the object that it will be converted
+     * @json is the object that it will be converted
      */
   fromJson: function fromJson(json) {
     this.created = Date.now();
-    this.model = WeatherItem.getName();
-    this.ttl = WeatherItem.getTTL();
-    this.id = json.date;
-    this.date = json.date;
-    this.max = json.high;
-    this.min = json.low;
-    this.description = json.text;
-    this.day = json.day;
+    this.model = TokenItem.getName();
+    this.ttl = TokenItem.getTTL();
+    this.id = this.created;
+    this.expires_in = json.expires_in;
+    this.token = json.access_token;
   },
 
 };
 
-module.exports = WeatherItem;
+module.exports = TokenItem;

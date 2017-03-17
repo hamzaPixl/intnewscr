@@ -25,10 +25,14 @@
   "dependencies": {
     "cheerio": "^0.22.0",
     "cheerio-tableparser": "^1.0.1",
+    "dotenv": "^4.0.0",
+    "fb": "^1.1.1",
     "lodash": "^4.17.4",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
     "request": "^2.80.0",
     "rss-parser": "^2.5.2",
     "socket.io": "^1.7.3",
-    "weather-js": "^1.0.3"
+    "yahoo-weather": "^2.2.2"
   }
 }
