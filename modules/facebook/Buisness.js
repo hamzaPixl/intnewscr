@@ -20,7 +20,7 @@ Buisness.prototype = {
   getUserCode: function getUserCode() {
     return new Promise((resolve, reject) => {
       this.request.post({ url: 'https://graph.facebook.com/v2.6/device/login',
-        form: { access_token: `${this.config.clientid}|${this.config.clienttoken}` } }, (err, httpResponse, body) => {
+        form: { access_token: `${process.env.CLIENT_ID_FACEBOOK}|${process.env.CLIENT_TOKEN_FACEBOOK}` } }, (err, httpResponse, body) => {
         const result = JSON.parse(body);
         if (!err && !result.error) {
           resolve(result);
@@ -40,7 +40,7 @@ Buisness.prototype = {
   statusLoginOk: function statusLoginOk() {
     return new Promise((resolve, reject) => {
       this.request.post({ url: 'https://graph.facebook.com/v2.6/device/login_status',
-        form: { access_token: `${this.config.clientid}|${this.config.clienttoken}`, code: this.verify_code } }, (err, httpResponse, body) => {
+        form: { access_token: `${process.env.CLIENT_ID_FACEBOOK}|${process.env.CLIENT_TOKEN_FACEBOOK}`, code: this.verify_code } }, (err, httpResponse, body) => {
         const result = JSON.parse(body);
         if (!err && !result.error) {
           const array = [result];
