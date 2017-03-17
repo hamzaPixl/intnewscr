@@ -5,6 +5,8 @@ function Buisness(services, config) {
     this[serviceKey] = require(this.services[serviceKey].name);
     return this;
   });
+  this.RequestModel = require('./../../core/Request');
+  this.Controller = require('./../../core/controllers/Controller');
 }
 
 Buisness.prototype = {
@@ -31,9 +33,25 @@ Buisness.prototype = {
      */
   getMenusFromGustine: function getMenusFromGustine() {
     return new Promise((resolve, reject) => {
-      /**
-       * todo
-       */
+      const request = new this.RequestModel();
+      request.setpath('/token').setbaseUrl('/facebook/token');
+      const controller = new this.Controller();
+      controller.request(request).then((data) => {
+        this.fb.setAccessToken(data.access_token);
+        this.fb.api(
+          `${this.config.gustine}/feed`,
+            'GET', {},
+            (response) => {
+              if (response) {
+                reject(response);
+              } else {
+                resolve(response);
+              }
+            }
+        );
+      }, (err) => {
+        console.log(err);
+      });
     });
   },
   /**
