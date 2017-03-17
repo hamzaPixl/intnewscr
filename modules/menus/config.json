@@ -3,6 +3,9 @@
         "request": {
             "name": "request"
         },
+        "fb": {
+            "name": "fb"
+        },
         "cheerio": {
             "name": "cheerio"
         },
@@ -13,6 +16,12 @@
     "config": {
         "barasoupe": {
             "name": "barasoupe",
+            "default": "/",
+            "type": "string",
+            "require": true
+        },
+        "gustine": {
+            "name": "gustine",
             "default": "/",
             "type": "string",
             "require": true
