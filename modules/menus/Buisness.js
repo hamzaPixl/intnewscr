@@ -37,15 +37,16 @@ Buisness.prototype = {
       request.setpath('/token').setbaseUrl('/facebook/token');
       const controller = new this.Controller();
       controller.request(request).then((data) => {
-        this.fb.setAccessToken(data.access_token);
+        this.fb.setAccessToken(data[0].token);
         this.fb.api(
-          `${this.config.gustine}/feed`,
+          `${this.config.gustine}/posts?limit=1`,
             'GET', {},
             (response) => {
-              if (response) {
-                reject(response);
+              if (response.data) {
+                console.log(response.data);
+                resolve(response.data);
               } else {
-                resolve(response);
+                reject(response);
               }
             }
         );
