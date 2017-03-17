@@ -32,6 +32,6 @@
     "request": "^2.80.0",
     "rss-parser": "^2.5.2",
     "socket.io": "^1.7.3",
-    "weather-js": "^1.0.3"
+    "yahoo-weather": "^2.2.2"
   }
 }

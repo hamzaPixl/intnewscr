@@ -16,11 +16,11 @@ Buisness.prototype = {
      */
   getWeather: function getWeather() {
     return new Promise((resolve, reject) => {
-      this.weatherJs.find({ search: 'Brussels, Belgium', degreeType: 'C' }, (err, result) => {
-        if (err) {
-          reject(err);
+      this.weatherJs(this.config.city, this.config.options).then((info) => {
+        if (!info) {
+          reject(info);
         } else {
-          resolve(result[0].forecast);
+          resolve(info.item.forecast);
         }
       });
     });
