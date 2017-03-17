@@ -66,7 +66,6 @@ Buisness.prototype = {
         this.interval = setInterval(() => {
           this.statusLoginOk().then((accesToken) => {
             clearInterval(this.interval);
-            console.log(accesToken);
             resolve(accesToken);
           }, (error) => {
             if (error.error.code !== 31) {
