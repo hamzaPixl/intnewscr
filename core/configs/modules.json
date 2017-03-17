@@ -10,5 +10,9 @@
     "weather": {
         "check": "weather/config.json",
         "value": "weather.json"
+    },
+    "facebook": {
+        "check": "facebook/config.json",
+        "value": "facebook.json"
     }
 }
