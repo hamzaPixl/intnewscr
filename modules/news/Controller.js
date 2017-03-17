@@ -2,6 +2,7 @@ const Buisness = require('./Buisness');
 const Repository = require('./../../core/models/Repository');
 const NewsItem = require('./models/NewsItem');
 const TraficItem = require('./models/TraficItem');
+const TraficMapItem = require('./models/MapItem');
 
 
 function Controller(config, services) {
@@ -101,6 +102,17 @@ Controller.prototype = {
         this.repositoryTrafic.saveAll(traficBuis);
         resolve(this.repositoryTrafic.findAllBy('model', TraficItem.getName()));
       });
+    });
+  },
+  getNewsTraficMaps: function getNewsTraficMaps(params) {
+    return new Promise((resolve, reject) => {
+      if (params.source === 'brussels') {
+        resolve(TraficMapItem.getBrussels());
+      } else if (params.source === 'vlaams') {
+        resolve(TraficMapItem.getVlaams());
+      } else {
+        reject(null);
+      }
     });
   },
 };
