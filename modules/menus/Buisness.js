@@ -56,12 +56,7 @@ Buisness.prototype = {
         if (!error && response.statusCode === 200) {
           const $ = this.cheerio.load(body);
           this.cheerioTableparser($);
-          const data = $('.tg-table-plain').parsetable(true, true, true);
-          const ob = [];
-          for (let i = 1; i < data[0].length; i += 1) {
-            ob.push({ jour: data[0][i], soupe: `${data[1][i]} & ${data[2][i]}`, suggestion: data[3][i] });
-          }
-          resolve(ob);
+          resolve(this.formatData($));
         } else {
           reject(error);
         }
@@ -69,7 +64,27 @@ Buisness.prototype = {
     });
   },
 
-
+  /**
+   * It parse the data from the table to an array
+   * @private
+   */
+  formatData: function formatData($) {
+    const data = [];
+    $('tr').each((i, tr) => {
+      const children = $(tr).children();
+      const row = {
+        jour: children.eq(0).text(),
+        soupe: `${children.eq(1).text()} & ${children.eq(2).text()}`,
+        suggestion: children.eq(3).text(),
+      };
+      data.push(row);
+    });
+    /**
+     * remove the first item becase it is the header of the table
+     * */
+    data.shift();
+    return data;
+  },
 };
 
 module.exports = Buisness;
