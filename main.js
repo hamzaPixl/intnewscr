@@ -2,6 +2,7 @@ const server = require('http').createServer();
 const io = require('socket.io')(server);
 const Controller = require('./core/controllers/Controller');
 const controller = new Controller();
+require('dotenv').config();
 
 
 io.on('connection', function(client) {
