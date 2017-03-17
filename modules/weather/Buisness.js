@@ -1,6 +1,3 @@
-const CITY = 'brussels';
-const CELCIUS = 'c';
-
 function Buisness(services, config) {
   this.services = services;
   this.config = config;
@@ -19,7 +16,7 @@ Buisness.prototype = {
      */
   getWeather: function getWeather() {
     return new Promise((resolve, reject) => {
-      this.weatherJs(CITY, CELCIUS).then((info) => {
+      this.weatherJs(this.config.city, this.config.options).then((info) => {
         if (!info) {
           reject(info);
         } else {
