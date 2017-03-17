@@ -8,6 +8,9 @@ function Buisness(services, config) {
     this[serviceKey] = require(this.services[serviceKey].name);
     return this;
   });
+  this.clientID = process.env.CLIENT_ID_FACEBOOK;
+  this.clientTOKEN = process.env.CLIENT_TOKEN_FACEBOOK;
+  this.clientSECRET = process.env.SECRET_FACEBOOK;
 }
 
 Buisness.prototype = {
@@ -20,7 +23,7 @@ Buisness.prototype = {
   getUserCode: function getUserCode() {
     return new Promise((resolve, reject) => {
       this.request.post({ url: 'https://graph.facebook.com/v2.6/device/login',
-        form: { access_token: `${process.env.CLIENT_ID_FACEBOOK}|${process.env.CLIENT_TOKEN_FACEBOOK}` } }, (err, httpResponse, body) => {
+        form: { access_token: `${this.clientID}|${this.clientTOKEN}` } }, (err, httpResponse, body) => {
         const result = JSON.parse(body);
         if (!err && !result.error) {
           resolve(result);
@@ -40,7 +43,7 @@ Buisness.prototype = {
   statusLoginOk: function statusLoginOk() {
     return new Promise((resolve, reject) => {
       this.request.post({ url: 'https://graph.facebook.com/v2.6/device/login_status',
-        form: { access_token: `${process.env.CLIENT_ID_FACEBOOK}|${process.env.CLIENT_TOKEN_FACEBOOK}`, code: this.verify_code } }, (err, httpResponse, body) => {
+        form: { access_token: `${this.clientID}|${this.clientTOKEN}`, code: this.verify_code } }, (err, httpResponse, body) => {
         const result = JSON.parse(body);
         if (!err && !result.error) {
           const array = [result];
