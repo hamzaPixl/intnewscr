@@ -18,12 +18,14 @@ Buisness.prototype = {
      * @return Promise with data
      */
   getMenu: function getMenu(source) {
-    if (source === 'gustine') {
-      return this.getMenusFromGustine();
-    } else if (source === 'barasoupe') {
-      return this.getMenusFromBarASoupe();
+    switch (source) {
+      case 'gustine' :
+        return this.getMenusFromGustine();
+      case 'barasoupe' :
+        return this.getMenusFromBarASoupe();
+      default:
+        return null;
     }
-    return null;
   },
   /**
      * It search the menus from gustine using facebook
@@ -33,8 +35,7 @@ Buisness.prototype = {
      */
   getMenusFromGustine: function getMenusFromGustine() {
     return new Promise((resolve, reject) => {
-      const request = new this.RequestModel();
-      request.setpath('/token').setbaseUrl('/facebook/token');
+      const request = new this.RequestModel('/facebook/token', '/token', null);
       const controller = new this.Controller();
       controller.request(request).then((data) => {
         this.fb.setAccessToken(data[0].token);
@@ -43,32 +44,33 @@ Buisness.prototype = {
             'GET', {},
             (response) => {
               if (response.data) {
-                console.log(response.data);
                 resolve(response.data);
               } else {
                 reject(response);
               }
-            }
+            },
         );
       }, (err) => {
         console.log(err);
       });
     });
   },
+
   /**
-     * It search the menus from bar à soupe using url
-     * @private
-     * @return Promise with data
-     */
+   * It search the menus from bar à soupe using url
+   * @private
+   * @return Promise with data
+   */
   getMenusFromBarASoupe: function getMenusFromBarASoupe() {
     return this.scrapping(this.config.barasoupe);
   },
-/**
-     * This function scrapp the HTML code to exports data
-     * @param url is the link to retreive data
-     * @private
-     * @return  the promis that contains data
-     */
+
+  /**
+   * This function scrapp the HTML code to exports data
+   * @param url is the link to retreive data
+   * @private
+   * @return  the promis that contains data
+   */
   scrapping: function scrapping(url) {
     return new Promise((resolve, reject) => {
       this.request(url, (error, response, body) => {
@@ -98,9 +100,7 @@ Buisness.prototype = {
       };
       data.push(row);
     });
-    /**
-     * remove the first item becase it is the header of the table
-     * */
+    // remove the first item because it is the header of the table
     data.shift();
     return data;
   },
