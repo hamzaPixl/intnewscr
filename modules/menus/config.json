@@ -1,0 +1,30 @@
+{
+    "services":{
+        "request": {
+            "name": "request"
+        },
+        "fb": {
+            "name": "fb"
+        },
+        "cheerio": {
+            "name": "cheerio"
+        },
+        "cheerioTableparser": {
+            "name": "cheerio-tableparser"
+        }
+    },
+    "config": {
+        "barasoupe": {
+            "name": "barasoupe",
+            "default": "/",
+            "type": "string",
+            "require": true
+        },
+        "gustine": {
+            "name": "gustine",
+            "default": "/",
+            "type": "string",
+            "require": true
+        }
+    }
+}
