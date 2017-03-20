@@ -11,6 +11,12 @@
         },
         "cheerioTableparser": {
             "name": "cheerio-tableparser"
+        },
+        "RequestModel": {
+            "name": "./../../core/Request"
+        },
+        "Controller": {
+            "name": "./../../core/controllers/Controller"
         }
     },
     "config": {
