@@ -3,6 +3,9 @@
         "fb": {
             "name": "fb"
         },
+        "rss": {
+            "name": "rss-parser"
+        },
         "RequestModel": {
             "name": "./../../core/Request"
         },
@@ -11,6 +14,12 @@
         }
     },
     "config": {
+        "url": {
+            "name": "url",
+            "default": "/",
+            "type": "string",
+            "require": true
+        },
         "emakina": {
             "name": "emakina",
             "default": "/",
