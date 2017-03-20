@@ -18,5 +18,9 @@
     "facebook": {
         "check": "facebook/config.json",
         "value": "facebook.json"
+    },
+    "clients":{
+        "check" : "clients/config.json",
+        "value":"clients.json"
     }
 }
