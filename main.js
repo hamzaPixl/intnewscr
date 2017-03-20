@@ -1,22 +1,20 @@
+require('dotenv').config();
 const server = require('http').createServer();
 const io = require('socket.io')(server);
 const Controller = require('./core/controllers/Controller');
+
 const controller = new Controller();
-require('dotenv').config();
 
 
-io.on('connection', function(client) {
-
-    client.on('request', function(requestClient) {
-        controller.request(requestClient).then(function(data) {
-            client.emit('response', { 'data': data, 'name': requestClient.name });
-        }, function(err) {
-            console.log(err);
-        });
+io.on('connection', (client) => {
+  client.on('request', (requestClient) => {
+    controller.request(requestClient).then((data) => {
+      client.emit('response', { data, name: requestClient.name });
+    }, (err) => {
+      console.log(err);
     });
-
-    client.on('disconnect', function() {});
-
+  });
+  client.on('disconnect', () => {});
 });
 
 server.listen(3000);

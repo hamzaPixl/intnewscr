@@ -11,6 +11,10 @@
         "check": "weather/config.json",
         "value": "weather.json"
     },
+    "menus": {
+        "check": "menus/config.json",
+        "value": "menus.json"
+    },
     "facebook": {
         "check": "facebook/config.json",
         "value": "facebook.json"
