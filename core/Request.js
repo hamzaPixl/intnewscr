@@ -1,29 +1,23 @@
-function Request() {
+/**
+ * This is the Request object that is used
+ * in the project, by the back and frontend
+ * this object match to the express one.
+ */
+function Request(baseUrl, path, params) {
   this.method = 'GET';
-  this.baseUrl = '';
-  this.path = '';
-  this.params = {};
-  this.name = '';
+  this.baseUrl = baseUrl;
+  this.path = path;
+  this.params = params;
 }
 
 Request.prototype = {
+  /**
+   * It gives the parametre value from a key
+   * @param str is the parametre key
+   * @return value of parameter
+   */
   param: function param(str) {
     return this.params[str];
-  },
-  addParam: function addParam(key, value) {
-    this.params[key] = value;
-    return this;
-  },
-  setpath: function setpath(value) {
-    this.path = value;
-    return this;
-  },
-  setbaseUrl: function setbaseUrl(value) {
-    this.baseUrl = value;
-    return this;
-  },
-  build: function build() {
-    return this;
   },
 
 };
