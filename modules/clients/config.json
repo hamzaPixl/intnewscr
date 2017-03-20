@@ -1,0 +1,51 @@
+{
+    "services": {
+        "fb": {
+            "name": "fb"
+        },
+        "RequestModel": {
+            "name": "./../../core/Request"
+        },
+        "Controller": {
+            "name": "./../../core/controllers/Controller"
+        }
+    },
+    "config": {
+        "emakina": {
+            "name": "emakina",
+            "default": "/",
+            "type": "string",
+            "require": true
+        },
+        "deutshe": {
+            "name": "deutshe",
+            "default": "/",
+            "type": "string",
+            "require": true
+        },
+        "bancamps": {
+            "name": "bancamps",
+            "default": "/",
+            "type": "string",
+            "require": true
+        },
+        "ouibus": {
+            "name": "ouibus",
+            "default": "/",
+            "type": "string",
+            "require": true
+        },
+        "eortc": {
+            "name": "eortc",
+            "default": "/",
+            "type": "string",
+            "require": true
+        },
+        "barl": {
+            "name": "barl",
+            "default": "/",
+            "type": "string",
+            "require": true
+        }
+    }
+}
