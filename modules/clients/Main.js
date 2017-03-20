@@ -7,6 +7,13 @@ function Main() {
         source: 'string',
       },
     },
+    '/google': {
+      method: 'GET',
+      callback: 'getGooglePosts',
+      query: {
+        source: 'string',
+      },
+    }
   };
 }
 
