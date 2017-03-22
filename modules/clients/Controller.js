@@ -13,11 +13,11 @@ function Controller(config, services) {
 
 Controller.prototype = {
 
-    /**
-     * Call the buisness if there are no data in database
-     * else it return the data that the databse contains
-     * @return Promis that contains data
-     */
+  /**
+  * Call the buisness if there are no data in database
+  * else it return the data that the databse contains
+  * @return Promis that contains data
+  */
   getFacebookPosts: function getFacebookPosts(params) {
     const posts = this.repoFacebook.findAllBy('source', this.config[params.source]);
     if (posts && posts.length > 0) {
@@ -40,10 +40,10 @@ Controller.prototype = {
   },
 
   /**
-     * Call the buisness if there are no data in database
-     * else it return the data that the databse contains
-     * @return Promis that contains data
-     */
+  * Call the buisness if there are no data in database
+  * else it return the data that the databse contains
+  * @return Promis that contains data
+  */
   getGooglePosts: function getGooglePosts(params) {
     const posts = this.repoGoogle.findAllBy('source', params.source);
     if (posts && posts.length > 0) {

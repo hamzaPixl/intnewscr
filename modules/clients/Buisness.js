@@ -9,11 +9,11 @@ function Buisness(services, config) {
 
 Buisness.prototype = {
 
-     /**
-     * It search the 2 latest news of the source on google
-     * @param source is the query search
-     * @return Promise with data
-     */
+  /**
+  * It search the 2 latest news of the source on google
+  * @param source is the query search
+  * @return Promise with data
+  */
   getGooglePosts: function getGooglePosts(source) {
     return new Promise((resolve, reject) => {
       const url = this.config.url.replace('source', source);
@@ -27,11 +27,12 @@ Buisness.prototype = {
       });
     });
   },
-     /**
-     * It search the 2 latest post of the source on facebook
-     * @param sourceid is the page id of the client
-     * @return Promise with data
-     */
+
+  /**
+  * It search the 2 latest post of the source on facebook
+  * @param sourceid is the page id of the client
+  * @return Promise with data
+  */
   getFacebookPosts: function getFacebookPosts(sourceId) {
     return new Promise((resolve, reject) => {
       const request = new this.RequestModel('/facebook/token', '/token', null);
