@@ -5,8 +5,6 @@ function Buisness (services, config) {
     this[serviceKey] = require(this.services[serviceKey].name);
     return this;
   });
-  this.RequestModel = require('./../../core/Request');
-  this.Controller = require('./../../core/controllers/Controller');
 }
 
 Buisness.prototype = {
@@ -42,15 +40,14 @@ Buisness.prototype = {
         this.fb.setAccessToken(data[0].token);
         this.fb.api(
           `${this.config.gustine}/posts?limit=1`,
-          'GET', {},
-          (response) => {
-            if (response.data) {
-              resolve(response.data);
-            } else {
-              reject(response);
-            }
-          },
-        );
+            'GET', {},
+            (response) => {
+              if (response.data) {
+                resolve(response.data);
+              } else {
+                reject(response);
+              }
+            });
       }, (err) => {
         console.log(err);
       });
