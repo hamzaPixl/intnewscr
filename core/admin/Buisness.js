@@ -26,7 +26,20 @@ Buisness.prototype = {
       }
     });
   },
-
+  /**
+   * It test a route by calling the module
+   * @param params contains param to call the module service
+   * @returns {Promise}
+   */
+  testRoute: function testRoute (params) {
+    return new Promise((resolve, reject) => {
+      const request = new this.RequestModel(`${params.url}`, `${params.route}`, params.params);
+      const controller = new this.Controller();
+      controller.request(request).then((data) => {
+        resolve(data);
+      });
+    });
+  },
   /**
    * Get all modules routes that are
    * available in the app
