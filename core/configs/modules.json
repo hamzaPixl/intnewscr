@@ -18,5 +18,10 @@
     "facebook": {
         "check": "facebook/config.json",
         "value": "facebook.json"
+    },
+    "admin": {
+        "check": "admin/config.json",
+        "value": "admin.json",
+        "path": "./"
     }
 }
