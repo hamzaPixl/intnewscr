@@ -1,4 +1,4 @@
-function GoogleItem() {
+function GoogleItem () {
   // properties of a specific instance
   this.id = '';
   this.created = '';
@@ -9,28 +9,28 @@ function GoogleItem() {
 }
 
 /**
-* @private
-* @return the name of the model item
-*/
-GoogleItem.getName = function getName() {
+ * @private
+ * @return the name of the model item
+ */
+GoogleItem.getName = function getName () {
   return 'clients';
 };
 
 /**
-* @private
-* @return the ttl of the data
-*/
-GoogleItem.getTTL = function getTTL() {
+ * @private
+ * @return the ttl of the data
+ */
+GoogleItem.getTTL = function getTTL () {
   return 14400;
 };
 
 GoogleItem.prototype = {
 
   /**
-  * It convert the the current object model
-  * into a json.
-  */
-  toJson: function toJson() {
+   * It convert the the current object model
+   * into a json.
+   */
+  toJson: function toJson () {
     return JSON.stringify({
       id: this.id,
       created: this.created,
@@ -44,10 +44,10 @@ GoogleItem.prototype = {
   },
 
   /**
-  * It convert the json data on a WeatherItem format
-  * @param data come from database
-  */
-  fromData: function fromData(data) {
+   * It convert the json data on a WeatherItem format
+   * @param data come from database
+   */
+  fromData: function fromData (data) {
     this.id = data.id;
     this.created = data.created;
     this.ttl = data.ttl;
@@ -59,10 +59,10 @@ GoogleItem.prototype = {
   },
 
   /**
-  * It convert the json on a WeatherItem format
-  * @param json is the object that it will be converted
-  */
-  fromJson: function fromJson(json) {
+   * It convert the json on a WeatherItem format
+   * @param json is the object that it will be converted
+   */
+  fromJson: function fromJson (json) {
     this.created = json.pubDate;
     this.model = GoogleItem.getName();
     this.ttl = GoogleItem.getTTL();

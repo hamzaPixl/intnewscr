@@ -3,7 +3,7 @@ const Repository = require('./../../core/models/Repository');
 const FacebookItem = require('./models/FacebookItem');
 const GoogleItem = require('./models/GoogleItem');
 
-function Controller(config, services) {
+function Controller (config, services) {
   this.config = config;
   this.services = services;
   this.buisness = new Buisness(this.services, this.config);
@@ -14,11 +14,11 @@ function Controller(config, services) {
 Controller.prototype = {
 
   /**
-  * Call the buisness if there are no data in database
-  * else it return the data that the databse contains
-  * @return Promis that contains data
-  */
-  getFacebookPosts: function getFacebookPosts(params) {
+   * Call the buisness if there are no data in database
+   * else it return the data that the databse contains
+   * @return Promis that contains data
+   */
+  getFacebookPosts: function getFacebookPosts (params) {
     const posts = this.repoFacebook.findAllBy('source', this.config[params.source]);
     if (posts && posts.length > 0) {
       return new Promise((resolve, reject) => {
@@ -40,11 +40,11 @@ Controller.prototype = {
   },
 
   /**
-  * Call the buisness if there are no data in database
-  * else it return the data that the databse contains
-  * @return Promis that contains data
-  */
-  getGooglePosts: function getGooglePosts(params) {
+   * Call the buisness if there are no data in database
+   * else it return the data that the databse contains
+   * @return Promis that contains data
+   */
+  getGooglePosts: function getGooglePosts (params) {
     const posts = this.repoGoogle.findAllBy('source', params.source);
     if (posts && posts.length > 0) {
       return new Promise((resolve, reject) => {

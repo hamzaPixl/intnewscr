@@ -1,4 +1,4 @@
-function FacebookItem() {
+function FacebookItem () {
   // properties of a specific instance
   this.id = '';
   this.created = '';
@@ -9,28 +9,28 @@ function FacebookItem() {
 }
 
 /**
-* @private
-* @return the name of the model item
-*/
-FacebookItem.getName = function getName() {
+ * @private
+ * @return the name of the model item
+ */
+FacebookItem.getName = function getName () {
   return 'clients';
 };
 
 /**
-* @private
-* @return the ttl of the data
-*/
-FacebookItem.getTTL = function getTTL() {
+ * @private
+ * @return the ttl of the data
+ */
+FacebookItem.getTTL = function getTTL () {
   return 14400;
 };
 
 FacebookItem.prototype = {
 
   /**
-  * It convert the the current object model
-  * into a json.
-  */
-  toJson: function toJson() {
+   * It convert the the current object model
+   * into a json.
+   */
+  toJson: function toJson () {
     return JSON.stringify({
       id: this.id,
       created: this.created,
@@ -42,10 +42,10 @@ FacebookItem.prototype = {
   },
 
   /**
-  * It convert the json data on a WeatherItem format
-  * @param data come from database
-  */
-  fromData: function fromData(data) {
+   * It convert the json data on a WeatherItem format
+   * @param data come from database
+   */
+  fromData: function fromData (data) {
     this.id = data.id;
     this.created = data.created;
     this.ttl = data.ttl;
@@ -55,10 +55,10 @@ FacebookItem.prototype = {
   },
 
   /**
-  * It convert the json on a WeatherItem format
-  * @param json is the object that it will be converted
-  */
-  fromJson: function fromJson(json) {
+   * It convert the json on a WeatherItem format
+   * @param json is the object that it will be converted
+   */
+  fromJson: function fromJson (json) {
     this.created = json.created_time;
     this.model = FacebookItem.getName();
     this.ttl = FacebookItem.getTTL();
