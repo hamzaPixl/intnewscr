@@ -9,6 +9,13 @@ function Controller (config, services) {
 Controller.prototype = {
 
   /**
+   * Test a route and get status response
+   * @return Promise
+   */
+  testRoute: function testRoute (params) {
+    return this.buisness.testRoute(params);
+  },
+  /**
    * Get all modules that are
    * available in the app
    * @return Promise
@@ -16,7 +23,6 @@ Controller.prototype = {
   getAll: function getAll () {
     return this.buisness.getAll();
   },
-
   /**
    * Get all modules routes that are
    * available in the app
