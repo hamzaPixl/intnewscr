@@ -2,8 +2,7 @@ const Buisness = require('./Buisness');
 const Repository = require('./../../core/models/Repository');
 const TokenItem = require('./models/TokenItem');
 
-
-function Controller(config, services) {
+function Controller (config, services) {
   this.config = config;
   this.services = services;
   this.buisness = new Buisness(this.services, this.config);
@@ -13,11 +12,11 @@ function Controller(config, services) {
 Controller.prototype = {
 
   /**
-  * Call the buisness if there are no data in database
-  * else it return the data that the databse contains
-  * @return Promis that contains data
-  */
-  getToken: function getToken() {
+   * Call the buisness if there are no data in database
+   * else it return the data that the databse contains
+   * @return Promis that contains data
+   */
+  getToken: function getToken () {
     const token = this.repository.findAll();
     if (token && token.length > 0) {
       return new Promise((resolve, reject) => {

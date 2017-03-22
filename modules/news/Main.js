@@ -1,4 +1,4 @@
-function Main() {
+function Main () {
   this.routes = {
     '/trafic': {
       method: 'GET',
@@ -31,11 +31,11 @@ function Main() {
 
 Main.prototype = {
   /**
-  * Get a route from the url
-  * null if it is not defined
-  * @param url is the url needed
-  */
-  getRoute: function getRoute(url) {
+   * Get a route from the url
+   * null if it is not defined
+   * @param url is the url needed
+   */
+  getRoute: function getRoute (url) {
     if (!this.routes[url]) {
       return null;
     }

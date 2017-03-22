@@ -1,4 +1,4 @@
-function Buisness(services, config) {
+function Buisness (services, config) {
   this.services = services;
   this.config = config;
   Object.keys(this.services).map((serviceKey) => {
@@ -11,12 +11,12 @@ function Buisness(services, config) {
 Buisness.prototype = {
 
   /**
-  * Get all modules that are
-  * available in the app
-  * @see ModuleLocator
-  * @return Promise
-  */
-  getAll: function getAll() {
+   * Get all modules that are
+   * available in the app
+   * @see ModuleLocator
+   * @return Promise
+   */
+  getAll: function getAll () {
     const modules = this.locator.modules;
     return new Promise((resolve, reject) => {
       if (!modules) {
@@ -28,12 +28,12 @@ Buisness.prototype = {
   },
 
   /**
-  * Get all modules routes that are
-  * available in the app
-  * @see ModuleLocator
-  * @return Promise
-  */
-  getRoutes: function getRoutes(module) {
+   * Get all modules routes that are
+   * available in the app
+   * @see ModuleLocator
+   * @return Promise
+   */
+  getRoutes: function getRoutes (module) {
     const Main = this.locator.getModuleMain(module);
     return new Promise((resolve, reject) => {
       if (!Main) {

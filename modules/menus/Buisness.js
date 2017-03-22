@@ -1,4 +1,4 @@
-function Buisness(services, config) {
+function Buisness (services, config) {
   this.services = services;
   this.config = config;
   Object.keys(this.services).map((serviceKey) => {
@@ -12,12 +12,12 @@ function Buisness(services, config) {
 Buisness.prototype = {
 
   /**
-  * It search the menus from a source
-  * @see Buisness::getMenusFromGustine
-  * @see Buisness::getMenusFromBarASoupe
-  * @return Promise with data
-  */
-  getMenu: function getMenu(source) {
+   * It search the menus from a source
+   * @see Buisness::getMenusFromGustine
+   * @see Buisness::getMenusFromBarASoupe
+   * @return Promise with data
+   */
+  getMenu: function getMenu (source) {
     switch (source) {
       case 'gustine' :
         return this.getMenusFromGustine();
@@ -29,12 +29,12 @@ Buisness.prototype = {
   },
 
   /**
-  * It search the menus from gustine using facebook
-  * @see Facebook:getToken
-  * @private
-  * @return Promise with data
-  */
-  getMenusFromGustine: function getMenusFromGustine() {
+   * It search the menus from gustine using facebook
+   * @see Facebook:getToken
+   * @private
+   * @return Promise with data
+   */
+  getMenusFromGustine: function getMenusFromGustine () {
     return new Promise((resolve, reject) => {
       const request = new this.RequestModel('/facebook/token', '/token', null);
       const controller = new this.Controller();
@@ -42,14 +42,14 @@ Buisness.prototype = {
         this.fb.setAccessToken(data[0].token);
         this.fb.api(
           `${this.config.gustine}/posts?limit=1`,
-            'GET', {},
-            (response) => {
-              if (response.data) {
-                resolve(response.data);
-              } else {
-                reject(response);
-              }
-            },
+          'GET', {},
+          (response) => {
+            if (response.data) {
+              resolve(response.data);
+            } else {
+              reject(response);
+            }
+          },
         );
       }, (err) => {
         console.log(err);
@@ -58,21 +58,21 @@ Buisness.prototype = {
   },
 
   /**
-  * It search the menus from bar à soupe using url
-  * @private
-  * @return Promise with data
-  */
-  getMenusFromBarASoupe: function getMenusFromBarASoupe() {
+   * It search the menus from bar à soupe using url
+   * @private
+   * @return Promise with data
+   */
+  getMenusFromBarASoupe: function getMenusFromBarASoupe () {
     return this.scrapping(this.config.barasoupe);
   },
 
   /**
-  * This function scrapp the HTML code to exports data
-  * @param url is the link to retreive data
-  * @private
-  * @return  the promis that contains data
-  */
-  scrapping: function scrapping(url) {
+   * This function scrapp the HTML code to exports data
+   * @param url is the link to retreive data
+   * @private
+   * @return  the promis that contains data
+   */
+  scrapping: function scrapping (url) {
     return new Promise((resolve, reject) => {
       this.request(url, (error, response, body) => {
         if (!error && response.statusCode === 200) {
@@ -87,10 +87,10 @@ Buisness.prototype = {
   },
 
   /**
-  * It parse the data from the table to an array
-  * @private
-  */
-  formatData: function formatData($) {
+   * It parse the data from the table to an array
+   * @private
+   */
+  formatData: function formatData ($) {
     const data = [];
     $('tr').each((i, tr) => {
       const children = $(tr).children();

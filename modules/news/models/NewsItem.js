@@ -1,4 +1,4 @@
-function NewsItem() {
+function NewsItem () {
   // properties of a specific instance
   this.language = '';
   this.id = null;
@@ -10,28 +10,28 @@ function NewsItem() {
 }
 
 /**
-* @private
-* @return the name of the model item
-*/
-NewsItem.getName = function getName() {
+ * @private
+ * @return the name of the model item
+ */
+NewsItem.getName = function getName () {
   return 'news';
 };
 
 /**
-* @private
-* @return the name of the model item
-*/
-NewsItem.getTTL = function getTTL() {
+ * @private
+ * @return the name of the model item
+ */
+NewsItem.getTTL = function getTTL () {
   return 14400;
 };
 
 NewsItem.prototype = {
 
   /**
-  * It convert the the current object model
-  * into a json.
-  */
-  toJson: function toJson() {
+   * It convert the the current object model
+   * into a json.
+   */
+  toJson: function toJson () {
     return JSON.stringify({
       content: this.content,
       id: this.id,
@@ -47,10 +47,10 @@ NewsItem.prototype = {
   },
 
   /**
-  * It convert the json data on a NewsItem format
-  * @data come from database
-  */
-  fromData: function fromData(data) {
+   * It convert the json data on a NewsItem format
+   * @data come from database
+   */
+  fromData: function fromData (data) {
     this.created = data.created;
     this.id = data.id;
     this.content = data.content;
@@ -63,10 +63,10 @@ NewsItem.prototype = {
   },
 
   /**
-  * It convert the json on a NewsItem format
-  * @param json is the object that it will be converted
-  */
-  fromJson: function fromJson(json) {
+   * It convert the json on a NewsItem format
+   * @param json is the object that it will be converted
+   */
+  fromJson: function fromJson (json) {
     this.created = Date.now();
     this.model = NewsItem.getName();
     if (json.url) {

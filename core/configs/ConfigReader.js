@@ -1,4 +1,4 @@
-function ConfigReader(moduleName, moduleLocator, configRoutePath, valueRoutePath) {
+function ConfigReader (moduleName, moduleLocator, configRoutePath, valueRoutePath) {
   this.moduleName = moduleName;
   this.moduleLocator = moduleLocator;
   this.configRoutePath = configRoutePath;
@@ -8,13 +8,13 @@ function ConfigReader(moduleName, moduleLocator, configRoutePath, valueRoutePath
 ConfigReader.prototype = {
 
   /**
-  * returns the configuration value
-  * @see ModuleLocator::configIsValid()
-  * @private
-  * @return null if definition and value doesn't match
-  * @return {{*}} if configuration is valid
-  */
-  getConfig: function getConfig() {
+   * returns the configuration value
+   * @see ModuleLocator::configIsValid()
+   * @private
+   * @return null if definition and value doesn't match
+   * @return {{*}} if configuration is valid
+   */
+  getConfig: function getConfig () {
     if (!this.configIsValid()) {
       return null;
     }
@@ -22,14 +22,14 @@ ConfigReader.prototype = {
   },
 
   /**
-  * returns the true if de definition match to value
-  * @see ModuleLocator::getModuleConfigurationDefinition()
-  * @see ModuleLocator::getModuleConfigurationValue()
-  * @private
-  * @return true if definition and value doesn't match
-  * @return false if it is valid
-  */
-  configIsValid: function configIsValid() {
+   * returns the true if de definition match to value
+   * @see ModuleLocator::getModuleConfigurationDefinition()
+   * @see ModuleLocator::getModuleConfigurationValue()
+   * @private
+   * @return true if definition and value doesn't match
+   * @return false if it is valid
+   */
+  configIsValid: function configIsValid () {
     const configCheck = this.getModuleConfigurationDefinition();
     const configValue = this.getModuleConfigurationValue();
     let missingConfigurations = [];
@@ -53,12 +53,12 @@ ConfigReader.prototype = {
   },
 
   /**
-  * returns the modules services
-  * @see ConfigReader::getModuleConfigurationDefinition()
-  * @return null if module doesn't exists
-  * @return {{*}} if module exists
-  */
-  getServices: function getServices() {
+   * returns the modules services
+   * @see ConfigReader::getModuleConfigurationDefinition()
+   * @return null if module doesn't exists
+   * @return {{*}} if module exists
+   */
+  getServices: function getServices () {
     const config = this.getModuleConfigurationDefinition();
     if (!config) {
       return null;
@@ -67,33 +67,33 @@ ConfigReader.prototype = {
   },
 
   /**
-  * returns the modulename
-  * @return null if module doesn't exists
-  * @return {{*}} if it exists
-  */
-  getModuleName: function getModuleName() {
+   * returns the modulename
+   * @return null if module doesn't exists
+   * @return {{*}} if it exists
+   */
+  getModuleName: function getModuleName () {
     return this.moduleName;
   },
 
   /**
-  * returns the moduleLocator
-  * @return null if module doesn't exists
-  * @return {{*}} if it exists
-  */
-  getModuleLocator: function getModuleLocator() {
+   * returns the moduleLocator
+   * @return null if module doesn't exists
+   * @return {{*}} if it exists
+   */
+  getModuleLocator: function getModuleLocator () {
     return this.moduleLocator;
   },
 
   /**
-  * returns the modules configuration value
-  * test if the module module exists:
-  * we test that by using the moduleLocator.
-  * @see ModuleLocator::moduleExists()
-  * @private
-  * @return null if module doesn't exists
-  * @return {{*}} if module exists
-  */
-  getModuleConfigurationValue: function getModuleConfigurationValue() {
+   * returns the modules configuration value
+   * test if the module module exists:
+   * we test that by using the moduleLocator.
+   * @see ModuleLocator::moduleExists()
+   * @private
+   * @return null if module doesn't exists
+   * @return {{*}} if module exists
+   */
+  getModuleConfigurationValue: function getModuleConfigurationValue () {
     if (!this.moduleLocator.moduleExists(this.moduleName)) {
       return null;
     }
@@ -101,15 +101,15 @@ ConfigReader.prototype = {
   },
 
   /**
-  * returns the modules configuration definition
-  * test if the module module exists:
-  * we test that by using the moduleLocator.
-  * @see ModuleLocator::moduleExists()
-  * @private
-  * @return null if module doesn't exists
-  * @return {{*}} if module exists
-  */
-  getModuleConfigurationDefinition: function getModuleConfigurationDefinition() {
+   * returns the modules configuration definition
+   * test if the module module exists:
+   * we test that by using the moduleLocator.
+   * @see ModuleLocator::moduleExists()
+   * @private
+   * @return null if module doesn't exists
+   * @return {{*}} if module exists
+   */
+  getModuleConfigurationDefinition: function getModuleConfigurationDefinition () {
     if (!this.moduleLocator.moduleExists(this.moduleName)) {
       return null;
     }
