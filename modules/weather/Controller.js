@@ -12,11 +12,11 @@ function Controller(config, services) {
 
 Controller.prototype = {
 
-    /**
-     * Call the buisness if there are no data in database
-     * else it return the data that the databse contains
-     * @return Promis that contains data
-     */
+  /**
+  * Call the buisness if there are no data in database
+  * else it return the data that the databse contains
+  * @return Promis that contains data
+  */
   getWeather: function getWeather() {
     const weather = this.repository.findAll();
     if (weather && weather.length > 0) {

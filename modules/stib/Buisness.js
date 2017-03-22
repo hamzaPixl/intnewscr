@@ -3,11 +3,12 @@ const scrappIndiceBeaulieu = 3;
 const line17 = 17;
 const line95 = 95;
 const line94 = 94;
+
 /**
- * This constructor use params to be able to call api
- * @param config is the array object that contains all value as variable, url ..
- * @param services is used to require services that the module need
- * */
+* This constructor use params to be able to call api
+* @param config is the array object that contains all value as variable, url ..
+* @param services is used to require services that the module need
+*/
 function Buisness(services, config) {
   this.services = services;
   this.config = config;
@@ -18,15 +19,15 @@ function Buisness(services, config) {
 }
 
 Buisness.prototype = {
-    /**
-     * This function scrapp the HTML code to exports data
-     * @param url is the link to retreive data
-     * @param indice is the indice of childeren for the result
-     * @param line is the STIB line
-     * @param destination is the destination of the line
-     * @private
-     * @return  the promis that contains data
-     */
+  /**
+  * This function scrapp the HTML code to exports data
+  * @param url is the link to retreive data
+  * @param indice is the indice of childeren for the result
+  * @param line is the STIB line
+  * @param destination is the destination of the line
+  * @private
+  * @return  the promis that contains data
+  */
   scrapping: function scrapping(url, indice, line, destination) {
     return new Promise((resolve, reject) => {
       this.request(url, (error, response, body) => {
@@ -49,12 +50,12 @@ Buisness.prototype = {
     });
   },
 
-    /**
-     * This function give the information about
-     * the time of the differents STIB line around EMAKINA
-     * @line is the STIB's Line
-     * @return a Promise that contains data
-     */
+  /**
+  * This function give the information about
+  * the time of the differents STIB line around EMAKINA
+  * @line is the STIB's Line
+  * @return a Promise that contains data
+  */
   getLine: function getLine(line) {
     let result = [];
     if (line === line17) {

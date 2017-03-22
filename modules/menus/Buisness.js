@@ -11,12 +11,12 @@ function Buisness(services, config) {
 
 Buisness.prototype = {
 
-    /**
-     * It search the menus from a source
-     * @see Buisness::getMenusFromGustine
-     * @see Buisness::getMenusFromBarASoupe
-     * @return Promise with data
-     */
+  /**
+  * It search the menus from a source
+  * @see Buisness::getMenusFromGustine
+  * @see Buisness::getMenusFromBarASoupe
+  * @return Promise with data
+  */
   getMenu: function getMenu(source) {
     switch (source) {
       case 'gustine' :
@@ -27,12 +27,13 @@ Buisness.prototype = {
         return null;
     }
   },
+
   /**
-     * It search the menus from gustine using facebook
-     * @see Facebook:getToken
-     * @private
-     * @return Promise with data
-     */
+  * It search the menus from gustine using facebook
+  * @see Facebook:getToken
+  * @private
+  * @return Promise with data
+  */
   getMenusFromGustine: function getMenusFromGustine() {
     return new Promise((resolve, reject) => {
       const request = new this.RequestModel('/facebook/token', '/token', null);
@@ -57,20 +58,20 @@ Buisness.prototype = {
   },
 
   /**
-   * It search the menus from bar à soupe using url
-   * @private
-   * @return Promise with data
-   */
+  * It search the menus from bar à soupe using url
+  * @private
+  * @return Promise with data
+  */
   getMenusFromBarASoupe: function getMenusFromBarASoupe() {
     return this.scrapping(this.config.barasoupe);
   },
 
   /**
-   * This function scrapp the HTML code to exports data
-   * @param url is the link to retreive data
-   * @private
-   * @return  the promis that contains data
-   */
+  * This function scrapp the HTML code to exports data
+  * @param url is the link to retreive data
+  * @private
+  * @return  the promis that contains data
+  */
   scrapping: function scrapping(url) {
     return new Promise((resolve, reject) => {
       this.request(url, (error, response, body) => {
@@ -86,9 +87,9 @@ Buisness.prototype = {
   },
 
   /**
-   * It parse the data from the table to an array
-   * @private
-   */
+  * It parse the data from the table to an array
+  * @private
+  */
   formatData: function formatData($) {
     const data = [];
     $('tr').each((i, tr) => {

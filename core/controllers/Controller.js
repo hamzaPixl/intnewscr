@@ -7,12 +7,12 @@ function Controller() {
 
 Controller.prototype = {
 
-    /**
-     * Execute the request that we receive
-     * and return the result if all request is valid
-     * @return null
-     * @return {{*}} result for the resquest
-     */
+  /**
+  * Execute the request that we receive
+  * and return the result if all request is valid
+  * @return null
+  * @return {{*}} result for the resquest
+  */
   request: function request(requestClient) {
     const moduleName = this.getModuleNameFromRequest(requestClient);
     if (!moduleName) {
@@ -27,7 +27,8 @@ Controller.prototype = {
       return null;
     }
     const ModuleController = this.moduleLocator.getModuleController(moduleName);
-    const reader = new ConfigReader(moduleName, this.moduleLocator);
+    const reader = new ConfigReader(moduleName, this.moduleLocator,
+    this.moduleLocator.getAbsolutePath(moduleName));
     if (!ModuleController || !reader.getConfig() || !reader.getServices()) {
       return null;
     }
@@ -36,13 +37,13 @@ Controller.prototype = {
     return this.getResult(controller, requestClient, main);
   },
 
-    /**
-     * returns the result of the request
-     * it gives the data, it call the function of the controller of the module
-     * @private
-     * @return null
-     * @return {{*}} result
-     */
+  /**
+  * returns the result of the request
+  * it gives the data, it call the function of the controller of the module
+  * @private
+  * @return null
+  * @return {{*}} result
+  */
   getResult: function getResult(controller, request, main) {
     const routeConfig = this.getConfigRoute(request, main);
     if (!routeConfig) {
@@ -54,16 +55,14 @@ Controller.prototype = {
     return controller[routeConfig.callback]();
   },
 
-
-    /**
-     * returns the configuration of a specific route
-     * from the request
-     * @see Main::getRoute
-     * @private
-     * @return null
-     * @return {{*}} configuration of route
-     */
-
+  /**
+  * returns the configuration of a specific route
+  * from the request
+  * @see Main::getRoute
+  * @private
+  * @return null
+  * @return {{*}} configuration of route
+  */
   getConfigRoute: function getConfigRoute(request, main) {
     const routeConfig = main.getRoute(request.path);
     if (routeConfig) {
@@ -72,14 +71,14 @@ Controller.prototype = {
     return null;
   },
 
-    /**
-     * returns true if the request is valid
-     * by checking route, query, and arguments
-     * @see Controller::requestIsValid
-     * @private
-     * @return false is not valid
-     * @return true it is
-     */
+  /**
+  * returns true if the request is valid
+  * by checking route, query, and arguments
+  * @see Controller::requestIsValid
+  * @private
+  * @return false is not valid
+  * @return true it is
+  */
   requestIsValid: function requestIsValid(request, main) {
     const routeConfig = this.getConfigRoute(request, main);
     if (!routeConfig) {
@@ -94,13 +93,13 @@ Controller.prototype = {
     return true;
   },
 
-    /**
-     * returns true if the arguments of the
-     * request is valid by checking configuration
-     * @private
-     * @return false is not valid
-     * @return true it is
-     */
+  /**
+  * returns true if the arguments of the
+  * request is valid by checking configuration
+  * @private
+  * @return false is not valid
+  * @return true it is
+  */
   argumentsIsValid: function argumentsIsValid(request, routeConfig) {
     const missingConfigurations = Object.keys(routeConfig.query)
       .filter((parameterDefinitionKey) => {
@@ -113,12 +112,12 @@ Controller.prototype = {
     return missingConfigurations.length === 0;
   },
 
-    /**
-     * returns the name of the modulefrom an url
-     * @private
-     * @return null if the name not match the pattern
-     * @return {string} the module name
-     */
+  /**
+  * returns the name of the modulefrom an url
+  * @private
+  * @return null if the name not match the pattern
+  * @return {string} the module name
+  */
   getModuleNameFromRequest: function getModuleNameFromRequest(request) {
     const moduleName = request.baseUrl.split('/')[1];
     const patt = new RegExp('^[a-z]+$');

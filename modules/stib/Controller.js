@@ -7,10 +7,10 @@ function Controller(config, services) {
 }
 
 Controller.prototype = {
-    /**
-     * Get the 2 last information about the stib's line
-     * @see Buisness:getLine();
-     */
+  /**
+  * Get the 2 last information about the stib's line
+  * @see Buisness:getLine();
+  */
   getLine: function getLine(params) {
     return this.buisness.getLine(params.line);
   },

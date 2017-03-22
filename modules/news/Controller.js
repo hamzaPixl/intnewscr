@@ -15,12 +15,12 @@ function Controller(config, services) {
 
 Controller.prototype = {
 
-    /**
-     * Call the buisness if there are no data in database
-     * else it return the data that the databse contains
-     * It gives news only if parameters are correctly sets
-     * @return Promis that contains data
-     */
+  /**
+  * Call the buisness if there are no data in database
+  * else it return the data that the databse contains
+  * It gives news only if parameters are correctly sets
+  * @return Promis that contains data
+  */
   getNews: function getNews(params) {
     if (!params || !params.source) {
       return null;
@@ -45,13 +45,13 @@ Controller.prototype = {
     });
   },
 
-    /**
-     * Call the buisness if there are no data in database
-     * else it return the data that the databse contains
-     * It gives news only if parameters are correctly sets
-     * It gives news from an API
-     * @return Promis that contains data
-     */
+  /**
+  * Call the buisness if there are no data in database
+  * else it return the data that the databse contains
+  * It gives news only if parameters are correctly sets
+  * It gives news from an API
+  * @return Promis that contains data
+  */
   getNewsApi: function getNews(params) {
     if (!params || !params.source) {
       return null;
@@ -76,13 +76,13 @@ Controller.prototype = {
     });
   },
 
-    /**
-     * Call the buisness if there are no data in database
-     * else it return the data that the databse contains
-     * It gives news only if parameters are correctly sets
-     * It gives trafic informations
-     * @return Promis that contains data
-     */
+  /**
+  * Call the buisness if there are no data in database
+  * else it return the data that the databse contains
+  * It gives news only if parameters are correctly sets
+  * It gives trafic informations
+  * @return Promis that contains data
+  */
   getNewsTrafic: function getNewsTrafic() {
     const trafic = this.repositoryTrafic.findAllBy('model', TraficItem.getName());
     if (trafic && trafic.length > 0) {
@@ -104,6 +104,11 @@ Controller.prototype = {
       });
     });
   },
+
+  /**
+  * It gives the traffic map from a source
+  * @return Promis that contains data
+  */
   getNewsTraficMaps: function getNewsTraficMaps(params) {
     return new Promise((resolve, reject) => {
       if (params.source === 'brussels') {

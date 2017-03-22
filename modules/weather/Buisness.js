@@ -9,11 +9,11 @@ function Buisness(services, config) {
 
 Buisness.prototype = {
 
-    /**
-     * It search the weather forecast for Brussels on Belgium
-     * and degrees are un C
-     * @return Promise with data
-     */
+  /**
+  * It search the weather forecast for Brussels on Belgium
+  * and degrees are un C
+  * @return Promise with data
+  */
   getWeather: function getWeather() {
     return new Promise((resolve, reject) => {
       this.weatherJs(this.config.city, this.config.options).then((info) => {

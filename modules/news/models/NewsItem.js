@@ -1,5 +1,5 @@
 function NewsItem() {
-    // properties of a specific instance
+  // properties of a specific instance
   this.language = '';
   this.id = null;
   this.title = '';
@@ -10,27 +10,27 @@ function NewsItem() {
 }
 
 /**
- * @private
- * @return the name of the model item
- */
+* @private
+* @return the name of the model item
+*/
 NewsItem.getName = function getName() {
   return 'news';
 };
 
 /**
- * @private
- * @return the name of the model item
- */
+* @private
+* @return the name of the model item
+*/
 NewsItem.getTTL = function getTTL() {
   return 14400;
 };
 
 NewsItem.prototype = {
 
-    /**
-     * It convert the the current object model
-     * into a json.
-     */
+  /**
+  * It convert the the current object model
+  * into a json.
+  */
   toJson: function toJson() {
     return JSON.stringify({
       content: this.content,
@@ -46,11 +46,10 @@ NewsItem.prototype = {
     });
   },
 
-    /**
-     * It convert the json data on a NewsItem format
-     * @data come from database
-     */
-
+  /**
+  * It convert the json data on a NewsItem format
+  * @data come from database
+  */
   fromData: function fromData(data) {
     this.created = data.created;
     this.id = data.id;
@@ -63,10 +62,10 @@ NewsItem.prototype = {
     this.model = data.model;
   },
 
-    /**
-     * It convert the json on a NewsItem format
-     * @json is the object that it will be converted
-     */
+  /**
+  * It convert the json on a NewsItem format
+  * @param json is the object that it will be converted
+  */
   fromJson: function fromJson(json) {
     this.created = Date.now();
     this.model = NewsItem.getName();

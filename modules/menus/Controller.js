@@ -12,11 +12,11 @@ function Controller(config, services) {
 
 Controller.prototype = {
 
-    /**
-     * Call the buisness if there are no data in database
-     * else it return the data that the databse contains
-     * @return Promis that contains data
-     */
+  /**
+  * Call the buisness if there are no data in database
+  * else it return the data that the databse contains
+  * @return Promis that contains data
+  */
   getMenu: function getMenu(params) {
     const menus = this.repository.findAllBy('source', params.source);
     return new Promise((resolve, reject) => {
