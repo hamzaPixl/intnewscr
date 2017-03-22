@@ -11,6 +11,15 @@ function Main () {
         module: 'string',
       },
     },
+    '/testRoute': {
+      method: 'GET',
+      callback: 'testRoute',
+      query: {
+        url: 'string',
+        route: 'string',
+        params: 'object',
+      },
+    },
   };
 }
 
