@@ -3,10 +3,12 @@ function Main () {
     '/getAll': {
       method: 'GET',
       callback: 'getAll',
+      secured: true,
     },
     '/getRoutes': {
       method: 'GET',
       callback: 'getRoutes',
+      secured: true,
       query: {
         module: 'string',
       },
@@ -14,6 +16,7 @@ function Main () {
     '/testRoute': {
       method: 'GET',
       callback: 'testRoute',
+      secured: true,
       query: {
         url: 'string',
         route: 'string',
