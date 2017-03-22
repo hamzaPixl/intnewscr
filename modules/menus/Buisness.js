@@ -5,8 +5,6 @@ function Buisness(services, config) {
     this[serviceKey] = require(this.services[serviceKey].name);
     return this;
   });
-  this.RequestModel = require('./../../core/Request');
-  this.Controller = require('./../../core/controllers/Controller');
 }
 
 Buisness.prototype = {
@@ -48,8 +46,7 @@ Buisness.prototype = {
               } else {
                 reject(response);
               }
-            },
-        );
+            });
       }, (err) => {
         console.log(err);
       });
