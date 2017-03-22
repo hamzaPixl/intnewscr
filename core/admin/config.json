@@ -1,0 +1,13 @@
+{
+    "services": {
+        "ModuleLocator": {
+            "name": "./../ModuleLocator"
+        },
+        "ConfigReader": {
+            "name": "./../configs/ConfigReader"
+        }
+    },
+    "config": {
+        
+    }
+}
