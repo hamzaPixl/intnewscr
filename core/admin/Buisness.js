@@ -53,7 +53,7 @@ Buisness.prototype = {
         reject('Nothing found');
       } else {
         const mainModule = new Main();
-        resolve(mainModule.routes);
+        resolve({ data: mainModule.routes, module });
       }
     });
   },
