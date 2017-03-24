@@ -23,7 +23,7 @@ Controller.prototype = {
         if (!weather) {
           reject(weather);
         }
-        resolve(weather);
+        resolve(weather.slice(0, 5));
       });
     }
     return new Promise((resolve, reject) => {
@@ -32,7 +32,7 @@ Controller.prototype = {
           reject(weatherBuis);
         }
         this.repository.saveAll(weatherBuis);
-        resolve(this.repository.findAll());
+        resolve(this.repository.findAll().slice(0, 5));
       });
     });
   },
