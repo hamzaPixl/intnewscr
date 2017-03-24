@@ -12,7 +12,7 @@ io.on('connection', (client) => {
       result.then((data) => {
         client.emit('response', {data, name: requestClient.name});
       }).catch((err) => {
-        client.emit('response', {error: err, name: requestClient.name});
+        client.emit('response', {error: 'Error from the widget !', name: requestClient.name});
       });
     } else {
       client.emit('response', {error: 'Error from the request !', name: requestClient.name});
