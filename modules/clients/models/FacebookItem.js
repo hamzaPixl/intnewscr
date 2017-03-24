@@ -1,6 +1,7 @@
 function FacebookItem () {
   // properties of a specific instance
   this.id = '';
+  this.mod = 'facebook';
   this.created = '';
   this.ttl = '';
   this.model = '';
@@ -33,6 +34,7 @@ FacebookItem.prototype = {
   toJson: function toJson () {
     return JSON.stringify({
       id: this.id,
+      mod: this.mod,
       created: this.created,
       ttl: this.ttl,
       model: this.model,
@@ -47,6 +49,7 @@ FacebookItem.prototype = {
    */
   fromData: function fromData (data) {
     this.id = data.id;
+    this.mod = data.mod;
     this.created = data.created;
     this.ttl = data.ttl;
     this.model = data.model;
