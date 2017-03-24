@@ -36,10 +36,12 @@ Buisness.prototype = {
           const ul = $('#realtime_view').children();
           resolve([{
             destination,
+            model: 'stib',
             indice: line,
             line: ul[ul.length - indice].children[0].children[1].children[0].data,
           }, {
             destination,
+            model: 'stib',
             indice: line,
             line: ul[ul.length - indice].children[1].children[1].children[0].data,
           }]);
