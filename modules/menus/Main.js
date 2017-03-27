@@ -15,7 +15,8 @@ Main.prototype = {
   /**
    * Get a route from the url
    * null if it is not defined
-   * @param url is the url needed
+   * @param url
+   * @returns {*}
    */
   getRoute: function getRoute (url) {
     if (!this.routes[url]) {

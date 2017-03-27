@@ -83,9 +83,12 @@ Buisness.prototype = {
     });
   },
 
+
   /**
    * It parse the data from the table to an array
    * @private
+   * @param $
+   * @returns {Array}
    */
   formatData: function formatData ($) {
     const data = [];

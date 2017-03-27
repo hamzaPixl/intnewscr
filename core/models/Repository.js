@@ -69,6 +69,7 @@ Repository.prototype = {
   /**
    * add the object to the items
    * @private
+   * @param item
    */
   add: function add (item) {
     this.items.push(item);
@@ -76,6 +77,7 @@ Repository.prototype = {
 
   /**
    * save the item in a file
+   * @param item
    * @private
    **/
   update: function update (item) {
@@ -91,6 +93,7 @@ Repository.prototype = {
   /**
    * save the items in a file
    * @see Repository::save
+   * @param items
    **/
   saveAll: function saveAll (items) {
     items.forEach((itemData) => {

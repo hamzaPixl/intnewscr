@@ -9,10 +9,13 @@ function Controller (config, services) {
 
 Controller.prototype = {
 
+
   /**
    * Set the token for the admin user
    * after check his username and password
    * @param params
+   * @param client
+   * @returns {*}
    */
   connexion: function connexion (params, client) {
     if (params.username !== process.env.USER || params.password !== process.env.PASSWORD) {
@@ -34,25 +37,30 @@ Controller.prototype = {
       resolve(token);
     });
   },
+
   /**
    * Test a route and get status response
-   * @return Promise
+   * @param params
+   * @returns {*|Promise}
    */
   testRoute: function testRoute (params) {
     return this.buisness.testRoute(params);
   },
+
   /**
    * Get all modules that are
    * available in the app
-   * @return Promise
+   * @returns {*|Promise}
    */
   getAll: function getAll () {
     return this.buisness.getAll();
   },
+
   /**
    * Get all modules routes that are
    * available in the app
-   * @return Promise
+   * @param params
+   * @returns {*|Promise}
    */
   getRoutes: function getRoutes (params) {
     return this.buisness.getRoutes(params.module);

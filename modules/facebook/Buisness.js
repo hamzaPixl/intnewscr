@@ -19,6 +19,7 @@ Buisness.prototype = {
    * A request is send to retrieve the user code
    * if there is no error we set the user code and the code to check
    * @private
+   * @returns {Promise}
    */
   getUserCode: function getUserCode () {
     return new Promise((resolve, reject) => {
@@ -41,6 +42,7 @@ Buisness.prototype = {
    * if there is no error we set our acces_token
    * this call is send every 5 s until the user enter his code
    * @private
+   * @returns {Promise}
    */
   statusLoginOk: function statusLoginOk () {
     return new Promise((resolve, reject) => {
@@ -63,7 +65,7 @@ Buisness.prototype = {
    * It will search a token from facebook
    * @see Buisness::statusLoginOk
    * @see Buisness::getUserCode
-   * @return Promise with data
+   * @returns {Promise}
    */
   getToken: function getToken () {
     return new Promise((resolve, reject) => {

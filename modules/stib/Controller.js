@@ -10,6 +10,8 @@ Controller.prototype = {
   /**
    * Get the 2 last information about the stib's line
    * @see Buisness:getLine();
+   * @param params
+   * @returns {*|a}
    */
   getLine: function getLine (params) {
     return this.buisness.getLine(params.line);
