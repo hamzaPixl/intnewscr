@@ -1,5 +1,6 @@
 const ConfigReader = require('./../configs/ConfigReader');
 const ModuleLocator = require('./../ModuleLocator');
+const jwt = require('jsonwebtoken');
 
 function Controller () {
   this.moduleLocator = new ModuleLocator();
@@ -13,7 +14,7 @@ Controller.prototype = {
    * @return null
    * @return {{*}} result for the resquest
    */
-  request: function request (requestClient) {
+  request: function request (requestClient, client) {
     const moduleName = this.getModuleNameFromRequest(requestClient);
     if (!moduleName) {
       return null;
@@ -34,7 +35,7 @@ Controller.prototype = {
     }
     const controller = new ModuleController(reader.getConfig(),
       reader.getServices());
-    return this.getResult(controller, requestClient, main);
+    return this.getResult(controller, requestClient, main, client);
   },
 
   /**
@@ -44,13 +45,13 @@ Controller.prototype = {
    * @return null
    * @return {{*}} result
    */
-  getResult: function getResult (controller, request, main) {
+  getResult: function getResult (controller, request, main, client) {
     const routeConfig = this.getConfigRoute(request, main);
     if (!routeConfig) {
       return null;
     }
     if (routeConfig.query) {
-      return controller[routeConfig.callback](request.params);
+      return controller[routeConfig.callback](request.params, client);
     }
     return controller[routeConfig.callback]();
   },
@@ -86,6 +87,16 @@ Controller.prototype = {
     }
     if (routeConfig.method !== request.method) {
       return false;
+    }
+    if (routeConfig.secured) {
+      if (!request.params.token) {return false;}
+      try {
+        jwt.verify(request.params.token, process.env.JWT_SECRET);
+        return true;
+      } catch (err) {
+        console.log(err.message);
+        return false;
+      }
     }
     if (routeConfig.query) {
       return this.argumentsIsValid(request, routeConfig);
