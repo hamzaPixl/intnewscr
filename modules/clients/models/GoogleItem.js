@@ -1,7 +1,7 @@
 function GoogleItem () {
   // properties of a specific instance
   this.id = '';
-  this.mod = 'google';
+  this.source_search = 'google';
   this.created = '';
   this.ttl = '';
   this.model = '';
@@ -34,7 +34,7 @@ GoogleItem.prototype = {
   toJson: function toJson () {
     return JSON.stringify({
       id: this.id,
-      mod: this.mod,
+      source_search: this.source_search,
       created: this.created,
       ttl: this.ttl,
       model: this.model,
@@ -51,7 +51,7 @@ GoogleItem.prototype = {
    */
   fromData: function fromData (data) {
     this.id = data.id;
-    this.mod = data.mod;
+    this.source_search = data.source_search;
     this.created = data.created;
     this.ttl = data.ttl;
     this.model = data.model;
