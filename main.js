@@ -7,7 +7,7 @@ const controller = new Controller();
 
 io.on('connection', (client) => {
   client.on('request', (requestClient) => {
-    const result = controller.request(requestClient);
+    const result = controller.request(requestClient,client);
     if (result) {
       result.then((data) => {
         client.emit('response', {data, name: requestClient.name});
@@ -21,5 +21,5 @@ io.on('connection', (client) => {
   client.on('disconnect', () => {});
 });
 
-server.listen(3000);
+server.listen(process.env.PORT || 3000);
 console.log('Server started');
