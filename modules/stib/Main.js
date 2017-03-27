@@ -4,7 +4,7 @@ function Main () {
       method: 'GET',
       callback: 'getLine',
       query: {
-        line: 'number',
+        line: 'string',
       },
     },
   };

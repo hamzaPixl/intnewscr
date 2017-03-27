@@ -1,8 +1,8 @@
 const scrappIndiceDefault = 1;
 const scrappIndiceBeaulieu = 3;
-const line17 = 17;
-const line95 = 95;
-const line94 = 94;
+const line17 = '17';
+const line95 = '95';
+const line94 = '94';
 
 /**
  * This constructor use params to be able to call api
