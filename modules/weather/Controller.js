@@ -23,6 +23,7 @@ Controller.prototype = {
         if (!weather) {
           reject(weather);
         }
+        // return only today and 4 next days
         resolve(weather.slice(0, 5));
       });
     }
@@ -32,6 +33,7 @@ Controller.prototype = {
           reject(weatherBuis);
         }
         this.repository.saveAll(weatherBuis);
+        // return only today and 4 next days
         resolve(this.repository.findAll().slice(0, 5));
       });
     });
