@@ -1,5 +1,13 @@
 function Main () {
   this.routes = {
+    '/connexion': {
+      method: 'GET',
+      callback: 'connexion',
+      query: {
+        user: 'string',
+        password: 'string',
+      },
+    },
     '/getAll': {
       method: 'GET',
       callback: 'getAll',
