@@ -1,35 +1,41 @@
 function Main () {
   this.routes = {
-    '/trafic': {
+    '/connexion': {
       method: 'GET',
-      callback: 'getNewsTrafic',
-    },
-    '/map': {
-      method: 'GET',
-      callback: 'getNewsTraficMaps',
+      callback: 'connexion',
       query: {
-        source: 'string',
+        user: 'string',
+        password: 'string',
       },
     },
-    '/news': {
+    '/getAll': {
       method: 'GET',
-      callback: 'getNews',
+      callback: 'getAll',
+      secured: true,
+    },
+    '/getRoutes': {
+      method: 'GET',
+      callback: 'getRoutes',
+      secured: true,
       query: {
-        source: 'string',
-        language: 'string',
+        module: 'string',
       },
     },
-    '/newsapi': {
+    '/testRoute': {
       method: 'GET',
-      callback: 'getNewsApi',
+      callback: 'testRoute',
+      secured: true,
       query: {
-        source: 'string',
+        url: 'string',
+        route: 'string',
+        params: 'object',
       },
     },
   };
 }
 
 Main.prototype = {
+
   /**
    * Get a route from the url
    * null if it is not defined

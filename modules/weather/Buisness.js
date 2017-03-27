@@ -1,4 +1,4 @@
-function Buisness(services, config) {
+function Buisness (services, config) {
   this.services = services;
   this.config = config;
   Object.keys(this.services).map((serviceKey) => {
@@ -9,12 +9,12 @@ function Buisness(services, config) {
 
 Buisness.prototype = {
 
-    /**
-     * It search the weather forecast for Brussels on Belgium
-     * and degrees are un C
-     * @return Promise with data
-     */
-  getWeather: function getWeather() {
+  /**
+   * It search the weather forecast for Brussels on Belgium
+   * and degrees are un C
+   * @return Promise with data
+   */
+  getWeather: function getWeather () {
     return new Promise((resolve, reject) => {
       this.weatherJs(this.config.city, this.config.options).then((info) => {
         if (!info) {

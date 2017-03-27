@@ -1,4 +1,4 @@
-function Main() {
+function Main () {
   this.routes = {
     '/line': {
       method: 'GET',
@@ -11,7 +11,13 @@ function Main() {
 }
 
 Main.prototype = {
-  getRoute: function getRoute(url) {
+  /**
+   * Get a route from the url
+   * null if it is not defined
+   * @param url
+   * @returns {*}
+   */
+  getRoute: function getRoute (url) {
     if (!this.routes[url]) {
       return null;
     }

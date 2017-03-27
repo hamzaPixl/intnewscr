@@ -1,4 +1,4 @@
-function Buisness(services, config) {
+function Buisness (services, config) {
   this.services = services;
   this.config = config;
   Object.keys(this.services).map((serviceKey) => {
@@ -9,13 +9,13 @@ function Buisness(services, config) {
 
 Buisness.prototype = {
 
-    /**
-     * It search the menus from a source
-     * @see Buisness::getMenusFromGustine
-     * @see Buisness::getMenusFromBarASoupe
-     * @return Promise with data
-     */
-  getMenu: function getMenu(source) {
+  /**
+   * It search the menus from a source
+   * @see Buisness::getMenusFromGustine
+   * @see Buisness::getMenusFromBarASoupe
+   * @return Promise with data
+   */
+  getMenu: function getMenu (source) {
     switch (source) {
       case 'gustine' :
         return this.getMenusFromGustine();
@@ -25,13 +25,14 @@ Buisness.prototype = {
         return null;
     }
   },
+
   /**
-     * It search the menus from gustine using facebook
-     * @see Facebook:getToken
-     * @private
-     * @return Promise with data
-     */
-  getMenusFromGustine: function getMenusFromGustine() {
+   * It search the menus from gustine using facebook
+   * @see Facebook:getToken
+   * @private
+   * @return Promise with data
+   */
+  getMenusFromGustine: function getMenusFromGustine () {
     return new Promise((resolve, reject) => {
       const request = new this.RequestModel('/facebook/token', '/token', null);
       const controller = new this.Controller();
@@ -58,7 +59,7 @@ Buisness.prototype = {
    * @private
    * @return Promise with data
    */
-  getMenusFromBarASoupe: function getMenusFromBarASoupe() {
+  getMenusFromBarASoupe: function getMenusFromBarASoupe () {
     return this.scrapping(this.config.barasoupe);
   },
 
@@ -68,7 +69,7 @@ Buisness.prototype = {
    * @private
    * @return  the promis that contains data
    */
-  scrapping: function scrapping(url) {
+  scrapping: function scrapping (url) {
     return new Promise((resolve, reject) => {
       this.request(url, (error, response, body) => {
         if (!error && response.statusCode === 200) {
@@ -82,11 +83,14 @@ Buisness.prototype = {
     });
   },
 
+
   /**
    * It parse the data from the table to an array
    * @private
+   * @param $
+   * @returns {Array}
    */
-  formatData: function formatData($) {
+  formatData: function formatData ($) {
     const data = [];
     $('tr').each((i, tr) => {
       const children = $(tr).children();

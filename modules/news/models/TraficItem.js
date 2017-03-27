@@ -1,5 +1,5 @@
-function TraficItem() {
-    // properties of a specific instance
+function TraficItem () {
+  // properties of a specific instance
   this.id = null;
   this.title = '';
   this.link = '';
@@ -12,26 +12,25 @@ function TraficItem() {
  * @private
  * @return the name of the model item
  */
-TraficItem.getName = function getName() {
+TraficItem.getName = function getName () {
   return 'trafic';
 };
-
 
 /**
  * @private
  * @return the name of the model item
  */
-TraficItem.getTTL = function getTTL() {
+TraficItem.getTTL = function getTTL () {
   return 14400;
 };
 
 TraficItem.prototype = {
 
-    /**
-     * It convert the the current object model
-     * into a json.
-     */
-  toJson: function toJson() {
+  /**
+   * It convert the the current object model
+   * into a json.
+   */
+  toJson: function toJson () {
     return JSON.stringify({
       created: this.created,
       content: this.content,
@@ -45,12 +44,11 @@ TraficItem.prototype = {
     });
   },
 
-    /**
-     * It convert the json data on a TraficItem format
-     * @data come from database
-     */
-
-  fromData: function fromData(data) {
+  /**
+   * It convert the json data on a TraficItem format
+   * @param data come from database
+   */
+  fromData: function fromData (data) {
     this.created = data.created;
     this.content = data.content;
     this.title = data.title;
@@ -61,11 +59,11 @@ TraficItem.prototype = {
     this.model = data.model;
   },
 
-    /**
-     * It convert the json on a TraficItem format
-     * @param json is the object that it will be converted
-     */
-  fromJson: function fromJson(json) {
+  /**
+   * It convert the json on a TraficItem format
+   * @param json is the object that it will be converted
+   */
+  fromJson: function fromJson (json) {
     this.created = Date.now();
     this.content = json.content;
     this.title = json.title;

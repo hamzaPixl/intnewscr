@@ -1,0 +1,19 @@
+{
+    "services": {
+        "ModuleLocator": {
+            "name": "./../ModuleLocator"
+        },
+        "ConfigReader": {
+            "name": "./../configs/ConfigReader"
+        },
+        "RequestModel": {
+            "name": "./../Request"
+        },
+        "Controller": {
+            "name": "./../controllers/Controller"
+        }
+    },
+    "config": {
+        
+    }
+}

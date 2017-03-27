@@ -1,5 +1,5 @@
-function TokenItem() {
-    // properties of a specific instance
+function TokenItem () {
+  // properties of a specific instance
   this.id = '';
   this.created = '';
   this.ttl = '';
@@ -12,7 +12,7 @@ function TokenItem() {
  * @private
  * @return the name of the model item
  */
-TokenItem.getName = function getName() {
+TokenItem.getName = function getName () {
   return 'facebook';
 };
 
@@ -20,17 +20,17 @@ TokenItem.getName = function getName() {
  * @private
  * @return the ttl of the data
  */
-TokenItem.getTTL = function getTTL() {
+TokenItem.getTTL = function getTTL () {
   return 14400;
 };
 
 TokenItem.prototype = {
 
-    /**
-     * It convert the the current object model
-     * into a json.
-     */
-  toJson: function toJson() {
+  /**
+   * It convert the the current object model
+   * into a json.
+   */
+  toJson: function toJson () {
     return JSON.stringify({
       id: this.id,
       created: this.created,
@@ -41,12 +41,11 @@ TokenItem.prototype = {
     });
   },
 
-    /**
-     * It convert the json data on a WeatherItem format
-     * @param data come from database
-     */
-
-  fromData: function fromData(data) {
+  /**
+   * It convert the json data on a WeatherItem format
+   * @param data come from database
+   */
+  fromData: function fromData (data) {
     this.id = data.id;
     this.created = data.created;
     this.ttl = data.ttl;
@@ -55,11 +54,11 @@ TokenItem.prototype = {
     this.expires_in = data.expires_in;
   },
 
-    /**
-     * It convert the json on a WeatherItem format
-     * @json is the object that it will be converted
-     */
-  fromJson: function fromJson(json) {
+  /**
+   * It convert the json on a WeatherItem format
+   * @json is the object that it will be converted
+   */
+  fromJson: function fromJson (json) {
     this.created = Date.now();
     this.model = TokenItem.getName();
     this.ttl = TokenItem.getTTL();

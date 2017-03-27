@@ -5,17 +5,21 @@ const Controller = require('./core/controllers/Controller');
 
 const controller = new Controller();
 
-
 io.on('connection', (client) => {
   client.on('request', (requestClient) => {
-    controller.request(requestClient).then((data) => {
-      client.emit('response', { data, name: requestClient.name });
-    }, (err) => {
-      console.log(err);
-    });
+    const result = controller.request(requestClient,client);
+    if (result) {
+      result.then((data) => {
+        client.emit('response', {data, name: requestClient.name});
+      }).catch((err) => {
+        client.emit('response', {error: 'Error from the widget !', name: requestClient.name});
+      });
+    } else {
+      client.emit('response', {error: 'Error from the request !', name: requestClient.name});
+    }
   });
   client.on('disconnect', () => {});
 });
 
-server.listen(3000);
+server.listen(process.env.PORT || 3000);
 console.log('Server started');
