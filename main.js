@@ -7,7 +7,7 @@ const controller = new Controller();
 
 io.on('connection', (client) => {
   client.on('request', (requestClient) => {
-    const result = controller.request(requestClient,client);
+    const result = controller.request(requestClient, client);
     if (result) {
       result.then((data) => {
         client.emit('response', {data, name: requestClient.name});
