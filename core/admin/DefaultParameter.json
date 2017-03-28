@@ -1,0 +1,64 @@
+{
+  "parameters": [
+    {
+      "route": "/facebook",
+      "module": "clients",
+      "params": {
+      }
+    },
+    {
+      "route": "/map",
+      "module": "news",
+      "params": {
+      }
+    },
+    {
+      "route": "/news",
+      "module": "news",
+      "params": {
+      }
+    },
+    {
+      "route": "/newsapi",
+      "module": "news",
+      "params": {
+      }
+    },
+    {
+      "route": "/line",
+      "module": "stib",
+      "params": {
+      }
+    },
+    {
+      "route": "/weather",
+      "module": "weather",
+      "params": {
+      }
+    },
+    {
+      "route": "/trafic",
+      "module": "news",
+      "params": {
+      }
+    },
+    {
+      "route": "/menus",
+      "module": "menus",
+      "params": {
+      }
+    },
+    {
+      "route": "/token",
+      "module": "facebook",
+      "params": {
+      }
+    },
+    {
+      "route": "/google",
+      "module": "clients",
+      "params": {
+      }
+    }
+  ]
+}
