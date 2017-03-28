@@ -6,9 +6,39 @@ function Buisness (services, config) {
     return this;
   });
   this.locator = new this.ModuleLocator();
+  this.db = this.low('./core/admin/DefaultParameter.json', {storage: require('lowdb/lib/storages/file-async')});
 }
 
 Buisness.prototype = {
+
+  /**
+   *
+   * @returns {Promise}
+   */
+  testAll: function testAll () {
+    const result = this.db.get('parameters').map().value();
+    /* return new Promise((resolve, reject) => {
+     const result = [];
+     this.db.get({}, (err, docs) => {
+     if (err || !docs) {
+     return;
+     }
+     Object.keys(docs).map((route) => {
+     const request = new this.RequestModel(`${route}`, `${docs[route].module}${route}`, docs[route].params);
+     const controller = new this.Controller();
+     controller.request(request).then((data) => {
+     if (!data) {
+     result[route] = false;
+     } else {
+     result[route] = true;
+     }
+     }).catch((err) => {result[route] = true;});
+     return this;
+     });
+     resolve(result);
+     });
+     });*/
+  },
 
   /**
    * Get all modules that are
@@ -53,7 +83,7 @@ Buisness.prototype = {
         reject('Nothing found');
       } else {
         const mainModule = new Main();
-        resolve({ data: mainModule.routes, module });
+        resolve({data: mainModule.routes, module});
       }
     });
   },
