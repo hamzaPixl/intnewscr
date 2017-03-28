@@ -9,7 +9,6 @@ function Controller (config, services) {
 
 Controller.prototype = {
 
-
   /**
    * Set the token for the admin user
    * after check his username and password
@@ -54,6 +53,14 @@ Controller.prototype = {
    */
   getAll: function getAll () {
     return this.buisness.getAll();
+  },
+
+  /**
+   * Test All route for all modules
+   * @returns {*}
+   */
+  testAll: function testAll () {
+    return this.buisness.testAll();
   },
 
   /**
