@@ -38,6 +38,21 @@ Buisness.prototype = {
   },
 
   /**
+   * Set default parameter with value in @param
+   * @param params
+   * @return {*|Array}
+   */
+  setDefault: function setDefault (params) {
+    this.db.get('parameters')
+      .find({route: params.route})
+      .assign({params: params.params})
+      .write();
+    return new Promise((resolve, reject) => {
+      resolve(this.getDefaultParameter());
+    });
+  },
+
+  /**
    * Get all modules routes that are
    * available in the app
    * @see ModuleLocator
