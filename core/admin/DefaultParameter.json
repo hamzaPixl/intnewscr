@@ -11,7 +11,7 @@
       "route": "/map",
       "module": "news",
       "params": {
-        "source": "brussel"
+        "source": "brussels"
       }
     },
     {
@@ -19,7 +19,7 @@
       "module": "news",
       "params": {
         "source": "bel",
-        "language": "fr"
+        "language": "nl"
       }
     },
     {
@@ -33,7 +33,7 @@
       "route": "/line",
       "module": "stib",
       "params": {
-        "line": "17"
+        "line": "95"
       }
     },
     {
@@ -48,7 +48,7 @@
       "route": "/menus",
       "module": "menus",
       "params": {
-        "source" : "barasoupe"
+        "source": "barasoupe"
       }
     },
     {
