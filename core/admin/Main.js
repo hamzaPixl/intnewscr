@@ -8,11 +8,6 @@ function Main () {
         password: 'string',
       },
     },
-    '/testAll': {
-      method: 'GET',
-      callback: 'testAll',
-      secured: true,
-    },
     '/getAll': {
       method: 'GET',
       callback: 'getAll',
@@ -24,16 +19,6 @@ function Main () {
       secured: true,
       query: {
         module: 'string',
-      },
-    },
-    '/testRoute': {
-      method: 'GET',
-      callback: 'testRoute',
-      secured: true,
-      query: {
-        url: 'string',
-        route: 'string',
-        params: 'object',
       },
     },
   };
