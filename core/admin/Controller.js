@@ -20,8 +20,8 @@ Controller.prototype = {
     if (params.username !== process.env.USER || params.password !== process.env.PASSWORD) {
       return null;
     }
-    // Expire in 1 hour
-    const exp = Math.floor(Date.now() / 1000) + (60 * 60);
+    // Expire in 6 hour
+    const exp = Math.floor(Date.now() / 1000) + (60 * 60 * 6);
     const token = jwt.sign({
       exp,
       data: {
@@ -38,29 +38,12 @@ Controller.prototype = {
   },
 
   /**
-   * Test a route and get status response
-   * @param params
-   * @returns {*|Promise}
-   */
-  testRoute: function testRoute (params) {
-    return this.buisness.testRoute(params);
-  },
-
-  /**
    * Get all modules that are
    * available in the app
    * @returns {*|Promise}
    */
   getAll: function getAll () {
     return this.buisness.getAll();
-  },
-
-  /**
-   * Test All route for all modules
-   * @returns {*}
-   */
-  testAll: function testAll () {
-    return this.buisness.testAll();
   },
 
   /**
