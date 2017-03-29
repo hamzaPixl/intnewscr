@@ -12,6 +12,19 @@ function Main () {
       method: 'GET',
       callback: 'getAll',
       secured: true,
+      query: {
+        user: 'string',
+        password: 'string',
+      },
+    },
+    '/setDefault': {
+      method: 'GET',
+      callback: 'setDefault',
+      secured: true,
+      query: {
+        params: 'object',
+        route: 'string',
+      },
     },
     '/getRoutes': {
       method: 'GET',
