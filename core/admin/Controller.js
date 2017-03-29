@@ -56,6 +56,15 @@ Controller.prototype = {
     return this.buisness.getRoutes(params.module);
   },
 
+  /**
+   * Set the default parameter of a route
+   * @param params
+   * @returns {*|Promise}
+   */
+  setDefault: function setDefault (params) {
+    return this.buisness.setDefault(params);
+  },
+
 };
 
 module.exports = Controller;
