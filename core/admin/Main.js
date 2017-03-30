@@ -13,6 +13,11 @@ function Main () {
       callback: 'getAll',
       secured: true,
     },
+    '/getToken': {
+      method: 'GET',
+      callback: 'getToken',
+      secured: true,
+    },
     '/getRoutes': {
       method: 'GET',
       callback: 'getRoutes',
