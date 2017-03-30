@@ -40,16 +40,16 @@ Buisness.prototype = {
         this.fb.setAccessToken(data[0].token);
         this.fb.api(
           `${this.config.gustine}/posts?limit=1`,
-            'GET', {},
-            (response) => {
-              if (response.data) {
-                resolve(response.data);
-              } else {
-                reject(response);
-              }
-            });
-      }, (err) => {
-        console.log(err);
+          'GET', {},
+          (response) => {
+            if (response.data) {
+              resolve(response.data);
+            } else {
+              reject(response);
+            }
+          });
+      }).catch((err) => {
+        reject(err);
       });
     });
   },
@@ -82,7 +82,6 @@ Buisness.prototype = {
       });
     });
   },
-
 
   /**
    * It parse the data from the table to an array

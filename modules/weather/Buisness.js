@@ -22,6 +22,8 @@ Buisness.prototype = {
         } else {
           resolve(info.item.forecast);
         }
+      }).catch((err) => {
+        reject(err);
       });
     });
   },

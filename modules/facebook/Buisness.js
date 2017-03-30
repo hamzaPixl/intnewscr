@@ -77,15 +77,15 @@ Buisness.prototype = {
           this.statusLoginOk().then((accesToken) => {
             clearInterval(this.interval);
             resolve(accesToken);
-          }, (error) => {
+          }).catch((error) => {
             if (error.error.code !== 31) {
               clearInterval(this.interval);
               reject(error);
             }
           });
         }, 5000);
-      }, (error) => {
-        reject(error);
+      }).catch((err) => {
+        reject(err);
       });
     });
   },

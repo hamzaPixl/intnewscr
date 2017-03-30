@@ -18,7 +18,7 @@ Controller.prototype = {
    * Call the buisness if there are no data in database
    * else it return the data that the databse contains
    * It gives news only if parameters are correctly sets
-   * @return Promis that contains data
+   * @return Promise that contains data
    */
   getNews: function getNews (params) {
     if (!params || !params.source) {
@@ -40,7 +40,7 @@ Controller.prototype = {
         }
         this.repositoryNews.saveAll(newsBuis);
         resolve(this.repositoryNews.findAllBy('source', params.source + (params.language || '')));
-      });
+      }).catch((err) => {reject(err);});
     });
   },
 
@@ -49,7 +49,7 @@ Controller.prototype = {
    * else it return the data that the databse contains
    * It gives news only if parameters are correctly sets
    * It gives news from an API
-   * @return Promis that contains data
+   * @return Promise that contains data
    */
   getNewsApi: function getNews (params) {
     if (!params || !params.source) {
@@ -71,7 +71,7 @@ Controller.prototype = {
         }
         this.repositoryNews.saveAll(newsBuis);
         resolve(this.repositoryNews.findAllBy('source', params.source));
-      });
+      }).catch((err) => {reject(err);});
     });
   },
 
@@ -80,7 +80,7 @@ Controller.prototype = {
    * else it return the data that the databse contains
    * It gives news only if parameters are correctly sets
    * It gives trafic informations
-   * @return Promis that contains data
+   * @return Promise that contains data
    */
   getNewsTrafic: function getNewsTrafic () {
     const trafic = this.repositoryTrafic.findAllBy('model', TraficItem.getName());
@@ -100,13 +100,13 @@ Controller.prototype = {
         }
         this.repositoryTrafic.saveAll(traficBuis);
         resolve(this.repositoryTrafic.findAllBy('model', TraficItem.getName()));
-      });
+      }).catch((err) => {reject(err);});
     });
   },
 
   /**
    * It gives the traffic map from a source
-   * @return Promis that contains data
+   * @return Promise that contains data
    */
   getNewsTraficMaps: function getNewsTraficMaps (params) {
     return new Promise((resolve, reject) => {
