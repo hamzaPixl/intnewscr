@@ -1,19 +1,24 @@
 {
-    "services": {
-        "ModuleLocator": {
-            "name": "./../ModuleLocator"
-        },
-        "ConfigReader": {
-            "name": "./../configs/ConfigReader"
-        },
-        "RequestModel": {
-            "name": "./../Request"
-        },
-        "Controller": {
-            "name": "./../controllers/Controller"
-        }
+  "services": {
+    "ModuleLocator": {
+      "name": "./../ModuleLocator"
     },
-    "config": {
-        
+    "ConfigReader": {
+      "name": "./../configs/ConfigReader"
+    },
+    "RequestModel": {
+      "name": "./../Request"
+    },
+    "Controller": {
+      "name": "./../controllers/Controller"
+    },
+    "facebooktoken": {
+      "name": "./../../database/facebook.json"
+    },
+    "outlooktoken": {
+      "name": "./../../database/outlook.json"
     }
+  },
+  "config": {
+  }
 }
