@@ -66,6 +66,15 @@ Controller.prototype = {
     return this.buisness.getRoutes(params.module);
   },
 
+  /**
+   * Get all token that are used
+   * in app to call api
+   * @returns {*|Promise}
+   */
+  getToken: function getToken(){
+    return this.buisness.getToken();
+  },
+
 };
 
 module.exports = Controller;
