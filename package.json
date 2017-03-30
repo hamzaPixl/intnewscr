@@ -30,7 +30,6 @@
     "jsonwebtoken": "^7.3.0",
     "lodash": "^4.17.4",
     "lowdb": "^0.16.0",
-    "nedb": "^1.8.0",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
     "request": "^2.80.0",
