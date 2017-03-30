@@ -53,10 +53,23 @@ Buisness.prototype = {
         reject('Nothing found');
       } else {
         const mainModule = new Main();
-        resolve({ data: mainModule.routes, module });
+        resolve({data: mainModule.routes, module});
       }
     });
   },
+
+  /**
+   * Retrieve all token that the app use
+   * @return {Promise}
+   */
+  getToken: function getToken () {
+    return new Promise((resolve, reject) => {
+      let tokens = [];
+      tokens = tokens.concat(this.facebooktoken, this.outlooktoken);
+      resolve(tokens);
+    });
+  },
+
 };
 
 module.exports = Buisness;
