@@ -27,16 +27,12 @@ io.on('connection', (client) => {
 
 Object.keys(servicesAuth).forEach((index) => {
   const aut = new AuthController(servicesAuth[index].name);
-
   aut.initialize();
-
   app.use(aut.getPassport().initialize());
   app.use(aut.getPassport().session());
-
-  app.get('/auth', aut.getPassport().authenticate(aut.getAuthenticateKey(), aut.getAuthenticateScope()), (req, res) => {});
-
+  app.get(`/auth/${servicesAuth[index].name}`, aut.getPassport().authenticate(aut.getAuthenticateKey(), aut.getAuthenticateScope()), (req, res) => {});
   app.get('/authorize', aut.getPassport().authenticate(aut.getAuthenticateKey(), {failureRedirect: '/error'}), (req, res) => {
-    res.send('http://localhost:3000');
+    res.send('ok access token');
   });
 });
 
