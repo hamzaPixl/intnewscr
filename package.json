@@ -26,6 +26,7 @@
     "cheerio": "^0.22.0",
     "cheerio-tableparser": "^1.0.1",
     "dotenv": "^4.0.0",
+    "express": "^4.15.2",
     "fb": "^1.1.1",
     "jsonwebtoken": "^7.3.0",
     "lodash": "^4.17.4",
