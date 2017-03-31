@@ -9,11 +9,11 @@ function ModuleLocator (modulesRoutePath, dirmoduleRoutePath) {
 ModuleLocator.prototype = {
 
   /**
-   * returns the Controller
+   * returns the Controller.js
    * of the module
    * @see ModuleLocator::moduleExists()
    * @return null if it doesnt exists
-   * @return {{*}} module Controller
+   * @return {{*}} module Controller.js
    */
   getModuleController: function getModuleController (moduleName) {
     if (!this.moduleExists(moduleName)) {
