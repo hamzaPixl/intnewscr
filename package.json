@@ -30,7 +30,7 @@
     "jsonwebtoken": "^7.3.0",
     "lodash": "^4.17.4",
     "passport": "^0.3.2",
-    "passport-facebook": "^2.1.1",
+    "passport-outlook": "^2.1.0",
     "request": "^2.80.0",
     "rss-parser": "^2.5.2",
     "socket.io": "^1.7.3",
