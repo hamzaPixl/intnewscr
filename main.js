@@ -7,15 +7,15 @@ const controller = new Controller();
 
 io.on('connection', (client) => {
   client.on('request', (requestClient) => {
-    const result = controller.request(requestClient,client);
+    const result = controller.request(requestClient, client);
     if (result) {
       result.then((data) => {
-        client.emit('response', {data, name: requestClient.name});
+        client.emit('response', {data, name: requestClient.name, request: requestClient});
       }).catch((err) => {
-        client.emit('response', {error: 'Error from the widget !', name: requestClient.name});
+        client.emit('response', {error: 'Error from the widget !', name: requestClient.name, request: requestClient});
       });
     } else {
-      client.emit('response', {error: 'Error from the request !', name: requestClient.name});
+      client.emit('response', {error: 'Error from the request !', name: requestClient.name, request: requestClient});
     }
   });
   client.on('disconnect', () => {});

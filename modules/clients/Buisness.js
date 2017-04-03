@@ -44,13 +44,13 @@ Buisness.prototype = {
       controller.request(request).then((data) => {
         this.fb.setAccessToken(data[0].token);
         this.fb.api(`${sourceId}/posts?limit=2`, 'GET', {}, (response) => {
-          if (response.data) {
-            resolve(response.data);
-          } else {
+          if (!response || response.error) {
             reject(response);
+          } else {
+            reject(response.data);
           }
         });
-      });
+      }).catch((err) => {reject(err);});
     });
   },
 

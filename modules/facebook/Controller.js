@@ -14,7 +14,7 @@ Controller.prototype = {
   /**
    * Call the buisness if there are no data in database
    * else it return the data that the databse contains
-   * @return Promis that contains data
+   * @return Promise that contains data
    */
   getToken: function getToken () {
     const token = this.repository.findAll();
@@ -33,7 +33,7 @@ Controller.prototype = {
         }
         this.repository.saveAll(tokenBuis);
         resolve(this.repository.findAll());
-      });
+      }).catch((err) => {reject(err);});
     });
   },
 };

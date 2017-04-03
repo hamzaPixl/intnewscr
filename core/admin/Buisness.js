@@ -6,13 +6,23 @@ function Buisness (services, config) {
     return this;
   });
   this.locator = new this.ModuleLocator();
+  this.db = this.low('./database/DefaultParameter.json', {storage: require('lowdb/lib/storages/file-async')});
 }
 
 Buisness.prototype = {
 
   /**
+   * It gives the default parameter for all routes
+   * @private
+   * @return Array
+   */
+  getDefaultParameter: function getDefaultParameter () {
+    return this.db.get('parameters').value();
+  },
+
+  /**
    * Get all modules that are
-   * available in the app
+   * available in the app, test them to give their status and their default parameter
    * @see ModuleLocator
    * @return Promise
    */
@@ -22,24 +32,26 @@ Buisness.prototype = {
       if (!modules) {
         reject('Nothing found');
       } else {
-        resolve(modules);
+        resolve({modules, default: this.getDefaultParameter()});
       }
     });
   },
+
   /**
-   * It test a route by calling the module
-   * @param params contains param to call the module service
-   * @returns {Promise}
+   * Set default parameter with value in @param
+   * @param params
+   * @return {*|Array}
    */
-  testRoute: function testRoute (params) {
+  setDefault: function setDefault (params) {
+    this.db.get('parameters')
+      .find({route: params.route})
+      .assign({params: params.params})
+      .write();
     return new Promise((resolve, reject) => {
-      const request = new this.RequestModel(`${params.url}`, `${params.route}`, params.params);
-      const controller = new this.Controller();
-      controller.request(request).then((data) => {
-        resolve(data);
-      });
+      resolve(this.getDefaultParameter());
     });
   },
+
   /**
    * Get all modules routes that are
    * available in the app
@@ -53,7 +65,7 @@ Buisness.prototype = {
         reject('Nothing found');
       } else {
         const mainModule = new Main();
-        resolve({ data: mainModule.routes, module });
+        resolve({data: mainModule.routes, module});
       }
     });
   },

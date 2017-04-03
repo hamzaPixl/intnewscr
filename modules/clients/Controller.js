@@ -16,7 +16,7 @@ Controller.prototype = {
   /**
    * Call the buisness if there are no data in database
    * else it return the data that the databse contains
-   * @return Promis that contains data
+   * @return Promise that contains data
    */
   getFacebookPosts: function getFacebookPosts (params) {
     const posts = this.repoFacebook.findAllBy('source', this.config[params.source]);
@@ -35,14 +35,14 @@ Controller.prototype = {
         }
         this.repoFacebook.saveAll(postsBuis);
         resolve(this.repoFacebook.findAllBy('source', this.config[params.source]));
-      });
+      }).catch((err) => {reject(err);});
     });
   },
 
   /**
    * Call the buisness if there are no data in database
    * else it return the data that the databse contains
-   * @return Promis that contains data
+   * @return Promise that contains data
    */
   getGooglePosts: function getGooglePosts (params) {
     const posts = this.repoGoogle.findAllBy('source', params.source);
@@ -61,7 +61,7 @@ Controller.prototype = {
         }
         this.repoGoogle.saveAll(postsBuis);
         resolve(this.repoGoogle.findAllBy('source', params.source));
-      });
+      }).catch((err) => {reject(err);});
     });
   },
 };

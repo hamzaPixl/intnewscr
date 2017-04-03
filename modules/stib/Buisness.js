@@ -66,10 +66,10 @@ Buisness.prototype = {
           this.scrapping(this.config.stib_17_beaulieu, scrappIndiceBeaulieu, line, 'BEAULIEU').then((resultBeaulieu) => {
             result = resultBeaulieu.concat(resultHeli);
             resolve(result);
-          }, (err) => {
+          }).catch((err) => {
             reject(err);
           });
-        }, (err) => {
+        }).catch((err) => {
           reject(err);
         });
       });
@@ -80,10 +80,10 @@ Buisness.prototype = {
           this.scrapping(this.config.stib_94_mt, scrappIndiceDefault, line, 'MUSEE DU TRAM').then((resultMt) => {
             result = resultlouise.concat(resultMt);
             resolve(result);
-          }, (err) => {
+          }).catch((err) => {
             reject(err);
           });
-        }, (err) => {
+        }).catch((err) => {
           reject(err);
         });
       });

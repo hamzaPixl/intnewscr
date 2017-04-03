@@ -18,7 +18,7 @@ Buisness.prototype = {
    * This function search in the API
    * the latest news in different language
    * @params is the language
-   * @return a Promise that contains data
+   * @return Promise that contains data
    */
   getNews: function getNews (params) {
     if (params.language === 'fr') {
@@ -33,7 +33,7 @@ Buisness.prototype = {
    * This function search in the API
    * the latest news in french
    * @private
-   * @return a Promise that contains data
+   * @return  Promise that contains data
    */
   getNewsFr: function getNewsFr () {
     return new Promise((resolve, reject) => {
@@ -51,7 +51,7 @@ Buisness.prototype = {
    * This function search in the API
    * the latest news in dutch
    * @private
-   * @return a Promise that contains data
+   * @return Promise that contains data
    */
   getNewsNl: function getNewsNl () {
     return new Promise((resolve, reject) => {
@@ -70,7 +70,7 @@ Buisness.prototype = {
    * the latest news in a source
    * @see Readme for API that is used
    * @private
-   * @return a Promise that contains data
+   * @return Promise that contains data
    */
   getNewsApi: function getNewsApi (params) {
     const url = this.config.url_api.replace('sourceinput', params.source);

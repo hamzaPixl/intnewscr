@@ -14,7 +14,7 @@ Controller.prototype = {
   /**
    * Call the buisness if there are no data in database
    * else it return the data that the databse contains
-   * @return Promis that contains data
+   * @return Promise that contains data
    */
   getMenu: function getMenu (params) {
     const menus = this.repository.findAllBy('source', params.source);
@@ -28,7 +28,7 @@ Controller.prototype = {
           }
           this.repository.saveAll(menuBuis);
           resolve(this.repository.findAll());
-        });
+        }).catch((err) => {reject(err);});
       } else {
         resolve(null);
       }
