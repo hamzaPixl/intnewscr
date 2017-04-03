@@ -15,14 +15,14 @@
     "low": {
       "name": "lowdb"
     },
+    "fs": {
+      "name": "fs"
+    },
     "path": {
       "name": "path"
     },
-    "facebooktoken": {
-      "name": "./../../database/facebook.json"
-    },
-    "outlooktoken": {
-      "name": "./../../database/outlook.json"
+    "tokens": {
+      "name": "./../../database/tokens.json"
     }
   },
   "config": {
