@@ -8,6 +8,11 @@ function Main () {
         password: 'string',
       },
     },
+    '/getAuthServices': {
+      method: 'GET',
+      callback: 'getAuthServices',
+      secured: true,
+    },
     '/getAll': {
       method: 'GET',
       callback: 'getAll',

@@ -84,6 +84,16 @@ Buisness.prototype = {
     });
   },
 
+  /**
+   * get all services that use aut0
+   * @return {Promise}
+   */
+  getAuthServices: function getAuthServices(){
+    return new Promise((resolve, reject) => {
+      resolve(JSON.parse(this.fs.readFileSync('./core/auth0/config.json')));
+    });
+  },
+
 };
 
 module.exports = Buisness;

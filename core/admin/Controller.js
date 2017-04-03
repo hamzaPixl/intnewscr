@@ -38,6 +38,14 @@ Controller.prototype = {
   },
 
   /**
+   * get all services that use aut0
+   * @return {Promise}
+   */
+  getAuthServices: function getAuthServices () {
+    return this.buisness.getAuthServices();
+  },
+
+  /**
    * Get all modules that are
    * available in the app
    * @returns {*|Promise}
@@ -70,7 +78,7 @@ Controller.prototype = {
    * in app to call api
    * @returns {*|Promise}
    */
-  getToken: function getToken(){
+  getToken: function getToken () {
     return this.buisness.getToken();
   },
 
