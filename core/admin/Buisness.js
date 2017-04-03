@@ -76,9 +76,11 @@ Buisness.prototype = {
    */
   getToken: function getToken () {
     return new Promise((resolve, reject) => {
-      let tokens = [];
-      tokens = tokens.concat(this.facebooktoken, this.outlooktoken);
-      resolve(tokens);
+      let result = [];
+      Object.keys(this.tokens).forEach((index) => {
+        result = result.concat(JSON.parse(this.fs.readFileSync(this.tokens[index].path)));
+      });
+      resolve(result);
     });
   },
 
