@@ -12,10 +12,6 @@ function Main () {
       method: 'GET',
       callback: 'getAll',
       secured: true,
-      query: {
-        user: 'string',
-        password: 'string',
-      },
     },
     '/getToken': {
       method: 'GET',
@@ -37,6 +33,16 @@ function Main () {
       secured: true,
       query: {
         module: 'string',
+      },
+    },
+    '/testRoute': {
+      method: 'GET',
+      callback: 'testRoute',
+      secured: true,
+      query: {
+        url: 'string',
+        route: 'string',
+        params: 'object',
       },
     },
   };
