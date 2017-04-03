@@ -12,6 +12,11 @@
     "Controller": {
       "name": "./../controllers/Controller"
     },
+    "low": {
+      "name": "lowdb"
+    },
+    "path": {
+      "name": "path"
     "facebooktoken": {
       "name": "./../../database/facebook.json"
     },

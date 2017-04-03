@@ -9,7 +9,6 @@ function Controller (config, services) {
 
 Controller.prototype = {
 
-
   /**
    * Set the token for the admin user
    * after check his username and password
@@ -21,8 +20,8 @@ Controller.prototype = {
     if (params.username !== process.env.USER || params.password !== process.env.PASSWORD) {
       return null;
     }
-    // Expire in 1 hour
-    const exp = Math.floor(Date.now() / 1000) + (60 * 60);
+    // Expire in 6 hour
+    const exp = Math.floor(Date.now() / 1000) + (60 * 60 * 6);
     const token = jwt.sign({
       exp,
       data: {
@@ -36,15 +35,6 @@ Controller.prototype = {
     return new Promise((resolve, reject) => {
       resolve(token);
     });
-  },
-
-  /**
-   * Test a route and get status response
-   * @param params
-   * @returns {*|Promise}
-   */
-  testRoute: function testRoute (params) {
-    return this.buisness.testRoute(params);
   },
 
   /**
@@ -64,6 +54,15 @@ Controller.prototype = {
    */
   getRoutes: function getRoutes (params) {
     return this.buisness.getRoutes(params.module);
+  },
+
+  /**
+   * Set the default parameter of a route
+   * @param params
+   * @returns {*|Promise}
+   */
+  setDefault: function setDefault (params) {
+    return this.buisness.setDefault(params);
   },
 
   /**
