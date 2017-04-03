@@ -29,9 +29,10 @@ Buisness.prototype = {
 
   /**
    * This function will be executed when the accestoken is recieve
+   * @param repo
    * @return {function(*, *=, *, *)}
    */
-  getHandlerFunction: function getHandlerFunction () {
+  getHandlerFunction: function getHandlerFunction (repo) {
     return (accessToken, refreshToken, profile, done) => {
       const user = {
         outlookId: profile.id,
@@ -48,7 +49,7 @@ Buisness.prototype = {
       if (profile.Alias) {
         user.alias = profile.Alias;
       }
-      console.log(user);
+      repo.saveAll([user]);
       return done(null, user);
     };
   },

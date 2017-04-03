@@ -9,7 +9,6 @@ function Controller () {
 
 Controller.prototype = {
 
-
   /**
    * Return credentials to initialize strategy
    * @return {{clientID: *, clientSecret: *, callbackURL: *}}
@@ -23,7 +22,7 @@ Controller.prototype = {
    * @return {function(*, *=, *, *)}
    */
   getHandlerFunction: function getHandlerFunction () {
-    return this.buisness.getHandlerFunction();
+    return this.buisness.getHandlerFunction(this.repository);
   },
 
   /**
@@ -46,7 +45,7 @@ Controller.prototype = {
    * Gives the strategy for passport use
    * @return {*}
    */
-  Strategy: function Strategy(){
+  Strategy: function Strategy () {
     return this.buisness.getStrategy();
   },
 };
