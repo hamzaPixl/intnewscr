@@ -6,7 +6,7 @@ function Buisness (services, config) {
     return this;
   });
   this.locator = new this.ModuleLocator();
-  this.db = this.low('./core/admin/DefaultParameter.json', {storage: require('lowdb/lib/storages/file-async')});
+  this.db = this.low('./database/DefaultParameter.json', {storage: require('lowdb/lib/storages/file-async')});
 }
 
 Buisness.prototype = {
