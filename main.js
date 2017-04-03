@@ -32,7 +32,7 @@ Object.keys(servicesAuth).forEach((index) => {
   app.use(aut.getPassport().session());
   app.get(`/auth/${servicesAuth[index].name}`, aut.getPassport().authenticate(aut.getAuthenticateKey(), aut.getAuthenticateScope()), (req, res) => {});
   app.get('/authorize', aut.getPassport().authenticate(aut.getAuthenticateKey(), {failureRedirect: '/error'}), (req, res) => {
-    res.send('ok access token');
+    res.send('Access token has been recieved');
   });
 });
 
