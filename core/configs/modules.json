@@ -1,31 +1,31 @@
 {
-    "news": {
-        "check": "news/config.json",
-        "value": "news.json"
-    },
-    "stib": {
-        "check": "stib/config.json",
-        "value": "stib.json"
-    },
-    "weather": {
-        "check": "weather/config.json",
-        "value": "weather.json"
-    },
-    "menus": {
-        "check": "menus/config.json",
-        "value": "menus.json"
-    },
-    "facebook": {
-        "check": "facebook/config.json",
-        "value": "facebook.json"
-    },
-    "admin": {
-        "check": "admin/config.json",
-        "value": "admin.json",
-        "path": "./"
-    },
-    "clients":{
-        "check" : "clients/config.json",
-        "value":"clients.json"
-    }
+  "news": {
+    "check": "news/config.json",
+    "value": "news.json"
+  },
+  "stib": {
+    "check": "stib/config.json",
+    "value": "stib.json"
+  },
+  "weather": {
+    "check": "weather/config.json",
+    "value": "weather.json"
+  },
+  "menus": {
+    "check": "menus/config.json",
+    "value": "menus.json"
+  },
+  "facebook": {
+    "check": "facebook/config.json",
+    "value": "facebook.json"
+  },
+  "admin": {
+    "check": "admin/config.json",
+    "value": "admin.json",
+    "path": "./"
+  },
+  "clients": {
+    "check": "clients/config.json",
+    "value": "clients.json"
+  }
 }
