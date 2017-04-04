@@ -65,6 +65,14 @@ Controller.prototype = {
     return this.buisness.setDefault(params);
   },
 
+  /**
+   * Get All widgets
+   * @return {*}
+   */
+  getAllWidgets: function getAllWidgets() {
+    return this.buisness.getAllWidgets();
+  },
+
 };
 
 module.exports = Controller;

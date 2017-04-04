@@ -6,10 +6,19 @@ function Buisness (services, config) {
     return this;
   });
   this.locator = new this.ModuleLocator();
+  this.widgetsController = new this.ControllerWidget();
   this.db = this.low('./database/DefaultParameter.json', {storage: require('lowdb/lib/storages/file-async')});
 }
 
 Buisness.prototype = {
+
+  /**
+   * Get All widgets
+   * @return {*|Promise|Object}
+   */
+  getAllWidgets: function getAllWidgets () {
+    return this.widgetsController.getAll();
+  },
 
   /**
    * It gives the default parameter for all routes

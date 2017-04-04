@@ -34,6 +34,11 @@ function Main () {
         module: 'string',
       },
     },
+    '/getAllWidgets': {
+      method: 'GET',
+      callback: 'getAllWidgets',
+      secured: true,
+    },
   };
 }
 

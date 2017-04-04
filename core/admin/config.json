@@ -3,6 +3,9 @@
     "ModuleLocator": {
       "name": "./../ModuleLocator"
     },
+    "ControllerWidget": {
+      "name": "./../widgets/Controller"
+    },
     "ConfigReader": {
       "name": "./../configs/ConfigReader"
     },
