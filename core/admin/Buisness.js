@@ -90,7 +90,7 @@ Buisness.prototype = {
    */
   getAuthServices: function getAuthServices(){
     return new Promise((resolve, reject) => {
-      resolve(JSON.parse(this.fs.readFileSync('./core/auth0/config.json')));
+      resolve(JSON.parse(this.fs.readFileSync(this.config.authServices)));
     });
   },
 

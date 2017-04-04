@@ -26,5 +26,11 @@
     }
   },
   "config": {
+    "authServices": {
+      "name": "authServices",
+      "default": "/",
+      "type": "string",
+      "require": true
+    }
   }
 }
