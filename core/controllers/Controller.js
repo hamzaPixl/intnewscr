@@ -75,7 +75,7 @@ Controller.prototype = {
   /**
    * returns true if the request is valid
    * by checking route, query, and arguments
-   * @see Controller::requestIsValid
+   * @see Controller.js::requestIsValid
    * @private
    * @return false is not valid
    * @return true it is

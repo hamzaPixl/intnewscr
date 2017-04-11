@@ -15,10 +15,22 @@
     "low": {
       "name": "lowdb"
     },
+    "fs": {
+      "name": "fs"
+    },
     "path": {
       "name": "path"
+    },
+    "tokens": {
+      "name": "./../../database/tokens.json"
     }
   },
   "config": {
+    "authServices": {
+      "name": "authServices",
+      "default": "/",
+      "type": "string",
+      "require": true
+    }
   }
 }

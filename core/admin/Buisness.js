@@ -28,11 +28,25 @@ Buisness.prototype = {
    */
   getAll: function getAll () {
     const modules = this.locator.modules;
+    const allRoutes = new Promise((resolve, reject) => {
+      const routes = {};
+      Object.keys(modules).forEach((item) => {
+        this.getRoutes(item).then((data) => {
+          routes[item] = data;
+          if (Object.keys(routes).length === Object.keys(modules).length) {
+            resolve(routes);
+          }
+        }).catch(() => {});
+      });
+    });
     return new Promise((resolve, reject) => {
       if (!modules) {
         reject('Nothing found');
       } else {
-        resolve({modules, default: this.getDefaultParameter()});
+        allRoutes.then((routes) => {
+          resolve({routes, modules, default: this.getDefaultParameter()});
+        }).catch((err) => {
+        });
       }
     });
   },
@@ -69,6 +83,31 @@ Buisness.prototype = {
       }
     });
   },
+
+  /**
+   * Retrieve all token that the app use
+   * @return {Promise}
+   */
+  getToken: function getToken () {
+    return new Promise((resolve, reject) => {
+      let result = [];
+      Object.keys(this.tokens).forEach((index) => {
+        result = result.concat(JSON.parse(this.fs.readFileSync(this.tokens[index].path)));
+      });
+      resolve(result);
+    });
+  },
+
+  /**
+   * get all services that use aut0
+   * @return {Promise}
+   */
+  getAuthServices: function getAuthServices () {
+    return new Promise((resolve, reject) => {
+      resolve(JSON.parse(this.fs.readFileSync(this.config.authServices)));
+    });
+  },
+
 };
 
 module.exports = Buisness;

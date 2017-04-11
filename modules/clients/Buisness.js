@@ -47,7 +47,7 @@ Buisness.prototype = {
           if (!response || response.error) {
             reject(response);
           } else {
-            reject(response.data);
+            resolve(response.data);
           }
         });
       }).catch((err) => {reject(err);});
