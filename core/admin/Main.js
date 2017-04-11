@@ -50,7 +50,7 @@ function Main () {
       callback: 'deleteWidget',
       secured: true,
       query: {
-        request: 'object',
+        widget: 'object',
       },
     },
     '/createWidget': {
@@ -58,7 +58,7 @@ function Main () {
       callback: 'createWidget',
       secured: true,
       query: {
-        request: 'object',
+        widget: 'object',
       },
     },
     '/updateWidget': {
@@ -66,7 +66,7 @@ function Main () {
       callback: 'updateWidget',
       secured: true,
       query: {
-        request: 'object',
+        widget: 'object',
       },
     },
   };

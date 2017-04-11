@@ -1,4 +1,5 @@
 const WidgetItem = require('./models/WidgetItem');
+const Request = require('./../Request');
 const low = require('lowdb');
 
 function Controller () {
@@ -11,7 +12,9 @@ Controller.prototype = {
    * Get all widgets
    */
   getAll: function getAll () {
-    return this.db.get('widgets').value();
+    return new Promise((resolve, reject) => {
+      resolve(this.db.get('widgets').value());
+    });
   },
 
   /**
@@ -20,9 +23,14 @@ Controller.prototype = {
    * @return {*}
    */
   createWidget: function createWidget (params) {
-    const widget = new WidgetItem(params.name + Date.now(), params.ttl, params.name, params.request);
-    this.db.push(widget).write();
-    return this.getAll();
+    return new Promise((resolve, reject) => {
+      const widget = new WidgetItem(params.widget.name + Date.now(),
+        params.widget.ttl, params.widget.name,
+        new Request(params.widget.baseUrl, params.widget.path,
+          JSON.parse(params.widget.params)));
+      this.db.get('widgets').push(widget).write();
+      resolve(this.getAll());
+    });
   },
 
   /**
@@ -31,10 +39,12 @@ Controller.prototype = {
    * @return {*}
    */
   updateWidget: function updateWidget (params) {
-    this.db.find({id: params.id})
-      .assign({request: params.request})
-      .write();
-    return this.getAll();
+    return new Promise((resolve, reject) => {
+      this.db.get('widgets').find({id: params.id})
+        .assign({request: params.request})
+        .write();
+      resolve(this.getAll());
+    });
   },
 
   /**
@@ -43,9 +53,11 @@ Controller.prototype = {
    * @return {*}
    */
   deleteWidget: function deleteWidget (params) {
-    this.db.remove({id: params.id})
-      .write();
-    return this.getAll();
+    return new Promise((resolve, reject) => {
+      this.db.get('widgets').remove({id: params.widget.id})
+        .write();
+      resolve(this.getAll());
+    });
   },
 
 };
