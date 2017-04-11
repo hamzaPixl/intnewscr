@@ -63,8 +63,8 @@ Buisness.prototype = {
 
   /**
    * It will search a token from facebook
-   * @see Buisness::statusLoginOk
-   * @see Buisness::getUserCode
+   * @see Buisness.js::statusLoginOk
+   * @see Buisness.js::getUserCode
    * @returns {Promise}
    */
   getToken: function getToken () {

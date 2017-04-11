@@ -8,14 +8,20 @@ function Main () {
         password: 'string',
       },
     },
+    '/getAuthServices': {
+      method: 'GET',
+      callback: 'getAuthServices',
+      secured: true,
+    },
     '/getAll': {
       method: 'GET',
       callback: 'getAll',
       secured: true,
-      query: {
-        user: 'string',
-        password: 'string',
-      },
+    },
+    '/getToken': {
+      method: 'GET',
+      callback: 'getToken',
+      secured: true,
     },
     '/setDefault': {
       method: 'GET',
