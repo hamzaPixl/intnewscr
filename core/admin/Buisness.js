@@ -21,6 +21,31 @@ Buisness.prototype = {
   },
 
   /**
+   * Delete a widgets
+   * @param params
+   * @return {*}
+   */
+  deleteWidget: function deleteWidget (params) {
+    return this.widgetsController.deleteWidget(params);
+  },
+  /**
+   * Create widgets
+   * @param params
+   * @return {*}
+   */
+  createWidget: function createWidget (params) {
+    return this.widgetsController.createWidget(params);
+  },
+  /**
+   * update a widgets
+   * @param params
+   * @return {*}
+   */
+  updateWidget: function updateWidget (params) {
+    return this.widgetsController.updateWidget(params);
+  },
+
+  /**
    * It gives the default parameter for all routes
    * @private
    * @return Array

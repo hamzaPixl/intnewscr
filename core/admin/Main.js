@@ -45,6 +45,30 @@ function Main () {
       callback: 'getAllWidgets',
       secured: true,
     },
+    '/deleteWidget': {
+      method: 'GET',
+      callback: 'deleteWidget',
+      secured: true,
+      query: {
+        request: 'object',
+      },
+    },
+    '/createWidget': {
+      method: 'GET',
+      callback: 'createWidget',
+      secured: true,
+      query: {
+        request: 'object',
+      },
+    },
+    '/updateWidget': {
+      method: 'GET',
+      callback: 'updateWidget',
+      secured: true,
+      query: {
+        request: 'object',
+      },
+    },
   };
 }
 

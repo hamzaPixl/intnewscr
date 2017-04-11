@@ -89,6 +89,30 @@ Controller.prototype = {
   getAllWidgets: function getAllWidgets() {
     return this.buisness.getAllWidgets();
   },
+  /**
+   * Delete a widgets
+   * @param params
+   * @return {*}
+   */
+  deleteWidget: function deleteWidget(params) {
+    return this.buisness.deleteWidget(params);
+  },
+  /**
+   * Create widgets
+   * @param params
+   * @return {*}
+   */
+  createWidget: function createWidget(params) {
+    return this.buisness.createWidget(params);
+  },
+  /**
+   * Ypdate a widgets
+   * @param params
+   * @return {*}
+   */
+  updateWidget: function updateWidget(params) {
+    return this.buisness.updateWidget(params);
+  },
 
 };
 
