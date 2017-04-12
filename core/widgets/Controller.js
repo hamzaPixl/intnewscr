@@ -46,8 +46,17 @@ Controller.prototype = {
    */
   updateWidget: function updateWidget (params) {
     return new Promise((resolve, reject) => {
-      this.db.get('widgets').find({id: params.id})
-        .assign({request: params.request})
+      let param;
+      if (typeof params.widget.params === 'string') {
+        param = JSON.parse(params.widget.params);
+      } else {
+        param = params.widget.params;
+      }
+      this.db.get('widgets').find({id: params.widget.id})
+        .assign({
+          request: new Request(params.widget.baseUrl, params.widget.path,
+            param)
+        })
         .write();
       resolve(this.getAll());
     });
