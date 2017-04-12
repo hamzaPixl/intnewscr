@@ -6,6 +6,9 @@
     "ControllerWidget": {
       "name": "./../widgets/Controller"
     },
+    "ViewController": {
+      "name": "./../views/Controller"
+    },
     "ConfigReader": {
       "name": "./../configs/ConfigReader"
     },

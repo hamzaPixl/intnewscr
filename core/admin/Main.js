@@ -40,6 +40,35 @@ function Main () {
         module: 'string',
       },
     },
+    '/getAllView': {
+      method: 'GET',
+      callback: 'getAllView',
+      secured: true,
+    },
+    '/deleteView': {
+      method: 'GET',
+      callback: 'deleteView',
+      secured: true,
+      query: {
+        view: 'object',
+      },
+    },
+    '/createView': {
+      method: 'GET',
+      callback: 'createView',
+      secured: true,
+      query: {
+        view: 'object',
+      },
+    },
+    '/updateView': {
+      method: 'GET',
+      callback: 'updateView',
+      secured: true,
+      query: {
+        view: 'object',
+      },
+    },
     '/getAllWidgets': {
       method: 'GET',
       callback: 'getAllWidgets',

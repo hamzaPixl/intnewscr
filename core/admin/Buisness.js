@@ -7,10 +7,44 @@ function Buisness (services, config) {
   });
   this.locator = new this.ModuleLocator();
   this.widgetsController = new this.ControllerWidget();
+  this.viewController = new this.ViewController();
   this.db = this.low('./database/DefaultParameter.json', {storage: require('lowdb/lib/storages/file-async')});
 }
 
 Buisness.prototype = {
+
+  /**
+   * Get All views
+   * @return {Promise}
+   */
+  getAllView: function getAllView () {
+    return this.viewController.getAll();
+  },
+  /**
+   * Delete a views
+   * @param params
+   * @return {Promise}
+   */
+  deleteView: function deleteView (params) {
+    return this.viewController.deleteView(params);
+  },
+  /**
+   * Create views
+   * @param params
+   * @return {Promise}
+   */
+  createView: function createView (params) {
+    return this.viewController.createView(params);
+  },
+
+  /**
+   * Update a views
+   * @param params
+   * @return {Promise}
+   */
+  updateView: function updateView (params) {
+    return this.viewController.updateView(params);
+  },
 
   /**
    * Get All widgets

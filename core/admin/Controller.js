@@ -114,6 +114,37 @@ Controller.prototype = {
     return this.buisness.updateWidget(params);
   },
 
+  /**
+   * Get All views
+   * @return {*}
+   */
+  getAllView: function getAllView() {
+    return this.buisness.getAllView();
+  },
+  /**
+   * Delete a views
+   * @param params
+   * @return {*}
+   */
+  deleteView: function deleteView(params) {
+    return this.buisness.deleteView(params);
+  },
+  /**
+   * Create views
+   * @param params
+   * @return {*}
+   */
+  createView: function createView(params) {
+    return this.buisness.createView(params);
+  },
+  /**
+   * Ypdate a views
+   * @param params
+   * @return {*}
+   */
+  updateView: function updateView(params) {
+    return this.buisness.updateView(params);
+  },
 };
 
 module.exports = Controller;
