@@ -30,11 +30,10 @@ Controller.prototype = {
       } else {
         param = params.widget.params;
       }
-      const widget = new WidgetItem(`${params.widget.name}${Date.now()}`,
+      this.db.get('widgets').push(new WidgetItem(`${params.widget.name}${Date.now()}`,
         params.widget.ttl, params.widget.name,
         new Request(params.widget.baseUrl, params.widget.path,
-          param));
-      this.db.get('widgets').push(widget).write();
+          param))).write();
       resolve(this.getAll());
     });
   },
