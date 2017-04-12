@@ -55,7 +55,9 @@ Controller.prototype = {
       this.db.get('widgets').find({id: params.widget.id})
         .assign({
           request: new Request(params.widget.baseUrl, params.widget.path,
-            param)
+            param),
+          name: params.widget.name,
+          ttl: params.widget.ttl
         })
         .write();
       resolve(this.getAll());
