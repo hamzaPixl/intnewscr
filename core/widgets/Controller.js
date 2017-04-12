@@ -24,10 +24,16 @@ Controller.prototype = {
    */
   createWidget: function createWidget (params) {
     return new Promise((resolve, reject) => {
-      const widget = new WidgetItem(params.widget.name + Date.now(),
+      let param;
+      if (typeof params.widget.params === 'string') {
+        param = JSON.parse(params.widget.params);
+      } else {
+        param = params.widget.params;
+      }
+      const widget = new WidgetItem(`${params.widget.name}${Date.now()}`,
         params.widget.ttl, params.widget.name,
         new Request(params.widget.baseUrl, params.widget.path,
-          JSON.parse(params.widget.params)));
+          param));
       this.db.get('widgets').push(widget).write();
       resolve(this.getAll());
     });
