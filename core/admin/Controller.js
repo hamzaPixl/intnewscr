@@ -82,6 +82,69 @@ Controller.prototype = {
     return this.buisness.getToken();
   },
 
+  /**
+   * Get All widgets
+   * @return {*}
+   */
+  getAllWidgets: function getAllWidgets() {
+    return this.buisness.getAllWidgets();
+  },
+  /**
+   * Delete a widgets
+   * @param params
+   * @return {*}
+   */
+  deleteWidget: function deleteWidget(params) {
+    return this.buisness.deleteWidget(params);
+  },
+  /**
+   * Create widgets
+   * @param params
+   * @return {*}
+   */
+  createWidget: function createWidget(params) {
+    return this.buisness.createWidget(params);
+  },
+  /**
+   * Ypdate a widgets
+   * @param params
+   * @return {*}
+   */
+  updateWidget: function updateWidget(params) {
+    return this.buisness.updateWidget(params);
+  },
+
+  /**
+   * Get All views
+   * @return {*}
+   */
+  getAllView: function getAllView() {
+    return this.buisness.getAllView();
+  },
+  /**
+   * Delete a views
+   * @param params
+   * @return {*}
+   */
+  deleteView: function deleteView(params) {
+    return this.buisness.deleteView(params);
+  },
+  /**
+   * Create views
+   * @param params
+   * @return {*}
+   */
+  createView: function createView(params) {
+    return this.buisness.createView(params);
+  },
+  /**
+   * Ypdate a views
+   * @param params
+   * @return {*}
+   */
+  updateView: function updateView(params) {
+    return this.buisness.updateView(params);
+  },
 };
 
 module.exports = Controller;

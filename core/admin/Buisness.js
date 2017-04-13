@@ -6,10 +6,78 @@ function Buisness (services, config) {
     return this;
   });
   this.locator = new this.ModuleLocator();
+  this.widgetsController = new this.ControllerWidget();
+  this.viewController = new this.ViewController();
   this.db = this.low('./database/DefaultParameter.json', {storage: require('lowdb/lib/storages/file-async')});
 }
 
 Buisness.prototype = {
+
+  /**
+   * Get All views
+   * @return {Promise}
+   */
+  getAllView: function getAllView () {
+    return this.viewController.getAll();
+  },
+  /**
+   * Delete a views
+   * @param params
+   * @return {Promise}
+   */
+  deleteView: function deleteView (params) {
+    return this.viewController.deleteView(params);
+  },
+  /**
+   * Create views
+   * @param params
+   * @return {Promise}
+   */
+  createView: function createView (params) {
+    return this.viewController.createView(params);
+  },
+
+  /**
+   * Update a views
+   * @param params
+   * @return {Promise}
+   */
+  updateView: function updateView (params) {
+    return this.viewController.updateView(params);
+  },
+
+  /**
+   * Get All widgets
+   * @return {*|Promise|Object}
+   */
+  getAllWidgets: function getAllWidgets () {
+    return this.widgetsController.getAll();
+  },
+
+  /**
+   * Delete a widgets
+   * @param params
+   * @return {*}
+   */
+  deleteWidget: function deleteWidget (params) {
+    return this.widgetsController.deleteWidget(params);
+  },
+  /**
+   * Create widgets
+   * @param params
+   * @return {*}
+   */
+  createWidget: function createWidget (params) {
+    return this.widgetsController.createWidget(params);
+  },
+  /**
+   * update a widgets
+   * @param params
+   * @return {*}
+   */
+  updateWidget: function updateWidget (params) {
+    return this.widgetsController.updateWidget(params);
+  },
 
   /**
    * It gives the default parameter for all routes

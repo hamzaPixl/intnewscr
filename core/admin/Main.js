@@ -40,14 +40,62 @@ function Main () {
         module: 'string',
       },
     },
-    '/testRoute': {
+    '/getAllView': {
       method: 'GET',
-      callback: 'testRoute',
+      callback: 'getAllView',
+      secured: true,
+    },
+    '/deleteView': {
+      method: 'GET',
+      callback: 'deleteView',
       secured: true,
       query: {
-        url: 'string',
-        route: 'string',
-        params: 'object',
+        view: 'object',
+      },
+    },
+    '/createView': {
+      method: 'GET',
+      callback: 'createView',
+      secured: true,
+      query: {
+        view: 'object',
+      },
+    },
+    '/updateView': {
+      method: 'GET',
+      callback: 'updateView',
+      secured: true,
+      query: {
+        view: 'object',
+      },
+    },
+    '/getAllWidgets': {
+      method: 'GET',
+      callback: 'getAllWidgets',
+      secured: true,
+    },
+    '/deleteWidget': {
+      method: 'GET',
+      callback: 'deleteWidget',
+      secured: true,
+      query: {
+        widget: 'object',
+      },
+    },
+    '/createWidget': {
+      method: 'GET',
+      callback: 'createWidget',
+      secured: true,
+      query: {
+        widget: 'object',
+      },
+    },
+    '/updateWidget': {
+      method: 'GET',
+      callback: 'updateWidget',
+      secured: true,
+      query: {
+        widget: 'object',
       },
     },
   };
