@@ -1,10 +1,10 @@
-function ViewItem (id, ttl, name, views) {
+function ViewItem (id, ttl, name, widgets) {
   // properties of a specific instance
   this.id = id;
   this.ttl = ttl;
   this.name = name;
   this.model = 'view';
-  this.views = views;
+  this.widgets = widgets;
 }
 
 ViewItem.prototype = {};
