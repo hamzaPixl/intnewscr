@@ -11,7 +11,6 @@ const io = require('socket.io')(server);
 
 io.on('connection', (client) => {
   client.on('request', (requestClient) => {
-    console.log(requestClient);
     const result = controller.request(requestClient, client);
     if (result) {
       result.then((data) => {
