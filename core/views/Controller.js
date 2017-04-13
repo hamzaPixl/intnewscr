@@ -1,5 +1,4 @@
 const ViewItem = require('./models/ViewItem');
-const Request = require('./../Request');
 const low = require('lowdb');
 
 function Controller () {
@@ -25,7 +24,7 @@ Controller.prototype = {
   createView: function createView (params) {
     return new Promise((resolve, reject) => {
       this.db.get('views').push(new ViewItem(`${params.view.name}${Date.now()}`,
-        params.view.ttl, params.view.name, params.view.widget)).write();
+        params.view.ttl, params.view.name, params.view.widgets)).write();
       resolve(this.getAll());
     });
   },
@@ -39,7 +38,7 @@ Controller.prototype = {
     return new Promise((resolve, reject) => {
       this.db.get('views').find({id: params.view.id})
         .assign({
-          request: params.view.views,
+          widgets: params.view.widgets,
           name: params.view.name,
           ttl: params.view.ttl
         })
@@ -55,7 +54,7 @@ Controller.prototype = {
    */
   deleteView: function deleteView (params) {
     return new Promise((resolve, reject) => {
-      this.db.get('views').remove({id: params.widget.id})
+      this.db.get('views').remove({id: params.view.id})
         .write();
       resolve(this.getAll());
     });
