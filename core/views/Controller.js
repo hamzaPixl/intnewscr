@@ -24,7 +24,7 @@ Controller.prototype = {
   createView: function createView (params) {
     return new Promise((resolve, reject) => {
       this.db.get('views').push(new ViewItem(`${params.view.name}${Date.now()}`,
-        params.view.ttl, params.view.name, params.view.widgets)).write();
+        params.view.start, params.view.end, params.view.name, params.view.widgets)).write();
       resolve(this.getAll());
     });
   },
@@ -40,7 +40,8 @@ Controller.prototype = {
         .assign({
           widgets: params.view.widgets,
           name: params.view.name,
-          ttl: params.view.ttl
+          start: params.view.start,
+          end: params.view.end,
         })
         .write();
       resolve(this.getAll());
