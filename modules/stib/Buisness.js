@@ -34,17 +34,21 @@ Buisness.prototype = {
         if (!error && response.statusCode === 200) {
           const $ = this.cheerio.load(body);
           const ul = $('#realtime_view').children();
-          resolve([{
-            destination,
-            model: 'stib',
-            indice: line,
-            line: ul[ul.length - indice].children[0].children[1].children[0].data,
-          }, {
-            destination,
-            model: 'stib',
-            indice: line,
-            line: ul[ul.length - indice].children[1].children[1].children[0].data,
-          }]);
+          if (ul.length === 0) {
+            reject('Error from stib web site');
+          } else {
+            resolve([{
+              destination,
+              model: 'stib',
+              indice: line,
+              line: ul[ul.length - indice].children[0].children[1].children[0].data,
+            }, {
+              destination,
+              model: 'stib',
+              indice: line,
+              line: ul[ul.length - indice].children[1].children[1].children[0].data,
+            }]);
+          }
         } else {
           reject(error);
         }
