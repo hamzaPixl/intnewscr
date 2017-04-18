@@ -19,6 +19,10 @@
     "check": "facebook/config.json",
     "value": "facebook.json"
   },
+  "views": {
+    "check": "views/config.json",
+    "value": "views.json"
+  },
   "admin": {
     "check": "admin/config.json",
     "value": "admin.json",
