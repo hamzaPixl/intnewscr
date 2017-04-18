@@ -8,20 +8,11 @@ function Controller () {
 Controller.prototype = {
 
   /**
-   * Get all widgets
+   * Get all widgets and views
    */
-  getAllWidgets: function getAllWidgets () {
+  getAll: function getAll () {
     return new Promise((resolve, reject) => {
-      resolve(this.widgets_db.get('widgets').value());
-    });
-  },
-
-  /**
-   * Get all views
-   */
-  getAllViews: function getAllViews () {
-    return new Promise((resolve, reject) => {
-      resolve(this.views_db.get('views').value());
+      resolve({views:this.widgets_db.get('views').value(),widgets:this.widgets_db.get('widgets').value()});
     });
   },
 

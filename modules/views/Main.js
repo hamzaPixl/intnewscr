@@ -1,13 +1,9 @@
 function Main () {
   this.routes = {
-    '/views': {
+    '/all': {
       method: 'GET',
-      callback: 'getAllViews',
-    },
-    '/widgets': {
-      method: 'GET',
-      callback: 'getAllWidgets',
-    },
+      callback: 'getAll',
+    }
   };
 }
 
