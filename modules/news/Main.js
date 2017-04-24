@@ -4,13 +4,6 @@ function Main () {
       method: 'GET',
       callback: 'getNewsTrafic',
     },
-    '/map': {
-      method: 'GET',
-      callback: 'getNewsTraficMaps',
-      query: {
-        source: 'string',
-      },
-    },
     '/news': {
       method: 'GET',
       callback: 'getNews',

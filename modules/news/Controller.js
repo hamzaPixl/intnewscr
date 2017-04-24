@@ -89,7 +89,11 @@ Controller.prototype = {
         if (!trafic) {
           reject(trafic);
         }
-        resolve(trafic);
+        resolve({
+          trafic,
+          brussels: 'http://www.filebeeld.be/traffic/image?format=LARGE&region=brussel',
+          vlaams: 'http://www.filebeeld.be/traffic/image?format=LARGE&region=vlaamseruit',
+        });
       });
     }
 
@@ -104,21 +108,6 @@ Controller.prototype = {
     });
   },
 
-  /**
-   * It gives the traffic map from a source
-   * @return Promise that contains data
-   */
-  getNewsTraficMaps: function getNewsTraficMaps (params) {
-    return new Promise((resolve, reject) => {
-      if (params.source === 'brussels') {
-        resolve(TraficMapItem.getBrussels());
-      } else if (params.source === 'vlaams') {
-        resolve(TraficMapItem.getVlaams());
-      } else {
-        reject(null);
-      }
-    });
-  },
 };
 
 module.exports = Controller;
