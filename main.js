@@ -11,7 +11,6 @@ const io = require('socket.io')(server);
 
 io.on('connection', (client) => {
   client.on('request', (requestClient) => {
-    console.log(requestClient)
     if (requestClient.name === 'viewChange') {
       io.sockets.emit('response', {request: {name: 'viewChange', view: requestClient.view}});
     } else {
