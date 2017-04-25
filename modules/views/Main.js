@@ -1,24 +1,9 @@
 function Main () {
   this.routes = {
-    '/trafic': {
+    '/all': {
       method: 'GET',
-      callback: 'getNewsTrafic',
-    },
-    '/news': {
-      method: 'GET',
-      callback: 'getNews',
-      query: {
-        source: 'string',
-        language: 'string',
-      },
-    },
-    '/newsapi': {
-      method: 'GET',
-      callback: 'getNewsApi',
-      query: {
-        source: 'string',
-      },
-    },
+      callback: 'getAll',
+    }
   };
 }
 

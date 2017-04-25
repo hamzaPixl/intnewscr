@@ -15,7 +15,7 @@ Controller.prototype = {
 
   /**
    * Call the buisness if there are no data in database
-   * else it return the data that the databse contains
+   * else it return the data that the database contains
    * @return Promise that contains data
    */
   getFacebookPosts: function getFacebookPosts (params) {
@@ -25,7 +25,7 @@ Controller.prototype = {
         if (!posts) {
           reject(posts);
         }
-        resolve(posts);
+        resolve({posts, source: params.source});
       });
     }
     return new Promise((resolve, reject) => {
@@ -34,7 +34,7 @@ Controller.prototype = {
           reject(postsBuis);
         }
         this.repoFacebook.saveAll(postsBuis);
-        resolve(this.repoFacebook.findAllBy('source', this.config[params.source]));
+        resolve({posts: this.repoFacebook.findAllBy('source', this.config[params.source]), source: params.source});
       }).catch((err) => {reject(err);});
     });
   },
@@ -51,7 +51,7 @@ Controller.prototype = {
         if (!posts) {
           reject(posts);
         }
-        resolve(posts);
+        resolve({posts, source: params.source});
       });
     }
     return new Promise((resolve, reject) => {
@@ -60,7 +60,7 @@ Controller.prototype = {
           reject(postsBuis);
         }
         this.repoGoogle.saveAll(postsBuis);
-        resolve(this.repoGoogle.findAllBy('source', params.source));
+        resolve({posts: this.repoGoogle.findAllBy('source', params.source), source: params.source});
       }).catch((err) => {reject(err);});
     });
   },

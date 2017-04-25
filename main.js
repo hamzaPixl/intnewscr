@@ -11,15 +11,19 @@ const io = require('socket.io')(server);
 
 io.on('connection', (client) => {
   client.on('request', (requestClient) => {
-    const result = controller.request(requestClient, client);
-    if (result) {
-      result.then((data) => {
-        client.emit('response', {data, name: requestClient.name, request: requestClient});
-      }).catch((err) => {
-        client.emit('response', {error: 'Error from the widget !', name: requestClient.name, request: requestClient});
-      });
+    if (requestClient.name === 'viewChange') {
+      io.sockets.emit('response', {request: {name: 'viewChange', view: requestClient.view}});
     } else {
-      client.emit('response', {error: 'Error from the request !', name: requestClient.name, request: requestClient});
+      const result = controller.request(requestClient, client);
+      if (result) {
+        result.then((data) => {
+          client.emit('response', {data, name: requestClient.name, request: requestClient});
+        }).catch((err) => {
+          client.emit('response', {error: 'Error from the widget !', name: requestClient.name, request: requestClient});
+        });
+      } else {
+        client.emit('response', {error: 'Error from the request !', name: requestClient.name, request: requestClient});
+      }
     }
   });
   client.on('disconnect', () => {});
