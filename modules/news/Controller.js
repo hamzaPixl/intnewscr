@@ -91,8 +91,8 @@ Controller.prototype = {
         }
         resolve({
           trafic,
-          brussels: 'http://www.filebeeld.be/traffic/image?format=LARGE&region=brussel',
-          vlaams: 'http://www.filebeeld.be/traffic/image?format=LARGE&region=vlaamseruit',
+          brussels: TraficMapItem.getBrussels(),
+          vlaams: TraficMapItem.getVlaams(),
         });
       });
     }
