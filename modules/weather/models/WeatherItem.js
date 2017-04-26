@@ -1,13 +1,12 @@
 function WeatherItem () {
   // properties of a specific instance
-  this.id = '';
   this.created = '';
   this.ttl = '';
+  this.id = '';
   this.model = '';
   this.date = '';
   this.max = '';
   this.min = '';
-  this.precip = '';
   this.description = '';
   this.day = '';
 }
@@ -25,7 +24,7 @@ WeatherItem.getName = function getName () {
  * @return the ttl of the data
  */
 WeatherItem.getTTL = function getTTL () {
-  return 14400;
+  return 86400;
 };
 
 WeatherItem.prototype = {
@@ -36,9 +35,9 @@ WeatherItem.prototype = {
    */
   toJson: function toJson () {
     return JSON.stringify({
-      id: this.id,
       created: this.created,
       ttl: this.ttl,
+      id: this.id,
       model: this.model,
       date: this.date,
       day: this.day,
@@ -53,9 +52,9 @@ WeatherItem.prototype = {
    * @param data come from database
    */
   fromData: function fromData (data) {
-    this.id = data.id;
     this.created = data.created;
     this.ttl = data.ttl;
+    this.id = data.id;
     this.model = data.model;
     this.date = data.date;
     this.max = data.max;
@@ -70,8 +69,8 @@ WeatherItem.prototype = {
    */
   fromJson: function fromJson (json) {
     this.created = Date.now();
-    this.model = WeatherItem.getName();
     this.ttl = WeatherItem.getTTL();
+    this.model = WeatherItem.getName();
     this.id = json.date;
     this.date = json.date;
     this.max = json.high;

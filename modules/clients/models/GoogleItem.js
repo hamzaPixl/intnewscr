@@ -1,9 +1,9 @@
 function GoogleItem () {
   // properties of a specific instance
-  this.id = '';
-  this.source_search = 'google';
   this.created = '';
   this.ttl = '';
+  this.id = '';
+  this.source_search = 'google';
   this.model = '';
   this.data = '';
   this.source = '';
@@ -33,10 +33,11 @@ GoogleItem.prototype = {
    */
   toJson: function toJson () {
     return JSON.stringify({
-      id: this.id,
-      source_search: this.source_search,
       created: this.created,
       ttl: this.ttl,
+      date: this.date,
+      id: this.id,
+      source_search: this.source_search,
       model: this.model,
       data: this.data,
       source: this.source,
@@ -50,15 +51,16 @@ GoogleItem.prototype = {
    * @param data come from database
    */
   fromData: function fromData (data) {
-    this.id = data.id;
-    this.source_search = data.source_search;
     this.created = data.created;
     this.ttl = data.ttl;
+    this.id = data.id;
+    this.source_search = data.source_search;
     this.model = data.model;
     this.data = data.data;
     this.source = data.source;
     this.link = data.link;
     this.title = data.title;
+    this.date = data.date;
   },
 
   /**
@@ -66,9 +68,10 @@ GoogleItem.prototype = {
    * @param json is the object that it will be converted
    */
   fromJson: function fromJson (json) {
-    this.created = json.pubDate;
-    this.model = GoogleItem.getName();
+    this.date = json.pubDate;
+    this.created = Date.now();
     this.ttl = GoogleItem.getTTL();
+    this.model = GoogleItem.getName();
     this.id = json.guid;
     this.title = json.title;
     this.data = json.contentSnippet;
