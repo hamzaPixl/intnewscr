@@ -19,21 +19,21 @@ Controller.prototype = {
   getMenu: function getMenu (params) {
     const menus = this.repository.findAllBy('source', params.source);
     return new Promise((resolve, reject) => {
-      if (menus && menus.length > 0) {
+      if (this.repository.resultIsValid(menus)) {
         resolve(menus);
-      } else if (!menus || menus.length === 0) {
+      } else {
         this.buisness.getMenu(params.source).then((menuBuis) => {
           if (!menuBuis) {
             reject(menuBuis);
           }
           this.repository.saveAll(menuBuis);
-          resolve(this.repository.findAll());
+          resolve(this.repository.findAllBy('source', params.source));
         }).catch((err) => {reject(err);});
-      } else {
-        resolve(null);
       }
     });
   },
+
+
 };
 
 module.exports = Controller;

@@ -18,7 +18,7 @@ Controller.prototype = {
    */
   getWeather: function getWeather () {
     const weather = this.repository.findAll();
-    if (weather && weather.length > 0) {
+    if (this.repository.resultIsValid(weather)) {
       return new Promise((resolve, reject) => {
         if (!weather) {
           reject(weather);
