@@ -19,7 +19,6 @@ Repository.prototype = {
     }
     const currentTimeS = Math.floor(Date.now() / 1000);
     const itemTTL = parseInt(array[0].ttl, 10) + Math.floor(parseInt(array[0].created, 10) / 1000);
-    console.log(currentTimeS,itemTTL)
     return itemTTL >= currentTimeS;
   },
   /**
