@@ -20,7 +20,7 @@ Controller.prototype = {
    */
   getFacebookPosts: function getFacebookPosts (params) {
     const posts = this.repoFacebook.findAllBy('source', this.config[params.source]);
-    if (posts && posts.length > 0) {
+    if (this.repoFacebook.resultIsValid(posts)) {
       return new Promise((resolve, reject) => {
         if (!posts) {
           reject(posts);
@@ -46,7 +46,7 @@ Controller.prototype = {
    */
   getGooglePosts: function getGooglePosts (params) {
     const posts = this.repoGoogle.findAllBy('source', params.source);
-    if (posts && posts.length > 0) {
+    if (this.repoGoogle.resultIsValid(posts)) {
       return new Promise((resolve, reject) => {
         if (!posts) {
           reject(posts);
@@ -64,6 +64,8 @@ Controller.prototype = {
       }).catch((err) => {reject(err);});
     });
   },
+
+
 };
 
 module.exports = Controller;

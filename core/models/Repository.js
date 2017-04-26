@@ -9,6 +9,19 @@ function Repository (Model, databasePath) {
 Repository.prototype = {
 
   /**
+   * Check if the data are available or it is
+   * @param array
+   * @return {boolean}
+   */
+  resultIsValid: function resultIsValid (array) {
+    if (!array || array.length <= 0) {
+      return false;
+    }
+    const currentTimeS = Math.floor(Date.now() / 1000);
+    const itemTTL = parseInt(array[0].ttl, 10) + Math.floor(parseInt(array[0].created, 10) / 1000);
+    return itemTTL >= currentTimeS;
+  },
+  /**
    * return boolean of test if the items is empty or not
    * @private
    * @return false if is not empty

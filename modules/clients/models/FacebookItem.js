@@ -1,9 +1,9 @@
 function FacebookItem () {
   // properties of a specific instance
-  this.id = '';
-  this.source_search = 'facebook';
   this.created = '';
   this.ttl = '';
+  this.id = '';
+  this.source_search = 'facebook';
   this.model = '';
   this.data = '';
   this.source = '';
@@ -33,10 +33,10 @@ FacebookItem.prototype = {
    */
   toJson: function toJson () {
     return JSON.stringify({
-      id: this.id,
-      source_search: this.source_search,
       created: this.created,
       ttl: this.ttl,
+      id: this.id,
+      source_search: this.source_search,
       model: this.model,
       data: this.data,
       source: this.source,
@@ -48,10 +48,10 @@ FacebookItem.prototype = {
    * @param data come from database
    */
   fromData: function fromData (data) {
-    this.id = data.id;
-    this.source_search = data.source_search;
     this.created = data.created;
     this.ttl = data.ttl;
+    this.id = data.id;
+    this.source_search = data.source_search;
     this.model = data.model;
     this.data = data.data;
     this.source = data.source;
@@ -62,9 +62,9 @@ FacebookItem.prototype = {
    * @param json is the object that it will be converted
    */
   fromJson: function fromJson (json) {
-    this.created = json.created_time;
-    this.model = FacebookItem.getName();
+    this.created = Date.now();
     this.ttl = FacebookItem.getTTL();
+    this.model = FacebookItem.getName();
     this.id = json.id;
     this.data = json.message;
     this.source = json.id.split('_')[0];

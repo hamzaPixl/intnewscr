@@ -1,5 +1,7 @@
 function NewsItem () {
   // properties of a specific instance
+  this.created = '';
+  this.ttl = '';
   this.language = '';
   this.id = null;
   this.title = '';
@@ -22,7 +24,7 @@ NewsItem.getName = function getName () {
  * @return the name of the model item
  */
 NewsItem.getTTL = function getTTL () {
-  return 14400;
+  return 86400;
 };
 
 NewsItem.prototype = {
@@ -33,13 +35,13 @@ NewsItem.prototype = {
    */
   toJson: function toJson () {
     return JSON.stringify({
+      created: this.created,
+      ttl: this.ttl,
       content: this.content,
       id: this.id,
-      created: this.created,
       title: this.title,
       date: this.date,
       link: this.link,
-      ttl: NewsItem.getTTL(),
       model: NewsItem.getName(),
       language: this.language,
       source: this.source,
@@ -52,6 +54,7 @@ NewsItem.prototype = {
    */
   fromData: function fromData (data) {
     this.created = data.created;
+    this.ttl = data.ttl;
     this.id = data.id;
     this.content = data.content;
     this.title = data.title;
@@ -68,6 +71,7 @@ NewsItem.prototype = {
    */
   fromJson: function fromJson (json) {
     this.created = Date.now();
+    this.ttl = NewsItem.getTTL();
     this.model = NewsItem.getName();
     if (json.url) {
       this.id = json.url;

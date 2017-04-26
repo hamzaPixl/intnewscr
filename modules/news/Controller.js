@@ -25,7 +25,7 @@ Controller.prototype = {
       return null;
     }
     const news = this.repositoryNews.findAllBy('source', params.source + (params.language || ''));
-    if (news && news.length > 0) {
+    if (this.repositoryNews.resultIsValid(news)) {
       return new Promise((resolve, reject) => {
         if (!news) {
           reject(news);
@@ -56,7 +56,7 @@ Controller.prototype = {
       return null;
     }
     const news = this.repositoryNews.findAllBy('source', params.source);
-    if (news && news.length > 0) {
+    if (this.repositoryNews.resultIsValid(news)) {
       return new Promise((resolve, reject) => {
         if (!news) {
           reject(news);
@@ -84,7 +84,7 @@ Controller.prototype = {
    */
   getNewsTrafic: function getNewsTrafic () {
     const trafic = this.repositoryTrafic.findAllBy('model', TraficItem.getName());
-    if (trafic && trafic.length > 0) {
+    if (this.repositoryTrafic.resultIsValid(trafic)) {
       return new Promise((resolve, reject) => {
         if (!trafic) {
           reject(trafic);
@@ -103,7 +103,11 @@ Controller.prototype = {
           reject(traficBuis);
         }
         this.repositoryTrafic.saveAll(traficBuis);
-        resolve(this.repositoryTrafic.findAllBy('model', TraficItem.getName()));
+        resolve({
+          trafic: this.repositoryTrafic.findAllBy('model', TraficItem.getName()),
+          brussels: TraficMapItem.getBrussels(),
+          vlaams: TraficMapItem.getVlaams()
+        });
       }).catch((err) => {reject(err);});
     });
   },

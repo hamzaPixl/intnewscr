@@ -1,8 +1,8 @@
 function MenusItem () {
   // properties of a specific instance
-  this.id = '';
   this.created = '';
   this.ttl = '';
+  this.id = '';
   this.model = '';
   this.source = '';
 }
@@ -20,7 +20,7 @@ MenusItem.getName = function getName () {
  * @return the ttl of the data
  */
 MenusItem.getTTL = function getTTL () {
-  return 14400;
+  return 28800;
 };
 
 MenusItem.prototype = {
@@ -61,8 +61,8 @@ MenusItem.prototype = {
    */
   fromJson: function fromJson (json) {
     this.created = Date.now();
-    this.model = MenusItem.getName();
     this.ttl = MenusItem.getTTL();
+    this.model = MenusItem.getName();
     if (json.jour) {
       this.id = json.jour;
       this.source = 'barasoupe';

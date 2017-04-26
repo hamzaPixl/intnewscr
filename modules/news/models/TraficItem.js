@@ -1,5 +1,7 @@
 function TraficItem () {
   // properties of a specific instance
+  this.created = '';
+  this.ttl = '';
   this.id = null;
   this.title = '';
   this.link = '';
@@ -33,13 +35,13 @@ TraficItem.prototype = {
   toJson: function toJson () {
     return JSON.stringify({
       created: this.created,
+      ttl: this.ttl,
       content: this.content,
       title: this.title,
       id: this.link,
       date: this.date,
       link: this.link,
       source: this.source,
-      ttl: TraficItem.getTTL(),
       model: TraficItem.getName(),
     });
   },
@@ -65,6 +67,7 @@ TraficItem.prototype = {
    */
   fromJson: function fromJson (json) {
     this.created = Date.now();
+    this.ttl = TraficItem.getTTL();
     this.content = json.content;
     this.title = json.title;
     this.id = json.link;
