@@ -59,6 +59,7 @@ TraficItem.prototype = {
     this.link = data.link;
     this.source = data.source;
     this.model = data.model;
+    this.ttl = data.ttl;
   },
 
   /**
