@@ -57,6 +57,7 @@ Repository.prototype = {
         });
       }
     }
+    this.items = this.items.filter(this.ttlIsValid);
     return this.items;
   },
 
