@@ -32,22 +32,26 @@ Buisness.prototype = {
     return new Promise((resolve, reject) => {
       this.request(url, (error, response, body) => {
         if (!error && response.statusCode === 200) {
-          const $ = this.cheerio.load(body);
-          const ul = $('#realtime_view').children();
-          if (ul.length === 0) {
-            reject('Error from stib web site');
-          } else {
-            resolve([{
-              destination,
-              model: 'stib',
-              indice: line,
-              line: ul[ul.length - indice].children[0].children[1].children[0].data,
-            }, {
-              destination,
-              model: 'stib',
-              indice: line,
-              line: ul[ul.length - indice].children[1].children[1].children[0].data,
-            }]);
+          try {
+            const $ = this.cheerio.load(body);
+            const ul = $('#realtime_view').children();
+            if (ul.length === 0) {
+              reject('Error from stib web site');
+            } else {
+              resolve([{
+                destination,
+                model: 'stib',
+                indice: line,
+                line: ul[ul.length - indice].children[0].children[1].children[0].data,
+              }, {
+                destination,
+                model: 'stib',
+                indice: line,
+                line: ul[ul.length - indice].children[1].children[1].children[0].data,
+              }]);
+            }
+          } catch (err) {
+            resolve(err);
           }
         } else {
           reject(error);
