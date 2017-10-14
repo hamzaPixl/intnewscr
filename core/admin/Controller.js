@@ -1,13 +1,13 @@
 const Buisness = require('./Buisness');
 const jwt = require('jsonwebtoken');
 
-function Controller (config, services) {
-  this.config = config;
-  this.services = services;
-  this.buisness = new Buisness(this.services, this.config);
-}
+class Controller {
 
-Controller.prototype = {
+  constructor(config, services) {
+    this.config = config;
+    this.services = services;
+    this.buisness = new Buisness(this.services, this.config);
+  }
 
   /**
    * Set the token for the admin user
@@ -16,7 +16,7 @@ Controller.prototype = {
    * @param client
    * @returns {*}
    */
-  connexion: function connexion (params, client) {
+  connexion(params, client) {
     if (params.username !== process.env.USER || params.password !== process.env.PASSWORD) {
       return null;
     }
@@ -35,24 +35,24 @@ Controller.prototype = {
     return new Promise((resolve, reject) => {
       resolve(token);
     });
-  },
+  }
 
   /**
    * get all services that use aut0
    * @return {Promise}
    */
-  getAuthServices: function getAuthServices () {
+  getAuthServices() {
     return this.buisness.getAuthServices();
-  },
+  }
 
   /**
    * Get all modules that are
    * available in the app
    * @returns {*|Promise}
    */
-  getAll: function getAll () {
+  getAll() {
     return this.buisness.getAll();
-  },
+  }
 
   /**
    * Get all modules routes that are
@@ -60,91 +60,97 @@ Controller.prototype = {
    * @param params
    * @returns {*|Promise}
    */
-  getRoutes: function getRoutes (params) {
+  getRoutes(params) {
     return this.buisness.getRoutes(params.module);
-  },
+  }
 
   /**
    * Set the default parameter of a route
    * @param params
    * @returns {*|Promise}
    */
-  setDefault: function setDefault (params) {
+  setDefault(params) {
     return this.buisness.setDefault(params);
-  },
+  }
 
   /**
    * Get all token that are used
    * in app to call api
    * @returns {*|Promise}
    */
-  getToken: function getToken () {
+  getToken() {
     return this.buisness.getToken();
-  },
+  }
 
   /**
    * Get All widgets
    * @return {*}
    */
-  getAllWidgets: function getAllWidgets() {
+  getAllWidgets() {
     return this.buisness.getAllWidgets();
-  },
+  }
+
   /**
    * Delete a widgets
    * @param params
    * @return {*}
    */
-  deleteWidget: function deleteWidget(params) {
+  deleteWidget(params) {
     return this.buisness.deleteWidget(params);
-  },
+  }
+
   /**
    * Create widgets
    * @param params
    * @return {*}
    */
-  createWidget: function createWidget(params) {
+  createWidget(params) {
     return this.buisness.createWidget(params);
-  },
+  }
+
   /**
    * Ypdate a widgets
    * @param params
    * @return {*}
    */
-  updateWidget: function updateWidget(params) {
+  updateWidget(params) {
     return this.buisness.updateWidget(params);
-  },
+  }
 
   /**
    * Get All views
    * @return {*}
    */
-  getAllView: function getAllView() {
+  getAllView() {
     return this.buisness.getAllView();
-  },
+  }
+
   /**
    * Delete a views
    * @param params
    * @return {*}
    */
-  deleteView: function deleteView(params) {
+  deleteView(params) {
     return this.buisness.deleteView(params);
-  },
+  }
+
   /**
    * Create views
    * @param params
    * @return {*}
    */
-  createView: function createView(params) {
+  createView(params) {
     return this.buisness.createView(params);
-  },
+  }
+
   /**
    * Ypdate a views
    * @param params
    * @return {*}
    */
-  updateView: function updateView(params) {
+  updateView(params) {
     return this.buisness.updateView(params);
-  },
-};
+  }
+}
 
 module.exports = Controller;
