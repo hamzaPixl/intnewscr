@@ -23,8 +23,10 @@
     "mocha": "^3.2.0"
   },
   "dependencies": {
+    "body-parser": "^1.18.2",
     "cheerio": "^0.22.0",
     "cheerio-tableparser": "^1.0.1",
+    "cookie-parser": "^1.4.3",
     "dotenv": "^4.0.0",
     "express": "^4.15.2",
     "fb": "^1.1.1",
@@ -37,6 +39,7 @@
     "request": "^2.80.0",
     "rss-parser": "^2.5.2",
     "socket.io": "^1.7.3",
+    "winston": "^2.4.0",
     "yahoo-weather": "^2.2.2"
   }
 }

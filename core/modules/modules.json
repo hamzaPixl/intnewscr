@@ -1,0 +1,7 @@
+{
+  "weather": {
+    "check": "weather/config.json",
+    "value": "weather/weather.json",
+    "path": "./modules/"
+  }
+}
