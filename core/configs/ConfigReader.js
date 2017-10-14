@@ -1,11 +1,11 @@
-function ConfigReader (moduleName, moduleLocator, configRoutePath, valueRoutePath) {
-  this.moduleName = moduleName;
-  this.moduleLocator = moduleLocator;
-  this.configRoutePath = configRoutePath;
-  this.valueRoutePath = valueRoutePath || './components/';
-}
+class ConfigReader {
 
-ConfigReader.prototype = {
+  constructor(moduleName, moduleLocator, configRoutePath, valueRoutePath) {
+    this.moduleName = moduleName;
+    this.moduleLocator = moduleLocator;
+    this.configRoutePath = configRoutePath;
+    this.valueRoutePath = valueRoutePath || './components/';
+  }
 
   /**
    * returns the configuration value
@@ -14,12 +14,12 @@ ConfigReader.prototype = {
    * @return null if definition and value doesn't match
    * @return {{*}} if configuration is valid
    */
-  getConfig: function getConfig () {
+  getConfig() {
     if (!this.configIsValid()) {
       return null;
     }
     return this.getModuleConfigurationValue();
-  },
+  }
 
   /**
    * returns the true if de definition match to value
@@ -29,7 +29,7 @@ ConfigReader.prototype = {
    * @return true if definition and value doesn't match
    * @return false if it is valid
    */
-  configIsValid: function configIsValid () {
+  configIsValid() {
     const configCheck = this.getModuleConfigurationDefinition();
     const configValue = this.getModuleConfigurationValue();
     let missingConfigurations = [];
@@ -50,7 +50,7 @@ ConfigReader.prototype = {
         return typeof configValue[parameterDefinition.name] !== parameterDefinition.type;
       });
     return missingConfigurations.length === 0;
-  },
+  }
 
   /**
    * returns the modules services
@@ -58,31 +58,31 @@ ConfigReader.prototype = {
    * @return null if module doesn't exists
    * @return {{*}} if module exists
    */
-  getServices: function getServices () {
+  getServices() {
     const config = this.getModuleConfigurationDefinition();
     if (!config) {
       return null;
     }
     return config.services;
-  },
+  }
 
   /**
    * returns the modulename
    * @return null if module doesn't exists
    * @return {{*}} if it exists
    */
-  getModuleName: function getModuleName () {
+  getModuleName() {
     return this.moduleName;
-  },
+  }
 
   /**
    * returns the moduleLocator
    * @return null if module doesn't exists
    * @return {{*}} if it exists
    */
-  getModuleLocator: function getModuleLocator () {
+  getModuleLocator() {
     return this.moduleLocator;
-  },
+  }
 
   /**
    * returns the modules configuration value
@@ -93,12 +93,12 @@ ConfigReader.prototype = {
    * @return null if module doesn't exists
    * @return {{*}} if module exists
    */
-  getModuleConfigurationValue: function getModuleConfigurationValue () {
+  getModuleConfigurationValue() {
     if (!this.moduleLocator.moduleExists(this.moduleName)) {
       return null;
     }
     return require(`${this.valueRoutePath}${this.moduleLocator.getModule(this.moduleName).value}`);
-  },
+  }
 
   /**
    * returns the modules configuration definition
@@ -109,12 +109,13 @@ ConfigReader.prototype = {
    * @return null if module doesn't exists
    * @return {{*}} if module exists
    */
-  getModuleConfigurationDefinition: function getModuleConfigurationDefinition () {
+  getModuleConfigurationDefinition() {
     if (!this.moduleLocator.moduleExists(this.moduleName)) {
       return null;
     }
     return require(`${this.configRoutePath}${this.moduleLocator.getModule(this.moduleName).check}`);
-  },
-};
+  }
+
+}
 
 module.exports = ConfigReader;

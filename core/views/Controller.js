@@ -1,42 +1,42 @@
 const ViewItem = require('./models/ViewItem');
 const low = require('lowdb');
 
-function Controller () {
-  this.db = low('./database/views.json', {storage: require('lowdb/lib/storages/file-async')});
-}
+class Controller {
 
-Controller.prototype = {
+  constructor() {
+    this.db = low('./database/views.json', { storage: require('lowdb/lib/storages/file-async') });
+  }
 
   /**
    * Get all widgets
    */
-  getAll: function getAll () {
+  getAll() {
     return new Promise((resolve, reject) => {
       resolve(this.db.get('views').value());
     });
-  },
+  }
 
   /**
    * Create a view
    * @param params
    * @return {*}
    */
-  createView: function createView (params) {
+  createView(params) {
     return new Promise((resolve, reject) => {
       this.db.get('views').push(new ViewItem(`${params.view.name}${Date.now()}`,
         params.view.start, params.view.end, params.view.name, params.view.widgets)).write();
       resolve(this.getAll());
     });
-  },
+  }
 
   /**
    * Update a view
    * @param params
    * @return {*}
    */
-  updateView: function updateView (params) {
+  updateView(params) {
     return new Promise((resolve, reject) => {
-      this.db.get('views').find({id: params.view.id})
+      this.db.get('views').find({ id: params.view.id })
         .assign({
           widgets: params.view.widgets,
           name: params.view.name,
@@ -46,20 +46,20 @@ Controller.prototype = {
         .write();
       resolve(this.getAll());
     });
-  },
+  }
 
   /**
    * Delete a view
    * @param params
    * @return {*}
    */
-  deleteView: function deleteView (params) {
+  deleteView(params) {
     return new Promise((resolve, reject) => {
-      this.db.get('views').remove({id: params.view.id})
+      this.db.get('views').remove({ id: params.view.id })
         .write();
       resolve(this.getAll());
     });
-  },
+  }
 
 };
 

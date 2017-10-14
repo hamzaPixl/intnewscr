@@ -1,12 +1,13 @@
-function WidgetItem (id, ttl, name, request) {
-  // properties of a specific instance
-  this.id = id;
-  this.ttl = ttl;
-  this.name = name;
-  this.model = 'widget';
-  this.request = request;
-}
+class WidgetItem {
 
-WidgetItem.prototype = {};
+  constructor(id, ttl, name, request) {
+    this.id = id;
+    this.ttl = ttl;
+    this.name = name;
+    this.model = 'widget';
+    this.request = request;
+  }
+
+}
 
 module.exports = WidgetItem;

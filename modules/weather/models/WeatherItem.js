@@ -1,39 +1,22 @@
-function WeatherItem () {
-  // properties of a specific instance
-  this.created = '';
-  this.ttl = '';
-  this.id = '';
-  this.model = '';
-  this.date = '';
-  this.max = '';
-  this.min = '';
-  this.description = '';
-  this.day = '';
-}
-
-/**
- * @private
- * @return the name of the model item
- */
-WeatherItem.getName = function getName () {
-  return 'weather';
-};
-
-/**
- * @private
- * @return the ttl of the data
- */
-WeatherItem.getTTL = function getTTL () {
-  return 86400;
-};
-
-WeatherItem.prototype = {
+class WeatherItem {
+  constructor() {
+    this.created = '';
+    this.ttl = 86400;
+    this.model = 'weather';
+    this.id = '';
+    this.model = '';
+    this.date = '';
+    this.max = '';
+    this.min = '';
+    this.description = '';
+    this.day = '';
+  }
 
   /**
    * It convert the the current object model
    * into a json.
    */
-  toJson: function toJson () {
+  toJson() {
     return JSON.stringify({
       created: this.created,
       ttl: this.ttl,
@@ -45,13 +28,13 @@ WeatherItem.prototype = {
       min: this.min,
       description: this.description,
     });
-  },
+  }
 
   /**
    * It convert the json data on a WeatherItem format
    * @param data come from database
    */
-  fromData: function fromData (data) {
+  fromData(data) {
     this.created = data.created;
     this.ttl = data.ttl;
     this.id = data.id;
@@ -61,24 +44,24 @@ WeatherItem.prototype = {
     this.min = data.min;
     this.description = data.description;
     this.day = data.day;
-  },
+  }
 
   /**
    * It convert the json on a WeatherItem format
    * @param json is the object that it will be converted
    */
-  fromJson: function fromJson (json) {
+  fromJson(json) {
     this.created = Date.now();
-    this.ttl = WeatherItem.getTTL();
-    this.model = WeatherItem.getName();
+    this.ttl = 86400;
+    this.model = 'weather';
     this.id = json.date;
     this.date = json.date;
     this.max = json.high;
     this.min = json.low;
     this.description = json.text;
     this.day = json.day;
-  },
+  }
 
-};
+}
 
 module.exports = WeatherItem;
