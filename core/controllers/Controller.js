@@ -2,11 +2,11 @@ const ConfigReader = require('./../configs/ConfigReader');
 const ModuleLocator = require('./../ModuleLocator');
 const jwt = require('jsonwebtoken');
 
-function Controller () {
-  this.moduleLocator = new ModuleLocator();
-}
+class Controller {
 
-Controller.prototype = {
+  constructor() {
+    this.moduleLocator = new ModuleLocator();
+  }
 
   /**
    * Execute the request that we receive
@@ -14,7 +14,7 @@ Controller.prototype = {
    * @return null
    * @return {{*}} result for the resquest
    */
-  request: function request (requestClient, client) {
+  request (requestClient, client) {
     const moduleName = this.getModuleNameFromRequest(requestClient);
     if (!moduleName) {
       return null;
@@ -36,7 +36,7 @@ Controller.prototype = {
     const controller = new ModuleController(reader.getConfig(),
       reader.getServices());
     return this.getResult(controller, requestClient, main, client);
-  },
+  }
 
   /**
    * returns the result of the request
@@ -45,7 +45,7 @@ Controller.prototype = {
    * @return null
    * @return {{*}} result
    */
-  getResult: function getResult (controller, request, main, client) {
+  getResult (controller, request, main, client) {
     const routeConfig = this.getConfigRoute(request, main);
     if (!routeConfig) {
       return null;
@@ -54,7 +54,7 @@ Controller.prototype = {
       return controller[routeConfig.callback](request.params, client);
     }
     return controller[routeConfig.callback]();
-  },
+  }
 
   /**
    * returns the configuration of a specific route
@@ -64,13 +64,13 @@ Controller.prototype = {
    * @return null
    * @return {{*}} configuration of route
    */
-  getConfigRoute: function getConfigRoute (request, main) {
+  getConfigRoute (request, main) {
     const routeConfig = main.getRoute(request.path);
     if (routeConfig) {
       return routeConfig;
     }
     return null;
-  },
+  }
 
   /**
    * returns true if the request is valid
@@ -80,7 +80,7 @@ Controller.prototype = {
    * @return false is not valid
    * @return true it is
    */
-  requestIsValid: function requestIsValid (request, main) {
+  requestIsValid (request, main) {
     const routeConfig = this.getConfigRoute(request, main);
     if (!routeConfig) {
       return false;
@@ -102,7 +102,7 @@ Controller.prototype = {
       return this.argumentsIsValid(request, routeConfig);
     }
     return true;
-  },
+  }
 
   /**
    * returns true if the arguments of the
@@ -111,7 +111,7 @@ Controller.prototype = {
    * @return false is not valid
    * @return true it is
    */
-  argumentsIsValid: function argumentsIsValid (request, routeConfig) {
+  argumentsIsValid (request, routeConfig) {
     const missingConfigurations = Object.keys(routeConfig.query)
       .filter((parameterDefinitionKey) => {
         const parameterDefinition = routeConfig.query[parameterDefinitionKey];
@@ -121,7 +121,7 @@ Controller.prototype = {
         return typeof request.params[parameterDefinitionKey] !== parameterDefinition;
       });
     return missingConfigurations.length === 0;
-  },
+  }
 
   /**
    * returns the name of the modulefrom an url
@@ -129,14 +129,15 @@ Controller.prototype = {
    * @return null if the name not match the pattern
    * @return {string} the module name
    */
-  getModuleNameFromRequest: function getModuleNameFromRequest (request) {
+  getModuleNameFromRequest (request) {
     const moduleName = request.baseUrl.split('/')[1];
     const patt = new RegExp('^[a-z]+$');
     if (!patt.test(moduleName)) {
       return null;
     }
     return moduleName;
-  },
+  }
+  
 };
 
 module.exports = Controller;

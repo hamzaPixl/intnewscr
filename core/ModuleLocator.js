@@ -1,12 +1,12 @@
 const path = require('path');
 
-function ModuleLocator (modulesRoutePath, dirmoduleRoutePath) {
-  this.modulesRoutePath = modulesRoutePath || './configs/modules.json';
-  this.modules = require(this.modulesRoutePath);
-  this.dirmoduleRoutePath = dirmoduleRoutePath || `${path.resolve(__dirname, './../modules/')}/`;
-}
+class ModuleLocator {
 
-ModuleLocator.prototype = {
+  constructor (modulesRoutePath, dirmoduleRoutePath) {
+    this.modulesRoutePath = modulesRoutePath || './configs/modules.json';
+    this.modules = require(this.modulesRoutePath);
+    this.dirmoduleRoutePath = dirmoduleRoutePath || `${path.resolve(__dirname, './../modules/')}/`;
+  }
 
   /**
    * returns the Controller.js
@@ -15,12 +15,12 @@ ModuleLocator.prototype = {
    * @return null if it doesnt exists
    * @return {{*}} module Controller.js
    */
-  getModuleController: function getModuleController (moduleName) {
+  getModuleController (moduleName) {
     if (!this.moduleExists(moduleName)) {
       return null;
     }
     return require(`${this.getAbsolutePath(moduleName)}${moduleName}/Controller`);
-  },
+  }
 
   /**
    * returns the Model
@@ -29,12 +29,12 @@ ModuleLocator.prototype = {
    * @return null if it doesnt exists
    * @return {{*}} module Model
    */
-  getModuleModel: function getModuleModel (moduleName, modelName) {
+  getModuleModel (moduleName, modelName) {
     if (!this.moduleExists(moduleName)) {
       return null;
     }
     return require(`${this.getAbsolutePath(moduleName)}${moduleName}/models/${modelName}`);
-  },
+  }
 
   /**
    * returns the Main
@@ -43,12 +43,12 @@ ModuleLocator.prototype = {
    * @return null if it doesnt exists
    * @return {{*}} module Main
    */
-  getModuleMain: function getModuleMain (moduleName) {
+  getModuleMain (moduleName) {
     if (!this.moduleExists(moduleName)) {
       return null;
     }
     return require(`${this.getAbsolutePath(moduleName)}${moduleName}/Main`);
-  },
+  }
 
   /**
    * returns the object correspond
@@ -58,12 +58,12 @@ ModuleLocator.prototype = {
    * @return null if it doesnt exists
    * @return {{*}} module value
    */
-  getModule: function getModule (moduleName) {
+   getModule (moduleName) {
     if (!this.moduleExists(moduleName)) {
       return null;
     }
     return this.modules[moduleName];
-  },
+  }
 
   /**
    * returns true if the module exists
@@ -73,7 +73,7 @@ ModuleLocator.prototype = {
    * @return false if it doesn't exists
    * @return true if it exists
    */
-  moduleExists: function moduleExists (moduleName) {
+  moduleExists (moduleName) {
     if (typeof moduleName !== 'string') {
       return false;
     }
@@ -81,19 +81,19 @@ ModuleLocator.prototype = {
       return false;
     }
     return true;
-  },
+  }
 
   /**
    * returns the path to reteive the module
    * @return default if no path on module
    * @return path on config file
    */
-  getAbsolutePath: function getAbsolutePath (moduleName) {
+  getAbsolutePath (moduleName) {
     if (this.getModule(moduleName).path) {
       return `${path.resolve(__dirname, this.getModule(moduleName).path)}/`;
     }
     return this.dirmoduleRoutePath;
-  },
+  }
 
 };
 
