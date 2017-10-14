@@ -14,7 +14,7 @@ class Controller {
    * @return null
    * @return {{*}} result for the resquest
    */
-  request (requestClient, client) {
+  request(requestClient, client) {
     const moduleName = this.getModuleNameFromRequest(requestClient);
     if (!moduleName) {
       return null;
@@ -45,7 +45,7 @@ class Controller {
    * @return null
    * @return {{*}} result
    */
-  getResult (controller, request, main, client) {
+  getResult(controller, request, main, client) {
     const routeConfig = this.getConfigRoute(request, main);
     if (!routeConfig) {
       return null;
@@ -64,7 +64,7 @@ class Controller {
    * @return null
    * @return {{*}} configuration of route
    */
-  getConfigRoute (request, main) {
+  getConfigRoute(request, main) {
     const routeConfig = main.getRoute(request.path);
     if (routeConfig) {
       return routeConfig;
@@ -80,7 +80,7 @@ class Controller {
    * @return false is not valid
    * @return true it is
    */
-  requestIsValid (request, main) {
+  requestIsValid(request, main) {
     const routeConfig = this.getConfigRoute(request, main);
     if (!routeConfig) {
       return false;
@@ -111,7 +111,7 @@ class Controller {
    * @return false is not valid
    * @return true it is
    */
-  argumentsIsValid (request, routeConfig) {
+  argumentsIsValid(request, routeConfig) {
     const missingConfigurations = Object.keys(routeConfig.query)
       .filter((parameterDefinitionKey) => {
         const parameterDefinition = routeConfig.query[parameterDefinitionKey];
@@ -129,7 +129,7 @@ class Controller {
    * @return null if the name not match the pattern
    * @return {string} the module name
    */
-  getModuleNameFromRequest (request) {
+  getModuleNameFromRequest(request) {
     const moduleName = request.baseUrl.split('/')[1];
     const patt = new RegExp('^[a-z]+$');
     if (!patt.test(moduleName)) {
@@ -137,7 +137,7 @@ class Controller {
     }
     return moduleName;
   }
-  
-};
+
+}
 
 module.exports = Controller;

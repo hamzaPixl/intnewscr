@@ -11,7 +11,7 @@ class Controller {
   /**
    * Set the midlware
    */
-  initialize () {
+  initialize() {
     passport.serializeUser((user, done) => {
       done(null, user);
     });
@@ -25,7 +25,7 @@ class Controller {
    * Get the passport object
    * @return {Passport}
    */
-  getPassport () {
+  getPassport() {
     return passport;
   }
 
@@ -33,7 +33,7 @@ class Controller {
    * Return credentials to initialize strategy
    * @return {{clientID: *, clientSecret: *, callbackURL: *}}
    */
-  getCredentials () {
+  getCredentials() {
     return this.controller.getCredentials();
   }
 
@@ -41,7 +41,7 @@ class Controller {
    * This function will be executed when the accestoken is recieve
    * @return {function(*, *=, *, *)}
    */
-  getHandlerFunction () {
+  getHandlerFunction() {
     return this.controller.getHandlerFunction();
   }
 
@@ -49,7 +49,7 @@ class Controller {
    * Get the key for authenticate passport
    * @return {string}
    */
-  getAuthenticateKey () {
+  getAuthenticateKey() {
     return this.controller.getAuthenticateKey();
   }
 
@@ -57,10 +57,10 @@ class Controller {
    * Get the scope object for authenticate passport
    * @return {{scope: [string,string]}}
    */
-  getAuthenticateScope () {
+  getAuthenticateScope() {
     return this.controller.getAuthenticateScope();
   }
 
-};
+}
 
 module.exports = Controller;

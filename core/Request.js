@@ -1,7 +1,7 @@
 
 class Request {
 
-  constructor (baseUrl, path, params) {
+  constructor(baseUrl, path, params) {
     this.method = 'GET';
     this.baseUrl = baseUrl;
     this.path = path;
@@ -13,10 +13,10 @@ class Request {
    * @param str is the parametre key
    * @return value of parameter
    */
-  param (str) {
+  param(str) {
     return this.params[str];
   }
 
-};
+}
 
 module.exports = Request;

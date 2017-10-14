@@ -1,6 +1,6 @@
 class ConfigReader {
 
-  constructor (moduleName, moduleLocator, configRoutePath, valueRoutePath) {
+  constructor(moduleName, moduleLocator, configRoutePath, valueRoutePath) {
     this.moduleName = moduleName;
     this.moduleLocator = moduleLocator;
     this.configRoutePath = configRoutePath;
@@ -14,7 +14,7 @@ class ConfigReader {
    * @return null if definition and value doesn't match
    * @return {{*}} if configuration is valid
    */
-  getConfig () {
+  getConfig() {
     if (!this.configIsValid()) {
       return null;
     }
@@ -29,7 +29,7 @@ class ConfigReader {
    * @return true if definition and value doesn't match
    * @return false if it is valid
    */
-  configIsValid () {
+  configIsValid() {
     const configCheck = this.getModuleConfigurationDefinition();
     const configValue = this.getModuleConfigurationValue();
     let missingConfigurations = [];
@@ -58,7 +58,7 @@ class ConfigReader {
    * @return null if module doesn't exists
    * @return {{*}} if module exists
    */
-  getServices () {
+  getServices() {
     const config = this.getModuleConfigurationDefinition();
     if (!config) {
       return null;
@@ -71,7 +71,7 @@ class ConfigReader {
    * @return null if module doesn't exists
    * @return {{*}} if it exists
    */
-  getModuleName () {
+  getModuleName() {
     return this.moduleName;
   }
 
@@ -80,7 +80,7 @@ class ConfigReader {
    * @return null if module doesn't exists
    * @return {{*}} if it exists
    */
-  getModuleLocator () {
+  getModuleLocator() {
     return this.moduleLocator;
   }
 
@@ -93,7 +93,7 @@ class ConfigReader {
    * @return null if module doesn't exists
    * @return {{*}} if module exists
    */
-  getModuleConfigurationValue () {
+  getModuleConfigurationValue() {
     if (!this.moduleLocator.moduleExists(this.moduleName)) {
       return null;
     }
@@ -109,13 +109,13 @@ class ConfigReader {
    * @return null if module doesn't exists
    * @return {{*}} if module exists
    */
-  getModuleConfigurationDefinition () {
+  getModuleConfigurationDefinition() {
     if (!this.moduleLocator.moduleExists(this.moduleName)) {
       return null;
     }
     return require(`${this.configRoutePath}${this.moduleLocator.getModule(this.moduleName).check}`);
   }
-  
-};
+
+}
 
 module.exports = ConfigReader;
