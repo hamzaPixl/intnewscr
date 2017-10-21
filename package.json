@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "test": "mocha tests --recursive --watch",
-    "start": "pm2 start main.js"
+    "start": "pm2 start pm2.json"
   },
   "repository": {
     "type": "git",
@@ -34,10 +34,11 @@
     "jsonwebtoken": "^7.3.0",
     "lodash": "^4.17.4",
     "lowdb": "^0.16.0",
+    "moment": "^2.19.1",
     "passport": "^0.3.2",
     "passport-outlook": "^2.1.0",
     "pg-promise": "^7.0.3",
-    "pm2": "^2.7.1",
+    "pm2": "^2.7.2",
     "request": "^2.80.0",
     "rss-parser": "^2.5.2",
     "socket.io": "^1.7.3",
