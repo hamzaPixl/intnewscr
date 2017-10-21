@@ -9,7 +9,7 @@ class Server {
 
   constructor() {
     this.app = express();
-    this.router = express.Router();
+    this.setMidelwares();
   }
 
   /**
@@ -17,15 +17,15 @@ class Server {
    * @memberof Server
    */
   setMidelwares() {
-    this.app.use((req, res, next) => { logger.log(`${req.ip} - ${req.method} - ${req.baseUrl} - ${req.path}`); next(); });
-
-    this.router.use('/', modules);
+    this.app.use((req, res, next) => { logger.log(`${req.ip} - ${req.method} - ${req.baseUrl} - ${req.path}`); });
 
     this.app.use(bodyParser.urlencoded({ extended: false }));
 
     this.app.use(cookieParser());
 
     this.app.use(bodyParser.json());
+
+    this.app.use('/', modules);
   }
 
   /**
@@ -33,7 +33,7 @@ class Server {
    * @memberof Server
    */
   start() {
-    logger.log(`Start the server on ${process.env.APP_URL} ...`);
+    logger.log(`Start the server on ${process.env.APP_URL}${process.env.PORT} ...`);
     this.app.listen(process.env.PORT || 3000);
   }
 
