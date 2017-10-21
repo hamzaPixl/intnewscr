@@ -6,7 +6,10 @@
   "scripts": {
     "test": "mocha tests --recursive --watch",
     "poststart": "pm2 logs --lines 0",
-    "start": "pm2 start pm2.json"
+    "lint": "eslint . --ext .js",
+    "inspect": "jsinspect",
+    "start": "pm2 start pm2.json",
+    "stop": "pm2 stop all"
   },
   "repository": {
     "type": "git",
@@ -24,6 +27,7 @@
     "mocha": "^3.2.0"
   },
   "dependencies": {
+    "assert": "^1.4.1",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
     "cheerio": "^0.22.0",
