@@ -3,36 +3,35 @@ const winston = require('winston');
 class Logger {
 
   constructor() {
-    winston.emitErrs = true;
-    this.logger = new winston.Logger({
+    this.logLevel = 'info';
+    this.customColors = {
+      trace: 'white',
+      debug: 'green',
+      info: 'blue',
+      warn: 'yellow',
+      crit: 'red',
+      fatal: 'red',
+    };
+    this.logger = new (winston.Logger)({
+      colors: this.customColors,
+      level: this.logLevel,
+      levels: {
+        fatal: 0,
+        crit: 1,
+        warn: 2,
+        info: 3,
+        debug: 4,
+        trace: 5,
+      },
       transports: [
-        new winston.transports.File({
-          level: 'info',
-          filename: './.logs/all-logs.log',
-          handleExceptions: true,
-          json: true,
-          maxsize: 5242880,
-          maxFiles: 5,
-          colorize: false,
-        }),
-        new winston.transports.Console({
-          level: 'debug',
-          handleExceptions: true,
-          json: false,
+        new (winston.transports.Console)({
           colorize: true,
+          timestamp: true,
         }),
+        new (winston.transports.File)({ filename: 'logs/err.log' }),
       ],
-      exitOnError: false,
     });
-    if (process.env.NODE_ENV !== 'local') {
-      this.logger.add(new winston.transports.Console({
-        format: winston.format.simple(),
-        level: 'info',
-        handleExceptions: true,
-        json: false,
-        colorize: true,
-      }));
-    }
+    winston.addColors(this.customColors);
   }
 
   /**
@@ -42,7 +41,11 @@ class Logger {
    * @memberof Logger
    */
   log(err) {
-    this.logger.info(err);
+    if (err instanceof Error) {
+      this.logger.fatal(err);
+    } else {
+      this.logger.info(err);
+    }
   }
 
 }

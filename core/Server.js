@@ -33,6 +33,7 @@ class Server {
    * @memberof Server
    */
   start() {
+    logger.log(`Start the server on ${process.env.APP_URL} ...`);
     this.app.listen(process.env.PORT || 3000);
   }
 
