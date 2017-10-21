@@ -34,13 +34,14 @@ class Logger {
       }));
     }
   }
+
   /**
    * Log the error message
    *
    * @param {any} err message
    * @memberof Logger
    */
-  logger(err) {
+  log(err) {
     this.logger.info(err);
   }
 

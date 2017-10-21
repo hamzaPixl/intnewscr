@@ -23,6 +23,7 @@
     "mocha": "^3.2.0"
   },
   "dependencies": {
+    "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
     "cheerio": "^0.22.0",
     "cheerio-tableparser": "^1.0.1",
@@ -35,6 +36,7 @@
     "lowdb": "^0.16.0",
     "passport": "^0.3.2",
     "passport-outlook": "^2.1.0",
+    "pg-promise": "^7.0.3",
     "pm2": "^2.7.1",
     "request": "^2.80.0",
     "rss-parser": "^2.5.2",
