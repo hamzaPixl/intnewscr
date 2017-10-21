@@ -1,9 +1,13 @@
 const localEnv = require('./local-env.js');
 
-localEnv.setEnv();
-const ENV = process.env.ENV;
+/**
+ * search the ENV configuration
+ */
+function searchENV() {
+  localEnv.setEnv();
+}
 
 module.exports = {
-  ENV,
+  searchENV,
 };
 
