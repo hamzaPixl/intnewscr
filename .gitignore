@@ -8,13 +8,14 @@
 ## File-based project format:
 *.iws
 
-## Database
-database/
-
 ## Plugin-specific files:
 
 # IntelliJ
 /out/
+
+*.env
+.myconfig/
+.vscode/
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/

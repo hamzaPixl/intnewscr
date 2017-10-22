@@ -1,0 +1,19 @@
+[
+  {
+    "name": "INT NEWS SCR",
+    "script": "main.js",
+    "env": {
+        "NODE_ENV": process.env.ENV || 'local',
+        "PROCESS_NAME": "app"
+    },
+    "watch" : process.env.ENV ? false : ".",
+    "ignore_watch" : [ "./database", "./logs", ".git", "./node_modules", "./test"],
+    "exec_mode": "cluster",
+    "instances": 1,
+    "merge_logs": true,
+    "log_file": (process.env.ENV ? "/var/log/nodejs/" : "logs/") + "pm2-app-api.log",
+    "error_file": (process.env.ENV ? "/var/log/nodejs/" : "logs/") + "pm2-app-api-err.log",
+    "source_map_support": true,
+    "node-args": process.env.ENV ? '' : '--inspect --debug=9000'
+  }
+]

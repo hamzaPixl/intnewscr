@@ -1,6 +1,0 @@
-{
-    "url_fr": "http://feeds.feedburner.com/Rtlinfos-ALaUne",
-    "url_nl": "http://www.standaard.be/rss/section/1f2838d4-99ea-49f0-9102-138784c7ea7c",
-    "url_api": "https://newsapi.org/v1/articles?source=sourceinput&sortBy=top&apiKey=32e57bc6fce540a2b21de7f889fd586d",
-    "url_trafic": "http://trafiroutes.wallonie.be/trafiroutes/Evenements_FR.rss"
-}
