@@ -1,12 +1,11 @@
-const logger = require('../../../tools/logger');
+const Promise = require('bluebird');
 
 /**
  * Get all the weather
  * @param {any} queryParams
  */
 function get(queryParams) {
-  logger.log(queryParams);
-  return 'ok';
+  return new Promise(resolve => resolve([{ weather: 'first' }, { weather: 'second' }]));
 }
 
 module.exports = {
