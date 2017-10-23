@@ -36,26 +36,15 @@
     "assert": "^1.4.1",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
-    "cheerio": "^0.22.0",
-    "cheerio-tableparser": "^1.0.1",
     "cookie-parser": "^1.4.3",
     "dotenv": "^4.0.0",
     "express": "^4.15.2",
-    "fb": "^1.1.1",
     "jsend": "^1.0.2",
     "jsonwebtoken": "^7.3.0",
     "lodash": "^4.17.4",
-    "lowdb": "^0.16.0",
     "moment": "^2.19.1",
-    "passport": "^0.3.2",
-    "passport-outlook": "^2.1.0",
-    "pg": "^7.3.0",
-    "pg-promise": "^7.0.3",
+    "mongodb": "^2.2.33",
     "pm2": "^2.7.2",
-    "request": "^2.80.0",
-    "rss-parser": "^2.5.2",
-    "socket.io": "^1.7.3",
-    "winston": "^2.4.0",
-    "yahoo-weather": "^2.2.2"
+    "winston": "^2.4.0"
   }
 }

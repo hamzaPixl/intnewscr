@@ -1,18 +1,7 @@
-version: '2'
+version: '1'
 services:
-  mongo:
-    image: mongo
-    container_name: mongo-q
-    ports:
-    - "27017:27017"
-  postgres:
-    restart: always
-    container_name: postgres-q
-    image: postgres:9.5.7
-    ports:
-      - "5432:5432"
-    environment:
-      - DEBUG=true
-      - POSTGRES_USER=intnews
-      - POSTGRES_PASSWORD=intnewscr
-      - POSTGRES_DB=intdb
+    mongo:
+      image: mongo
+      container_name: mongo-int
+      ports:
+      - "27017:27017"

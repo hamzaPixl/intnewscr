@@ -1,29 +1,27 @@
-const promise = require('bluebird');
+const MongoClient = require('mongodb').MongoClient;
+const logger = require('../tools/logger');
 
-const pgOptions = {
-  promiseLib: promise,
-};
-const pgp = require('pg-promise')(pgOptions);
+const url = `${process.env.DB_URL}${process.env.DB_PORT}/${process.env.DB_NAME}`;
+const db = null;
 
-
-class ConnectPostgres {
-  constructor() {
-    this.instance = null;
-    if (!this.instance) {
-      this.instance = this;
+function connect() {
+    if (db){
+      return db;
     }
+    MongoClient.connect(url, (err, instance) => {
+      if (err) {
+        return logger.log(err);
+      }
+      db = instance;
+      return db;
+    });
   }
 
-  /**
-   * Connection to pg promise
-   * @param {any} connection
-   * @param {any} userPwd
-   * @memberof ConnectPostgres
-   */
-  connect(connection, userPwd) {
-    this.options = Object.assign(connection, userPwd);
-    this.connection = pgp(this.options);
+  function close() {
+    if(db){
+      db.close();
+    }
   }
 }
 
-module.exports = new ConnectPostgres();
+module.exports = new Database();
