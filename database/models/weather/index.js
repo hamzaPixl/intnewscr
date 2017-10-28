@@ -1,5 +1,3 @@
 const Weather = require('./Weather');
 
-module.exports = {
-  Weather,
-};
+module.exports = new Weather();
