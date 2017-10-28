@@ -4,7 +4,7 @@
   "description": "News interactive screen backend",
   "main": "main.js",
   "scripts": {
-    "cleanlogs": "rm -r ./logs/ && mkdir logs",
+    "cleanlogs": "hooks/clear-logs.sh",
     "pretest": "npm run lint && npm run cleanlogs",
     "posttest": "npm run cleanlogs",
     "test": "mocha test --recursive --watch",
