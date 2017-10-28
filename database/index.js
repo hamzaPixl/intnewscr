@@ -1,27 +1,53 @@
 const MongoClient = require('mongodb').MongoClient;
 const logger = require('../tools/logger');
+const Promise = require('bluebird');
 
-const url = `${process.env.DB_URL}${process.env.DB_PORT}/${process.env.DB_NAME}`;
-const db = null;
+class Database {
 
-function connect() {
-    if (db){
-      return db;
-    }
-    MongoClient.connect(url, (err, instance) => {
-      if (err) {
-        return logger.log(err);
+  constructor() {
+    this.url = `${process.env.DB_URL}${process.env.DB_PORT}/${process.env.DB_NAME}`;
+    this.db = null;
+  }
+
+  /**
+   * Connect to the database
+   * @returns the database instance
+   */
+  connect() {
+    return new Promise((resolve, reject) => {
+      if (this.db) {
+        resolve(this.db);
       }
-      db = instance;
-      return db;
+      MongoClient.connect(this.url, (err, instance) => {
+        if (err) {
+          logger.log('Cannot connect to the database');
+          logger.log(err);
+          return reject(err);
+        }
+        logger.log('The connection to the databse is successfuly finished');
+        this.db = instance;
+        return resolve(this.db);
+      });
     });
   }
 
-  function close() {
-    if(db){
-      db.close();
+  /**
+   * Close the database
+   */
+  close() {
+    if (this.db) {
+      logger.log('the connection to the databse is closed');
+      this.db.close();
     }
   }
+
+  /**
+   * Get the instance of the connection
+   */
+  getInstance() {
+    return this.db;
+  }
 }
+
 
 module.exports = new Database();
