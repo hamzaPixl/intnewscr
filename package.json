@@ -4,6 +4,7 @@
   "description": "News interactive screen backend",
   "main": "main.js",
   "scripts": {
+    "loadConfig": "tools/load-config.js",
     "cleanlogs": "hooks/clear-logs.sh",
     "pretest": "npm run lint && npm run cleanlogs",
     "posttest": "npm run cleanlogs",
