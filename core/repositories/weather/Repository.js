@@ -1,11 +1,15 @@
-const Promise = require('bluebird');
+const db = require('../../../database').getInstance();
+const RepositoryController = require('../../../database/RepositoryController');
+
+const COLLECTION = 'weather';
+
+const controller = new RepositoryController(db, COLLECTION);
 
 /**
  * Get all the weather
- * @param {any} queryParams
  */
-function get(queryParams) {
-  return new Promise(resolve => resolve([{ weather: 'first' }, { weather: 'second' }]));
+function get() {
+  return controller.findAll();
 }
 
 module.exports = {

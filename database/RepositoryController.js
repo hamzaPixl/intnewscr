@@ -1,9 +1,9 @@
 class RepositoryController {
 
-  constructor(db, modelName) {
+  constructor(db, collection) {
     this.db = db;
-    this.modelName = modelName;
-    this.model = require(`./models/${this.modelName}`);
+    this.collection = collection;
+    this.model = require(`./models/${this.collection}`);
   }
 
   /**
@@ -12,7 +12,7 @@ class RepositoryController {
    * @memberof RepositoryController
    */
   createCollection() {
-    return this.db.createCollection(this.modelName);
+    return this.db.createCollection(this.collection);
   }
 
   /**
@@ -21,7 +21,7 @@ class RepositoryController {
    * @memberof RepositoryController
    */
   dropCollection() {
-    return this.db.collection(this.modelName).drop();
+    return this.db.collection(this.collection).drop();
   }
 
   /**
@@ -30,7 +30,7 @@ class RepositoryController {
    * @memberof RepositoryController
    */
   findAll() {
-    return this.db.collection(this.modelName).find({});
+    return this.db.collection(this.collection).find({});
   }
 
   /**
@@ -40,7 +40,7 @@ class RepositoryController {
    * @memberof RepositoryController
    */
   findById(id) {
-    return this.db.collection(this.modelName).find({ id });
+    return this.db.collection(this.collection).find({ id });
   }
 
   /**
@@ -50,7 +50,7 @@ class RepositoryController {
    * @memberof RepositoryController
    */
   findByValues(query) {
-    return this.db.collection(this.modelName).find(query);
+    return this.db.collection(this.collection).find(query);
   }
 
   /**
@@ -61,7 +61,7 @@ class RepositoryController {
    */
   insertOne(object) {
     const exist = this.findById(object.id);
-    return exist || this.db.collection(this.modelName).insert(object);
+    return exist || this.db.collection(this.collection).insert(object);
   }
 
   /**
@@ -72,7 +72,7 @@ class RepositoryController {
    */
   updateOne(object) {
     const exist = this.findById(object.id);
-    return exist && this.db.collection(this.modelName).updateOne({ id: object.id }, object);
+    return exist && this.db.collection(this.collection).updateOne({ id: object.id }, object);
   }
 
   /**
@@ -83,7 +83,7 @@ class RepositoryController {
    */
   deleteOne(id) {
     const exist = this.findById(id);
-    return exist && this.db.collection(this.modelName).deleteOne(id);
+    return exist && this.db.collection(this.collection).deleteOne(id);
   }
 }
 
