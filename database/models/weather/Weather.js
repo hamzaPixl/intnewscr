@@ -14,6 +14,10 @@ class Weather {
   isValid() {
 
   }
+
+  getCollection() {
+    return 'weathers';
+  }
 }
 
 module.exports = Weather;

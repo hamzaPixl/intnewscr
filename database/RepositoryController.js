@@ -1,9 +1,9 @@
 class RepositoryController {
 
-  constructor(db, collection) {
+  constructor(db, model) {
     this.db = db;
-    this.collection = collection;
-    this.model = require(`./models/${this.collection}`);
+    this.model = model;
+    this.collection = this.model.getCollection();
   }
 
   /**

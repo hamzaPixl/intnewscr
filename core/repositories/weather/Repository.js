@@ -1,9 +1,8 @@
 const db = require('../../../database').getInstance();
 const RepositoryController = require('../../../database/RepositoryController');
+const model = require('../../../database/models/weather');
 
-const COLLECTION = 'weathers';
-
-const controller = new RepositoryController(db, COLLECTION);
+const controller = new RepositoryController(db, model);
 
 /**
  * Get all the weather
