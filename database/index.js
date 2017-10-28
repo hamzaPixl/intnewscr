@@ -11,22 +11,22 @@ class Database {
 
   /**
    * Connect to the database
-   * @returns the database instance
+   * @returns the database instance in a Promise
    */
   connect() {
+    if (this.db) {
+      return new Promise((resolve, reject) => { return resolve(this.db); });
+    }
     return new Promise((resolve, reject) => {
-      if (this.db) {
-        resolve(this.db);
-      }
-      MongoClient.connect(this.url, (err, instance) => {
-        if (err) {
-          logger.log('Cannot connect to the database');
-          logger.log(err);
-          return reject(err);
-        }
+      logger.log(`Try to connect to database url : ${this.url}`);
+      MongoClient.connect(this.url).then((db) => {
         logger.log('The connection to the databse is successfuly finished');
-        this.db = instance;
+        this.db = db;
         return resolve(this.db);
+      }).catch((err) => {
+        logger.log('Cannot connect to the database');
+        logger.log(err);
+        return reject(err);
       });
     });
   }
@@ -50,4 +50,4 @@ class Database {
 }
 
 
-module.exports = new Database();
+module.exports = Database;
