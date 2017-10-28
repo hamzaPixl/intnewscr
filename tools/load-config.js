@@ -3,4 +3,4 @@ const logger = require('./logger');
 
 config.searchENV();
 
-logger.info(`Process env : ${process.env}`);
+logger.log(`Process env : ${JSON.stringify(process.env, null, 2)}`);
