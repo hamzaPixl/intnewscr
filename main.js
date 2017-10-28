@@ -1,12 +1,13 @@
-const config = require('./config');
 const Server = require('./core/Server');
-const database = require('./database');
+const Database = require('./database');
+const config = require('./config');
 
 const server = new Server();
+const database = new Database();
 
 config.searchENV();
 
 database.connect().then(() => {
   server.start();
-});
+}).catch();
 
