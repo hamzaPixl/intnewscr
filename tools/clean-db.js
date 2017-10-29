@@ -10,4 +10,5 @@ database.connect()
     return db.collection(key).remove({});
   });
   logger.log('The database is successfuly cleared');
+  database.close();
 }).catch();

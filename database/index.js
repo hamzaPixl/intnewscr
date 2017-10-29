@@ -2,53 +2,53 @@ const MongoClient = require('mongodb').MongoClient;
 const logger = require('../tools/logger');
 const Promise = require('bluebird');
 
-class Database {
+const state = {
+  url: `${process.env.DB_URL}${process.env.DB_PORT}/${process.env.DB_NAME}`,
+  db: null,
+};
 
-  constructor() {
-    this.url = `${process.env.DB_URL}${process.env.DB_PORT}/${process.env.DB_NAME}`;
-    this.db = null;
+/**
+ * Connect to the database
+ * @returns the database instance in a Promise
+ */
+function connect() {
+  if (state.db) {
+    return new Promise((resolve) => { return resolve(state.db); });
   }
-
-  /**
-   * Connect to the database
-   * @returns the database instance in a Promise
-   */
-  connect() {
-    if (this.db) {
-      return new Promise((resolve) => { return resolve(this.db); });
-    }
-    return new Promise((resolve, reject) => {
-      logger.log(`Try to connect to database url : ${this.url}`);
-      MongoClient.connect(this.url).then((db) => {
-        logger.log('The connection to the databse is successfuly finished');
-        this.db = db;
-        return resolve(this.db);
-      }).catch((err) => {
-        logger.log('Cannot connect to the database');
-        logger.log(err);
-        return reject(err);
-      });
+  return new Promise((resolve, reject) => {
+    logger.log(`Try to connect to database url : ${state.url}`);
+    MongoClient.connect(state.url).then((db) => {
+      logger.log('The connection to the databse is successfuly finished');
+      state.db = db;
+      return resolve(state.db);
+    }).catch((err) => {
+      logger.log('Cannot connect to the database');
+      logger.log(err);
+      return reject(err);
     });
-  }
+  });
+}
 
-  /**
-   * Close the database
-   */
-  close() {
-    if (this.db) {
-      logger.log('the connection to the databse is closed');
-      this.db = null;
-      this.db.close();
-    }
-  }
-
-  /**
-   * Get the instance of the connection
-   */
-  getInstance() {
-    return this.db;
+/**
+ * Close the database
+ */
+function close() {
+  if (state.db) {
+    logger.log('the connection to the databse is closed');
+    state.db.close();
+    state.db = null;
   }
 }
 
+/**
+ * Get the instance of the connection
+ */
+function get() {
+  return state.db;
+}
 
-module.exports = new Database();
+module.exports = {
+  get,
+  connect,
+  close,
+};
