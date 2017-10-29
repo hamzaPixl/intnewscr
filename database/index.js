@@ -37,6 +37,7 @@ class Database {
   close() {
     if (this.db) {
       logger.log('the connection to the databse is closed');
+      this.db = null;
       this.db.close();
     }
   }
