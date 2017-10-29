@@ -5,8 +5,6 @@ describe('Configuration variables', () => {
     it('should not have the process env custom', () => {
       assert.equal(process.env.ENV, undefined);
       assert.equal(process.env.JWT_SECRET, undefined);
-      assert.equal(process.env.USER, undefined);
-      assert.equal(process.env.PASSWORD, undefined);
       assert.equal(process.env.PORT, undefined);
       assert.equal(process.env.APP_URL, undefined);
       assert.equal(process.env.DB_PORT, undefined);

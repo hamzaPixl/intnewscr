@@ -1,22 +1,12 @@
 require('../../config').searchENV();
 const assert = require('assert');
-const Database = require('../database');
+const database = require('../../database');
 
 describe('Database', () => {
-  const database = new Database();
-
-  describe('Try to connect to the database', () => {
-    it('should return the database instance when we connect', () => {
-      database.connect().then((db) => {
-        assert.ok(db);
-      }).catch((err) => {
-        assert.fail(err);
-      });
-    });
-
-    it('should return the database instance', () => {
-      const instance = database.getInstance();
-      assert.ok(instance);
+  describe('Try to connect to the database when its not defined yet', () => {
+    it('should not return the database instance', () => {
+      const instance = database.get();
+      assert.equal(instance, null);
     });
   });
 
@@ -25,15 +15,26 @@ describe('Database', () => {
       assert.ok(process.env.DB_URL);
       assert.ok(process.env.DB_PORT);
       assert.ok(process.env.DB_NAME);
-      const url = `${process.env.DB_URL}${process.env.DB_PORT}/${process.env.DB_NAME}`;
-      assert.equal(url, database.url);
+    });
+  });
+
+  describe('Try to connect to the database', () => {
+    it('should successfuly connect to the database', () => {
+      database.connect().then((db) => {
+        assert.ok(db);
+        const instance = database.get();
+        assert.ok(instance);
+      }).catch((err) => {
+        assert.fail(err);
+      });
     });
   });
 
   describe('Try to close to the database', () => {
     it('should close the database instance and remove the instance', () => {
       database.close();
-      assert.equal(database.db, null);
+      const instance = database.get();
+      assert.equal(instance, null);
     });
   });
 });
