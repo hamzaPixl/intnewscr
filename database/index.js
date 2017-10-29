@@ -15,7 +15,7 @@ class Database {
    */
   connect() {
     if (this.db) {
-      return new Promise((resolve, reject) => { return resolve(this.db); });
+      return new Promise((resolve) => { return resolve(this.db); });
     }
     return new Promise((resolve, reject) => {
       logger.log(`Try to connect to database url : ${this.url}`);
