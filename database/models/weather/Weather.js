@@ -1,7 +1,17 @@
 class Weather {
-  constructor(dbPayload) {
+  constructor() {
     this.collection = 'weathers';
+    this.id = '';
+  }
+
+  /**
+   * Return the item with dbpayload values
+   * @returns this
+   * @memberof Weather
+   */
+  fromDbPayload(dbPayload) {
     this.id = dbPayload.id || '';
+    return this;
   }
 
   /**

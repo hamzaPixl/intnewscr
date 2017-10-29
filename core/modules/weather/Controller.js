@@ -7,7 +7,7 @@ router.get('/',
   (req, res, next) => services.weatherServices.weatherService
     .get()
     .then(res.jsend.success)
-    .catch(next),
+    .catch(next)
 );
 
 module.exports = router;

@@ -5,6 +5,7 @@
         "valid-typeof":"warn",
         "arrow-body-style":"warn",
         "class-methods-use-this":"warn",
+        "comma-dangle":"warn",
         "global-require": "off",
         "import/no-dynamic-require": "off"
     }
