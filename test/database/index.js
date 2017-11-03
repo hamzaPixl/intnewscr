@@ -3,13 +3,6 @@ const assert = require('assert');
 const database = require('../../database');
 
 describe('Database', () => {
-  describe('Try to connect to the database when its not defined yet', () => {
-    it('should not return the database instance', () => {
-      const instance = database.get();
-      assert.equal(instance, null);
-    });
-  });
-
   describe('Check the url for the connection', () => {
     it('should return the url of the connection', () => {
       assert.ok(process.env.DB_URL);
@@ -18,23 +11,22 @@ describe('Database', () => {
     });
   });
 
-  describe('Try to connect to the database', () => {
-    it('should successfuly connect to the database', () => {
-      database.connect().then((db) => {
-        assert.ok(db);
+  database.connect()
+  .then((db) => {
+    describe('Try to connect to the database and close it after', () => {
+      it('should successfuly connect to the database', () => {
         const instance = database.get();
+        assert.ok(db);
         assert.ok(instance);
-      }).catch((err) => {
-        assert.fail(err);
+      });
+      it('should close the database instance and remove the instance', () => {
+        database.close();
+        const instanceDb = database.get();
+        assert.equal(instanceDb, null);
       });
     });
-  });
-
-  describe('Try to close to the database', () => {
-    it('should close the database instance and remove the instance', () => {
-      database.close();
-      const instance = database.get();
-      assert.equal(instance, null);
-    });
+  })
+  .catch((err) => {
+    assert.fail(err);
   });
 });

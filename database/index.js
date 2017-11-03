@@ -6,6 +6,12 @@ const state = {
   url: `${process.env.DB_URL}${process.env.DB_PORT}/${process.env.DB_NAME}`,
   db: null,
 };
+const options = {
+  keepAlive: 1,
+  connectTimeoutMS: 30000,
+  reconnectTries: 30,
+  reconnectInterval: 5000,
+};
 
 /**
  * Connect to the database
@@ -13,12 +19,12 @@ const state = {
  */
 function connect() {
   if (state.db) {
-    return new Promise((resolve) => { return resolve(state.db); });
+    return new Promise(resolve => resolve(state.db));
   }
   return new Promise((resolve, reject) => {
     logger.log(`Try to connect to database url : ${state.url}`);
-    MongoClient.connect(state.url).then((db) => {
-      logger.log('The connection to the databse is successfuly finished');
+    MongoClient.connect(state.url, options).then((db) => {
+      logger.log('The connection to the database is successfull');
       state.db = db;
       return resolve(state.db);
     }).catch((err) => {
@@ -34,7 +40,7 @@ function connect() {
  */
 function close() {
   if (state.db) {
-    logger.log('the connection to the databse is closed');
+    logger.log('the connection to the database is closed');
     state.db.close();
     state.db = null;
   }

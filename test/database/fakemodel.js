@@ -52,9 +52,8 @@ class FakeModel {
   }
 }
 
-
 describe('Model', () => {
-  describe('::Constructor', () => {
+  describe('::constructor', () => {
     const fakemodel = new FakeModel();
     it('should have an instance of the model', () => {
       assert.ok(fakemodel);
@@ -165,3 +164,4 @@ describe('Model', () => {
     });
   });
 });
+
