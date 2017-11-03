@@ -1,14 +1,20 @@
 require('../config').searchENV();
 const database = require('../database');
-const collections = require('../database/models/collections.json');
 const logger = require('./logger');
+const Promise = require('bluebird');
 
 database.connect()
 .then((db) => {
-  Object.keys(collections).map((key) => {
-    logger.log(`This collection will be empty : ${key}`);
-    return db.collection(key).remove({});
+  db.listCollections().toArray().then((list) => {
+    const promises = list.map((collection) => {
+      logger.log(`This collection will be empty : ${collection.name}`);
+      return new Promise((resolve) => {
+        return resolve(db.collection(collection.name).deleteMany({}));
+      });
+    });
+    Promise.all(promises).then(() => {
+      logger.log('The database is successfuly cleared');
+      database.close();
+    });
   });
-  logger.log('The database is successfuly cleared');
-  database.close();
 }).catch();
