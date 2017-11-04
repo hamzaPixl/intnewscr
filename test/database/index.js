@@ -187,32 +187,32 @@ describe('Database', () => {
               assert.ok(result);
               assert.equal(result.length, 1);
               assert.equal(result[0].s.name, controller.collection);
-              describe('::insertOne', () => {
-                it('should insert the item in the fakemodel collection', () => {
-                  const obj = fakemodel.itemToJson();
-                  console.log(obj);
-                  controller.insertOne(obj)
-                    .then((res) => {
-                      console.log(res);
-                      assert.ok(res);
-                      assert.equal(res.insertedCount, 1);
-                    })
-                    .catch((err) => {
-                      assert.fail(err);
-                      logger.log(err);
-                    });
-                });
-              });
             })
             .catch((err) => {
               assert.fail(err);
               logger.log(err);
             });
         });
+        describe('::insertOne', () => {
+          it('should insert the item in the fakemodel collection', () => {
+            const obj = fakemodel.itemToJson();
+            controller.insertOne(obj)
+              .then((res) => {
+                assert.ok(res);
+                assert.equal(res.insertedCount, 1);
+                assert.equal(res.ops[0], obj);
+              })
+              .catch((err) => {
+                assert.fail(err);
+                logger.log(err);
+              });
+          });
+        });
       });
       describe('::findAll', () => {
         const fakemodel = new FakeModel();
         const controller = new RepositoryController(instance, fakemodel);
+        controller.collection = 'users';
         it('should find nothing', () => {
           controller.findAll().toArray()
             .then((result) => {
@@ -224,10 +224,33 @@ describe('Database', () => {
               logger.log(err);
             });
         });
+        it('should find one object', () => {
+          controller.collection = fakemodel.getCollection();
+          controller.findAll().toArray()
+            .then((result) => {
+              assert.ok(result);
+              assert.equal(result.length, 1);
+            })
+            .catch((err) => {
+              assert.fail(err);
+              logger.log(err);
+            });
+        });
       });
       describe('::DropCollection', () => {
         const fakemodel = new FakeModel();
+        fakemodel.collection = 'temp';
         const controller = new RepositoryController(instance, fakemodel);
+        it('should create a fake collection and will be removed', () => {
+          controller.createCollection()
+            .then((collection) => {
+              assert.ok(collection);
+            })
+            .catch((err) => {
+              assert.fail(err);
+              logger.log(err);
+            });
+        });
         it('should throw an error beacuse of trying to drop a not existing collection', () => {
           controller.collection = 'fake';
           controller.dropCollection()
@@ -244,14 +267,16 @@ describe('Database', () => {
               items = collections.length;
               assert.ok(items);
               controller.dropCollection()
-              .catch((err) => {
-                assert.fail(err);
-                logger.log(err);
-              });
-              controller.db.collections()
-              .then((results) => {
-                assert.ok(results);
-                assert.equal(results.length, items - 1);
+              .then(() => {
+                controller.db.collections()
+                .then((results) => {
+                  assert.ok(results);
+                  assert.equal(results.length, items - 1);
+                })
+                .catch((err) => {
+                  assert.fail(err);
+                  logger.log(err);
+                });
               })
               .catch((err) => {
                 assert.fail(err);
