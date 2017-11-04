@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/',
   (req, res, next) => services.weatherServices.weatherService
-    .get()
+    .get(req.query)
     .then(res.jsend.success)
     .catch(next)
 );

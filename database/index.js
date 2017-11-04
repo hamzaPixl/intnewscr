@@ -1,60 +1,29 @@
-const MongoClient = require('mongodb').MongoClient;
-const logger = require('../tools/logger');
-const Promise = require('bluebird');
+const promise = require('bluebird');
 
-const state = {
-  url: `${process.env.DB_URL}${process.env.DB_PORT}/${process.env.DB_NAME}`,
-  db: null,
+const pgOptions = {
+  promiseLib: promise,
 };
-const options = {
-  keepAlive: 1,
-  connectTimeoutMS: 30000,
-  reconnectTries: Number.MAX_VALUE,
-  reconnectInterval: 5000,
-};
+const pgp = require('pg-promise')(pgOptions);
 
-/**
- * Connect to the database
- * @returns the database instance in a Promise
- */
-function connect() {
-  if (state.db) {
-    return new Promise(resolve => resolve(state.db));
+
+class ConnectPostgres {
+  constructor() {
+    this.instance = null;
+    if (!this.instance) {
+      this.instance = this;
+    }
   }
-  return new Promise((resolve, reject) => {
-    logger.log(`Try to connect to database url : ${state.url}`);
-    MongoClient.connect(state.url, options).then((db) => {
-      logger.log('The connection to the database is successfull');
-      state.db = db;
-      return resolve(state.db);
-    }).catch((err) => {
-      logger.log('Cannot connect to the database');
-      logger.log(err);
-      return reject(err);
-    });
-  });
-}
 
-/**
- * Close the database
- */
-function close() {
-  if (state.db) {
-    logger.log('the connection to the database is closed');
-    state.db.close();
-    state.db = null;
+  /**
+   * Connection to pg promise
+   * @param {any} connection
+   * @param {any} userPwd
+   * @memberof ConnectPostgres
+   */
+  connect(connection, userPwd) {
+    this.options = Object.assign(connection, userPwd);
+    this.connection = pgp(this.options);
   }
 }
 
-/**
- * Get the instance of the connection
- */
-function get() {
-  return state.db;
-}
-
-module.exports = {
-  get,
-  connect,
-  close,
-};
+module.exports = new ConnectPostgres();

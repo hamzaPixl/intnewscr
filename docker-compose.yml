@@ -1,7 +1,0 @@
-version: '1'
-services:
-    mongo:
-      image: mongo
-      container_name: mongo-int
-      ports:
-      - "27017:27017"

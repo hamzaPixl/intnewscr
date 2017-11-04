@@ -1,7 +1,7 @@
 const repositories = require('../../repositories');
 
-function get() {
-  return repositories.weatherRepository.weatherRepository.get();
+function get(queryParams) {
+  return repositories.weatherRepository.weatherRepository.get(queryParams);
 }
 
 module.exports = {
