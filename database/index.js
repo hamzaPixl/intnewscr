@@ -9,7 +9,7 @@ const state = {
 const options = {
   keepAlive: 1,
   connectTimeoutMS: 30000,
-  reconnectTries: 30,
+  reconnectTries: Number.MAX_VALUE,
   reconnectInterval: 5000,
 };
 
