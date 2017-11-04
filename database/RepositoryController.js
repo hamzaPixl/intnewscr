@@ -55,12 +55,22 @@ class RepositoryController {
 
   /**
    * Insert one item in the collection
-   * @param {any} object that will be insert if it doesn't exist
+   * @param {object} object that will be insert
    * @returns Promise
    * @memberof RepositoryController
    */
   insertOne(object) {
     return this.db.collection(this.collection).insertOne(object);
+  }
+
+  /**
+   * Insert many item in the collection
+   * @param {array} objects that will be insert
+   * @returns Promise
+   * @memberof RepositoryController
+   */
+  insertMany(objects) {
+    return this.db.collection(this.collection).insertMany(objects);
   }
 
   /**
