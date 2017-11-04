@@ -61,7 +61,10 @@ class RepositoryController {
    */
   insertOne(object) {
     const exist = this.findById(object.id);
-    return exist || this.db.collection(this.collection).insert(object);
+    if (!exist) {
+      return this.db.collection(this.collection).insertOne(object);
+    }
+    return exist;
   }
 
   /**
@@ -72,7 +75,10 @@ class RepositoryController {
    */
   updateOne(object) {
     const exist = this.findById(object.id);
-    return exist && this.db.collection(this.collection).updateOne({ id: object.id }, object);
+    if (exist) {
+      return this.db.collection(this.collection).updateOne({ id: object.id }, object);
+    }
+    return exist;
   }
 
   /**
@@ -83,7 +89,10 @@ class RepositoryController {
    */
   deleteOne(id) {
     const exist = this.findById(id);
-    return exist && this.db.collection(this.collection).deleteOne(id);
+    if (exist) {
+      return this.db.collection(this.collection).deleteOne(id);
+    }
+    return exist;
   }
 }
 

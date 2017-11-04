@@ -20,8 +20,8 @@ class FakeModel {
   itemToJson() {
     return {
       id: this.id,
-      creadted_at: this.creadted_at,
-      updated_at: this.updated_at,
+      creadted_at: this.creadted_at.format(),
+      updated_at: this.updated_at.format(),
       ttl: `${this.ttl}ttl`,
     };
   }

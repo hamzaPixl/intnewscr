@@ -7,7 +7,7 @@ const RepositoryController = require('../../database/RepositoryController');
 
 describe('Database', () => {
   after(() => {
-    describe('Try to close the database', () => {
+    describe.skip('Try to close the database', () => {
       it('should close the database instance and remove the instance', () => {
         database.close();
         const instanceDb = database.get();
@@ -73,8 +73,8 @@ describe('Database', () => {
         const fakemodel = new FakeModel();
         const dbPayload = {
           id: '12345',
-          creadted_at: 'test',
-          updated_at: 'test',
+          creadted_at: moment(),
+          updated_at: moment(),
           ttl: 'test',
         };
         const fake = fakemodel.fromDbPayload(dbPayload);
@@ -82,8 +82,8 @@ describe('Database', () => {
         assert.ok(fake);
         assert.equal(json.collection, undefined);
         assert.equal(json.id, dbPayload.id);
-        assert.equal(json.creadted_at, dbPayload.creadted_at);
-        assert.equal(json.updated_at, dbPayload.updated_at);
+        assert.equal(json.creadted_at, dbPayload.creadted_at.format());
+        assert.equal(json.updated_at, dbPayload.updated_at.format());
         assert.equal(json.ttl, `${dbPayload.ttl}ttl`);
       });
     });
@@ -187,6 +187,22 @@ describe('Database', () => {
               assert.ok(result);
               assert.equal(result.length, 1);
               assert.equal(result[0].s.name, controller.collection);
+              describe('::insertOne', () => {
+                it('should insert the item in the fakemodel collection', () => {
+                  const obj = fakemodel.itemToJson();
+                  console.log(obj);
+                  controller.insertOne(obj)
+                    .then((res) => {
+                      console.log(res);
+                      assert.ok(res);
+                      assert.equal(res.insertedCount, 1);
+                    })
+                    .catch((err) => {
+                      assert.fail(err);
+                      logger.log(err);
+                    });
+                });
+              });
             })
             .catch((err) => {
               assert.fail(err);
