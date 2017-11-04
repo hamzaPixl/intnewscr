@@ -1,6 +1,6 @@
 const assert = require('assert');
 const moment = require('moment');
-const FakeModel = require('./FakeModel');
+const FakeModel = require('./Fakemodel');
 const database = require('../../database');
 const logger = require('../../tools/logger');
 const RepositoryController = require('../../database/RepositoryController');
