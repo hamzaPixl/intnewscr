@@ -35,8 +35,9 @@ class Server {
    * Start the server
    * @memberof Server
    */
-  start() {
+  start(db) {
     logger.log(`The server is started on URL : ${process.env.APP_URL}${process.env.PORT}`);
+    this.app.locals.db = db;
     this.app.listen(process.env.PORT || 3000);
   }
 

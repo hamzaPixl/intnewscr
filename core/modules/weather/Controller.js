@@ -5,8 +5,8 @@ const router = express.Router();
 
 router.get('/',
   (req, res, next) => services.weatherServices.weatherService
-    .get()
-    .then(res.jsend.success)
+    .get(req.app.locals.db)
+    .then(result => res.status(200).json(result))
     .catch(next)
 );
 
