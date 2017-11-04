@@ -5,6 +5,7 @@
   "main": "main.js",
   "scripts": {
     "clean": "node tools/clean-db.js",
+    "init": "node tools/init-db.js",
     "loadConfig": "node tools/load-config.js",
     "cleanlogs": "hooks/clear-logs.sh",
     "pretest": "npm run lint && npm run cleanlogs",
@@ -47,6 +48,7 @@
     "moment": "^2.19.1",
     "mongodb": "^2.2.33",
     "pm2": "^2.7.2",
-    "winston": "^2.4.0"
+    "winston": "^2.4.0",
+    "yahoo-weather": "^2.2.2"
   }
 }
