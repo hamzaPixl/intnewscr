@@ -194,6 +194,21 @@ describe('Database', () => {
             });
         });
       });
+      describe('::findAll', () => {
+        const fakemodel = new FakeModel();
+        const controller = new RepositoryController(instance, fakemodel);
+        it('should find nothing', () => {
+          controller.findAll().toArray()
+            .then((result) => {
+              assert.ok(result);
+              assert.equal(result.length, 0);
+            })
+            .catch((err) => {
+              assert.fail(err);
+              logger.log(err);
+            });
+        });
+      });
       describe('::DropCollection', () => {
         const fakemodel = new FakeModel();
         const controller = new RepositoryController(instance, fakemodel);
