@@ -20,6 +20,9 @@ function validateResult(results){
  * @returns {array}
  */
 function filterValid(results, model){
+  if(!validateResult){
+    return null;
+  }
   return results.filter((result) => {
     model.fromdbPayload(result);
     return model.isValid();

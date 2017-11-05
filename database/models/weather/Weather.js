@@ -8,7 +8,6 @@ class Weather {
     this.ttl = null;
     this.created_at = null;
     this.astronomy = null;
-    this.atmosphere = null;
     this.location = null;
     this.units = null;
     this.wind = null;
@@ -26,20 +25,19 @@ class Weather {
    * @memberof Weather
    */
   fromApiPayload(apiPayload) {
-    this.id = apiPayload.item.date;
+    this.id = apiPayload.date;
     this.created_at = moment();
-    this.ttl = this.created_at.add(1, 'd');
+    this.ttl = moment().add(1, 'd');
     this.astronomy = apiPayload.astronomy || '';
-    this.atmosphere = apiPayload.atmosphere || '';
     this.location = apiPayload.location || '';
     this.units = apiPayload.units || '';
     this.wind = apiPayload.wind || '';
-    this.code = apiPayload.item.code || '';
-    this.date = apiPayload.item.date || '';
-    this.day = apiPayload.item.day || '';
-    this.high = apiPayload.item.high || '';
-    this.low = apiPayload.item.low || '';
-    this.text = apiPayload.item.text || '';
+    this.code = apiPayload.code || '';
+    this.date = apiPayload.date || '';
+    this.day = apiPayload.day || '';
+    this.high = apiPayload.high || '';
+    this.low = apiPayload.low || '';
+    this.text = apiPayload.text || '';
   }
 
   /**
@@ -52,7 +50,6 @@ class Weather {
     this.ttl = dbPayload.ttl;
     this.created_at = dbPayload.created_at;
     this.astronomy = dbPayload.astronomy;
-    this.atmosphere = dbPayload.atmosphere;
     this.location = dbPayload.location;
     this.units = dbPayload.units;
     this.wind = dbPayload.wind;
@@ -75,7 +72,6 @@ class Weather {
       ttl: this.ttl,
       created_at: this.created_at,
       astronomy: this.astronomy,
-      atmosphere: this.atmosphere,
       location: this.location,
       units: this.units,
       wind: this.wind,

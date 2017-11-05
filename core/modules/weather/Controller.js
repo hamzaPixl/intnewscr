@@ -3,9 +3,9 @@ const services = require('../../services');
 
 const router = express.Router();
 
-router.get('/',
+router.get('/:city',
   (req, res, next) => services.weatherServices.weatherService
-    .get(req.app.locals.db)
+    .get(req.params, req.app.locals.db)
     .then(result => res.status(200).json(result))
     .catch(next)
 );
