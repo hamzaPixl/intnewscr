@@ -3,11 +3,11 @@
  * @param {any} results
  * @returns {boolean}
  */
-function validateResult(results){
-  if(!results){
+function validateResult(results) {
+  if (!results) {
     return false;
   }
-  if(results.length === 0){
+  if (results.length === 0) {
     return false;
   }
   return true;
@@ -19,8 +19,8 @@ function validateResult(results){
  * @param {any} model
  * @returns {array}
  */
-function filterValid(results, model){
-  if(!validateResult){
+function filterValid(results, model) {
+  if (!validateResult) {
     return null;
   }
   return results.filter((result) => {
