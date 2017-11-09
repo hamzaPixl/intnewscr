@@ -34,7 +34,9 @@ class RepositoryController {
   findAll() {
     return new Promise((resolve) => {
       this.db.collection(this.collection)
-      .find({}).toArray().then((result) => {
+      .find({})
+      .toArray()
+      .then((result) => {
         if (validateResult(result)) {
           return resolve(result.map((item) => {
             this.model.fromdbPayload(item);
@@ -53,7 +55,18 @@ class RepositoryController {
    * @memberof RepositoryController
    */
   findById(id) {
-    return this.db.collection(this.collection).find({ id });
+    return new Promise((resolve) => {
+      this.db.collection(this.collection).find({ id })
+      .then((result) => {
+        if (validateResult(result)) {
+          return resolve(result.map((item) => {
+            this.model.fromdbPayload(item);
+            return this.model.itemToJson();
+          }));
+        }
+        return resolve([]);
+      });
+    });
   }
 
   /**
@@ -63,7 +76,18 @@ class RepositoryController {
    * @memberof RepositoryController
    */
   findByValues(query) {
-    return this.db.collection(this.collection).find(query);
+    return new Promise((resolve) => {
+      this.db.collection(this.collection).find({ query })
+      .then((result) => {
+        if (validateResult(result)) {
+          return resolve(result.map((item) => {
+            this.model.fromdbPayload(item);
+            return this.model.itemToJson();
+          }));
+        }
+        return resolve([]);
+      });
+    });
   }
 
   /**
@@ -73,7 +97,9 @@ class RepositoryController {
    * @memberof RepositoryController
    */
   insertOne(object) {
-    return this.db.collection(this.collection).insertOne(object);
+    this.model.fromApiPayload(object);
+    const toInsert = this.model.itemToJson();
+    return this.db.collection(this.collection).insertOne(toInsert);
   }
 
   /**
@@ -83,7 +109,11 @@ class RepositoryController {
    * @memberof RepositoryController
    */
   insertMany(objects) {
-    return this.db.collection(this.collection).insertMany(objects);
+    const toInsert = objects.map((item) => {
+      this.model.fromApiPayload(item);
+      return this.model.itemToJson();
+    });
+    return this.db.collection(this.collection).insertMany(toInsert);
   }
 
   /**
@@ -93,7 +123,11 @@ class RepositoryController {
    * @memberof RepositoryController
    */
   updateOne(object) {
-    return this.db.collection(this.collection).updateOne({ id: object.id }, object);
+    const toUpdate = object.map((item) => {
+      this.model.fromApiPayload(item);
+      return this.model.itemToJson();
+    });
+    return this.db.collection(this.collection).updateOne({ id: object.id }, toUpdate);
   }
 
   /**
