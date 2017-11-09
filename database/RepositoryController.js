@@ -32,17 +32,16 @@ class RepositoryController {
    * @memberof RepositoryController
    */
   findAll() {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       this.db.collection(this.collection)
-      .find({}).toArray().then( result => {
+      .find({}).toArray().then((result) => {
         if (validateResult(result)) {
           return resolve(result.map((item) => {
-            this.model.fromdbPayload(item)
+            this.model.fromdbPayload(item);
             return this.model.itemToJson();
           }));
-        } else {
-          return resolve([]);
         }
+        return resolve([]);
       });
     });
   }
