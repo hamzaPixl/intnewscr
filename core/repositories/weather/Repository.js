@@ -5,16 +5,33 @@ const logger = require('../../../tools/logger.js');
 
 const model = new Model();
 
+/**
+ * Get All weather from the db collection
+ * @param {any} db instance
+ * @returns {Promise}
+ */
 function get(db) {
   const controller = new RepositoryController(db, model);
   return controller.findAll();
 }
 
+/**
+ * Insert all weather fetch from api
+ * @param {Array} forecats the array that will be insert
+ * @param {any} db instance
+ * @returns {Promise}
+ */
 function insertManyFromApi(forecats, db) {
   const controller = new RepositoryController(db, model);
   return controller.insertMany(forecats);
 }
 
+/**
+ * Fetch the weather from the api
+ * @param {any} city the weather is from this location
+ * @param {string} [unit='c'] unit use for temperature
+ * @returns {Promise}
+ */
 function fetchWeather(city, unit = 'c') {
   return new Promise((resolve, reject) => {
     weather(city, unit)
