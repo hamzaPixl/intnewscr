@@ -97,9 +97,11 @@ class RepositoryController {
    * @memberof RepositoryController
    */
   insertOne(object) {
-    this.model.fromApiPayload(object);
-    const toInsert = this.model.itemToJson();
-    return this.db.collection(this.collection).insertOne(toInsert);
+    return new Promise((resolve) => {
+      this.model.fromApiPayload(object);
+      const toInsert = this.model.itemToJson();
+      this.db.collection(this.collection).insertOne(toInsert).then(() => resolve(toInsert));
+    });
   }
 
   /**
@@ -109,11 +111,13 @@ class RepositoryController {
    * @memberof RepositoryController
    */
   insertMany(objects) {
-    const toInsert = objects.map((item) => {
-      this.model.fromApiPayload(item);
-      return this.model.itemToJson();
+    return new Promise((resolve) => {
+      const toInsert = objects.map((item) => {
+        this.model.fromApiPayload(item);
+        return this.model.itemToJson();
+      });
+      this.db.collection(this.collection).insertMany(toInsert).then(() => resolve(toInsert));
     });
-    return this.db.collection(this.collection).insertMany(toInsert);
   }
 
   /**
@@ -123,11 +127,14 @@ class RepositoryController {
    * @memberof RepositoryController
    */
   updateOne(object) {
-    const toUpdate = object.map((item) => {
-      this.model.fromApiPayload(item);
-      return this.model.itemToJson();
+    return new Promise((resolve) => {
+      const toUpdate = object.map((item) => {
+        this.model.fromApiPayload(item);
+        return this.model.itemToJson();
+      });
+      return this.db.collection(this.collection)
+      .updateOne({ id: object.id }, toUpdate).then(() => resolve(toUpdate));
     });
-    return this.db.collection(this.collection).updateOne({ id: object.id }, toUpdate);
   }
 
   /**
