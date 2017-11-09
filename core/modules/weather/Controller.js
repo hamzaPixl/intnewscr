@@ -1,12 +1,12 @@
 const express = require('express');
-const services = require('../../services');
+const { weatherServices } = require('../../services');
 
 const router = express.Router();
 
-router.get('/',
-  (req, res, next) => services.weatherServices.weatherService
-    .get()
-    .then(res.jsend.success)
+router.get('/:city',
+  (req, res, next) => weatherServices
+    .get(req.params, req.app.locals.db)
+    .then(result => res.status(200).json(result))
     .catch(next)
 );
 

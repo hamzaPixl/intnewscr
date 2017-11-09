@@ -1,3 +1,5 @@
+const { validateResult } = require('../tools/utils');
+
 class RepositoryController {
 
   constructor(db, model) {
@@ -30,7 +32,20 @@ class RepositoryController {
    * @memberof RepositoryController
    */
   findAll() {
-    return this.db.collection(this.collection).find({});
+    return new Promise((resolve) => {
+      this.db.collection(this.collection)
+      .find({})
+      .toArray()
+      .then((result) => {
+        if (validateResult(result)) {
+          return resolve(result.map((item) => {
+            this.model.fromdbPayload(item);
+            return this.model.itemToJson();
+          }));
+        }
+        return resolve([]);
+      });
+    });
   }
 
   /**
@@ -40,7 +55,18 @@ class RepositoryController {
    * @memberof RepositoryController
    */
   findById(id) {
-    return this.db.collection(this.collection).find({ id });
+    return new Promise((resolve) => {
+      this.db.collection(this.collection).find({ id })
+      .then((result) => {
+        if (validateResult(result)) {
+          return resolve(result.map((item) => {
+            this.model.fromdbPayload(item);
+            return this.model.itemToJson();
+          }));
+        }
+        return resolve([]);
+      });
+    });
   }
 
   /**
@@ -50,17 +76,48 @@ class RepositoryController {
    * @memberof RepositoryController
    */
   findByValues(query) {
-    return this.db.collection(this.collection).find(query);
+    return new Promise((resolve) => {
+      this.db.collection(this.collection).find({ query })
+      .then((result) => {
+        if (validateResult(result)) {
+          return resolve(result.map((item) => {
+            this.model.fromdbPayload(item);
+            return this.model.itemToJson();
+          }));
+        }
+        return resolve([]);
+      });
+    });
   }
 
   /**
    * Insert one item in the collection
-   * @param {any} object that will be insert if it doesn't exist
+   * @param {object} object that will be insert
    * @returns Promise
    * @memberof RepositoryController
    */
   insertOne(object) {
-    return this.db.collection(this.collection).insertOne(object);
+    return new Promise((resolve) => {
+      this.model.fromApiPayload(object);
+      const toInsert = this.model.itemToJson();
+      this.db.collection(this.collection).insertOne(toInsert).then(() => resolve(toInsert));
+    });
+  }
+
+  /**
+   * Insert many item in the collection
+   * @param {array} objects that will be insert
+   * @returns Promise
+   * @memberof RepositoryController
+   */
+  insertMany(objects) {
+    return new Promise((resolve) => {
+      const toInsert = objects.map((item) => {
+        this.model.fromApiPayload(item);
+        return this.model.itemToJson();
+      });
+      this.db.collection(this.collection).insertMany(toInsert).then(() => resolve(toInsert));
+    });
   }
 
   /**
@@ -70,7 +127,14 @@ class RepositoryController {
    * @memberof RepositoryController
    */
   updateOne(object) {
-    return this.db.collection(this.collection).updateOne({ id: object.id }, object);
+    return new Promise((resolve) => {
+      const toUpdate = object.map((item) => {
+        this.model.fromApiPayload(item);
+        return this.model.itemToJson();
+      });
+      return this.db.collection(this.collection)
+      .updateOne({ id: object.id }, toUpdate).then(() => resolve(toUpdate));
+    });
   }
 
   /**

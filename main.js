@@ -5,7 +5,7 @@ const database = require('./database');
 const server = new Server();
 
 database.connect()
-.then(() => {
-  server.start();
+.then((db) => {
+  server.start(db);
 }).catch();
 

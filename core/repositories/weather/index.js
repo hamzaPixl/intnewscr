@@ -1,5 +1,3 @@
 const weatherRepository = require('./Repository');
 
-module.exports = {
-  weatherRepository,
-};
+module.exports = weatherRepository;

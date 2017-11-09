@@ -1,5 +1,3 @@
 const weatherService = require('./Service');
 
-module.exports = {
-  weatherService,
-};
+module.exports = weatherService;
