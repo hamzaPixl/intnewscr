@@ -26,8 +26,8 @@ class Weather {
    */
   fromApiPayload(apiPayload) {
     this.id = apiPayload.date;
-    this.created_at = moment();
-    this.ttl = moment().add(1, 'd');
+    this.created_at = moment().format();
+    this.ttl = moment().add(1, 'd').format();
     this.astronomy = apiPayload.astronomy || '';
     this.location = apiPayload.location || '';
     this.units = apiPayload.units || '';
@@ -47,8 +47,8 @@ class Weather {
    */
   fromdbPayload(dbPayload) {
     this.id = dbPayload.id;
-    this.ttl = dbPayload.ttl;
-    this.created_at = dbPayload.created_at;
+    this.ttl = typeof dbPayload.ttl === 'object' ? moment(dbPayload.ttl).format() : dbPayload.ttl;
+    this.created_at = typeof dbPayload.created_at === 'object' ? moment(dbPayload.created_at).format() : dbPayload.created_at;
     this.astronomy = dbPayload.astronomy;
     this.location = dbPayload.location;
     this.units = dbPayload.units;
@@ -69,8 +69,8 @@ class Weather {
   itemToJson() {
     return {
       id: this.id,
-      ttl: this.ttl,
-      created_at: this.created_at,
+      ttl: typeof this.ttl === 'object' ? moment(this.ttl).format() : this.ttl,
+      created_at: typeof this.created_at === 'object' ? moment(this.created_at).format() : this.created_at,
       astronomy: this.astronomy,
       location: this.location,
       units: this.units,
