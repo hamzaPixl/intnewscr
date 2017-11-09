@@ -7,7 +7,7 @@ router.get('/:city',
   (req, res, next) => weatherServices
     .get(req.params, req.app.locals.db)
     .then(result => res.status(200).json(result))
-    .catch(next),
+    .catch(next)
 );
 
 module.exports = router;
