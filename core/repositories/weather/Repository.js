@@ -7,12 +7,13 @@ const model = new Model();
 
 /**
  * Get All weather from the db collection
+ * @param {string} [city='Brussels'] the weather is from this location
  * @param {any} db instance
  * @returns {Promise}
  */
-function get(db) {
+function get(city = 'Brussels', db) {
   const controller = new RepositoryController(db, model);
-  return controller.findAll();
+  return controller.findByValues({ 'location.city': city });
 }
 
 /**

@@ -56,7 +56,9 @@ class RepositoryController {
    */
   findById(id) {
     return new Promise((resolve) => {
-      this.db.collection(this.collection).find({ id })
+      this.db.collection(this.collection)
+      .find(id)
+      .toArray()
       .then((result) => {
         if (validateResult(result)) {
           return resolve(result.map((item) => {
@@ -77,7 +79,9 @@ class RepositoryController {
    */
   findByValues(query) {
     return new Promise((resolve) => {
-      this.db.collection(this.collection).find({ query })
+      this.db.collection(this.collection)
+      .find(query)
+      .toArray()
       .then((result) => {
         if (validateResult(result)) {
           return resolve(result.map((item) => {

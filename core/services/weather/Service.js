@@ -11,7 +11,7 @@ const { validateResult } = require('../../../tools/utils');
  */
 function get(params, db) {
   return new Promise((resolve, reject) => {
-    weatherRepository.get(db)
+    weatherRepository.get(params.city, db)
     .then((results) => {
       if (validateResult(results)) {
         resolve(results);
