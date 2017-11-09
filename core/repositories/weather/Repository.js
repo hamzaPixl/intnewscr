@@ -12,20 +12,15 @@ function get(db) {
 
 function insertManyFromApi(forecats, db) {
   const controller = new RepositoryController(db, model);
-  const forecast = forecats.map((item) => {
-    const modelItem = new Model();
-    modelItem.fromApiPayload(item);
-    return modelItem.itemToJson();
-  });
-  return controller.insertMany(forecast);
+  return controller.insertMany(forecats);
 }
 
 function fetchWeather(city, unit = 'c') {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     weather(city, unit)
     .then((info) => {
       if (!info) {
-        return resolve({});
+        return reject({ message: 'No data from the api please try later' });
       }
       const forecast = info.item.forecast.map((element) => {
         const item = element;
@@ -36,8 +31,10 @@ function fetchWeather(city, unit = 'c') {
       forecast[0].astronomy = info.astronomy;
       forecast[0].wind = info.wind;
       return resolve(forecast);
-    }).catch((err) => {
+    })
+    .catch((err) => {
       logger.log(err);
+      return reject(err);
     });
   });
 }

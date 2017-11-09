@@ -4,19 +4,25 @@ const { validateResult } = require('../../../tools/utils');
 
 function get(params, db) {
   return new Promise((resolve, reject) => {
-    const resultRepository = weatherRepository.get(db);
-    resultRepository.then((results) => {
+    weatherRepository.get(db)
+    .then((results) => {
       if (validateResult(results)) {
         resolve(results);
       } else {
         weatherRepository
         .fetchWeather(params.city)
         .then((weathers) => {
-          weatherRepository.insertManyFromApi(weathers, db);
-          resolve(weathers);
+          weatherRepository.insertManyFromApi(weathers, db)
+          .then((weathersResult) => {
+            resolve(weathersResult);
+          });
         });
       }
-    }).catch(err => logger.log(err));
+    })
+    .catch((err) => {
+      logger.log(err);
+      reject(err);
+    });
   });
 }
 
