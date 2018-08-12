@@ -3,7 +3,7 @@ const { weatherServices } = require('../../services');
 
 const router = express.Router({ mergeParams: true });
 
-router.get('/weather/city/:city',
+router.get('city/:city',
   (req, res, next) => weatherServices
     .get(req.params)
     .then(result => res.json(result))
