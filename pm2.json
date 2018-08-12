@@ -1,7 +1,7 @@
 [
   {
     "name": "INT NEWS SCR",
-    "script": "main.js",
+    "script": "./server/server.js",
     "env": {
         "NODE_ENV": process.env.ENV || 'local',
         "PROCESS_NAME": "app"

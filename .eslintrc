@@ -1,12 +1,33 @@
-
 {
-    "extends": "airbnb",
+    "extends": "airbnb-base",
+    "env": {
+      "mocha": true,
+      "jest/globals": true
+    },
+    "plugins": [
+      "jest"
+    ],
     "rules": {
-        "valid-typeof":"warn",
-        "arrow-body-style":"warn",
-        "class-methods-use-this":"warn",
-        "comma-dangle":"warn",
-        "global-require": "off",
-        "import/no-dynamic-require": "off"
+      "no-use-before-define": "off",
+      "max-len": "off",
+      "comma-dangle": ["error", {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "always-multiline",
+        "exports": "always-multiline",
+        "functions": "never"
+      }],
+      "curly": ["error", "all"],
+      "no-param-reassign": ["error", { "props": false }],
+      "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+      "no-shadow": ["error", {
+        "allow": [
+          "err",
+          "callback",
+          "res",
+          "body",
+          "token"
+        ]
+      }]
     }
-}
+  }

@@ -1,6 +1,0 @@
-[
-  {
-    "name": "weather",
-    "pathModel": "../database/models/weather"
-  }
-]
