@@ -5,7 +5,7 @@ function createFromPayload(payload) {
     return null;
   }
 
-  const weather = new Weather({
+  return new Weather({
     astronomy: payload.astronomy,
     location: payload.location,
     units: payload.units,
@@ -17,8 +17,6 @@ function createFromPayload(payload) {
     low: payload.low,
     text: payload.text,
   });
-
-  return weather;
 }
 
 module.exports = {
