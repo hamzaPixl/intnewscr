@@ -4,6 +4,15 @@ const config = {
   country: 'BE',
   port: 3000,
   mongo: 'mongodb://localhost:27017/intnewscr',
+  services: {
+    weather: {
+      ttl: 86400,
+      extra: {
+        unit: 'c',
+        city: 'brussels',
+      },
+    },
+  },
 };
 
 module.exports = config;

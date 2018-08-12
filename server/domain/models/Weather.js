@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const config = require('config');
 const mongoosePaginate = require('mongoose-paginate');
 
 const Schema = mongoose.Schema;
@@ -63,6 +64,6 @@ const weather = new Schema({
 
 weather.plugin(mongoosePaginate);
 
-weather.index({ 'expireAT': 1 }, { expireAfterSeconds: 86400 });
+weather.index({ 'expireAT': 1 }, { expireAfterSeconds: config.get('services.weather.ttl') });
 
 module.exports = mongoose.model('Weather', weather);
