@@ -4,6 +4,7 @@
     "script": "./server/server.js",
     "env": {
         "NODE_ENV": process.env.ENV || 'local',
+        "NODE_CONFIG_DIR": "./config",
         "PROCESS_NAME": "intnewscr"
     },
     "watch" : process.env.ENV ? false : ".",

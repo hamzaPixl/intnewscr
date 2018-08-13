@@ -17,8 +17,9 @@ const init = function init(loggerName, level = 'info') {
       handleExceptions: true,
       humanReadableUnhandledException: true,
       prettyPrint: false,
-      colorize: false,
       timestamp: tsFormat,
+      json: false,
+      colorize: true,
     }),
   ];
 
@@ -32,13 +33,13 @@ const init = function init(loggerName, level = 'info') {
     }));
   }
 
-  logger = winston.createLogger({
+  logger = new winston.Logger({
     transports,
   });
 
   logger.stream = {
     write: function write(message) {
-      logger.debug(message);
+      logger.info(message);
     },
   };
 
