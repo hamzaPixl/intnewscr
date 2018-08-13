@@ -2,46 +2,46 @@ const mongoose = require('mongoose');
 const config = require('config');
 const mongoosePaginate = require('mongoose-paginate');
 
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
 const weather = new Schema({
-  astronomy : {
+  astronomy: {
     type: String,
     required: false,
   },
-  location : {
+  location: {
     type: String,
     required: false,
   },
-  units : {
+  units: {
     type: String,
     required: false,
   },
-  wind : {
+  wind: {
     type: String,
     required: false,
   },
-  code : {
+  code: {
     type: String,
     required: false,
   },
-  date : {
+  date: {
     type: String,
     required: false,
   },
-  day : {
+  day: {
     type: String,
     required: false,
   },
-  high : {
+  high: {
     type: Number,
     required: false,
   },
-  low : {
+  low: {
     type: Number,
     required: false,
   },
-  text : {
+  text: {
     type: String,
     required: false,
   },
@@ -64,6 +64,6 @@ const weather = new Schema({
 
 weather.plugin(mongoosePaginate);
 
-weather.index({ 'expireAT': 1 }, { expireAfterSeconds: config.get('services.weather.ttl') });
+weather.index({ expireAt: 1 }, { expireAfterSeconds: config.get('services.weather.ttl') });
 
 module.exports = mongoose.model('Weather', weather);

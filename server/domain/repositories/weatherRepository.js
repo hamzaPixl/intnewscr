@@ -1,4 +1,3 @@
-const config = require('config');
 const Weather = require('../models/Weather');
 
 /**
@@ -16,7 +15,7 @@ function save(weather) {
  * @returns {Array[Weather]}
  */
 function findAllByCity(city) {
-  return Weather.find({ 'location': city });
+  return Weather.find({ location: city });
 }
 
 module.exports = {

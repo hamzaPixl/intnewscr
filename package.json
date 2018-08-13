@@ -20,14 +20,12 @@
     "url": "https://github.com/hamzaPixl/intnewscr.git"
   },
   "devDependencies": {
-    "babel-eslint": "^8.2.1",
-    "electron-packager": "^10.1.2",
-    "eslint": "4.13.0",
-    "eslint-config-airbnb": "16.1.0",
-    "eslint-loader": "1.9.0",
-    "eslint-plugin-import": "2.8.0",
-    "eslint-plugin-jsx-a11y": "6.0.3",
-    "eslint-plugin-react": "7.5.1"
+    "eslint": "^3.15.0",
+    "eslint-config-airbnb-base": "^11.0.1",
+    "eslint-nibble": "^3.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jest": "^21.6.0",
+    "jest": "23.4.1"
   },
   "dependencies": {
     "bluebird": "^3.5.1",

@@ -8,11 +8,11 @@ async function get(city) {
     return weathers;
   }
 
-  const weathersApi = await weatherService.fetchWeather(city);
+  let weathersApi = await weatherService.fetchWeather(city);
   weathersApi = weathersApi.map(weatherFactory.createFromPayload);
 
   return Promise.all(weathersApi.map(w => w.save()))
-  .then(() => weatherRepository.findAllByCity(city));
+    .then(() => weatherRepository.findAllByCity(city));
 }
 
 module.exports = {
