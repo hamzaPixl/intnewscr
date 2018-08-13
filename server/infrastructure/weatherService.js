@@ -7,12 +7,10 @@ function fetchWeather(city, unit = config.get('services.weather.extra.unit')) {
     .then((info) => {
       const forecast = info.item.forecast.map((element) => {
         const item = element;
-        item.location = info.location;
-        item.units = info.units;
+        item.location = city;
+        item.units = info.units.temperature;
         return item;
       });
-      forecast[0].astronomy = info.astronomy;
-      forecast[0].wind = info.wind;
       return forecast;
     })
     .catch((err) => {

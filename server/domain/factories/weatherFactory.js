@@ -6,10 +6,8 @@ function createFromPayload(payload) {
   }
 
   return new Weather({
-    astronomy: payload.astronomy,
     location: payload.location,
     units: payload.units,
-    wind: payload.wind,
     code: payload.code,
     date: payload.date,
     day: payload.day,

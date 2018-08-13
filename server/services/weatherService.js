@@ -7,7 +7,6 @@ async function get(city) {
   if (weathers && weathers.length) {
     return weathers;
   }
-
   let weathersApi = await weatherService.fetchWeather(city);
   weathersApi = weathersApi.map(weatherFactory.createFromPayload);
 
