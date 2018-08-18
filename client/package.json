@@ -1,0 +1,60 @@
+{
+  "name": "intnewscr",
+  "version": "0.1.0",
+  "private": true,
+  "main": "src/electron-starter.js",
+  "description": "Interactive new screen.",
+  "author": "Hamza Mounir <hamza.pixelle@gmail.com>",
+  "license": "MIT",
+  "engines": {
+    "node": "8.9.2"
+  },
+  "dependencies": {
+    "cross-env": "5.1.2",
+    "electron": "^1.7.10",
+    "electron-builder": "^19.24.1",
+    "electron-reload": "^1.2.2",
+    "file-loader": "^1.1.6",
+    "foreman": "^2.0.0",
+    "material-design-icons": "^3.0.1",
+    "material-ui": "^0.20.0",
+    "nuka-carousel": "^3.0.1",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-dom": "16.2.0",
+    "react-hot-loader": "3.1.3",
+    "react-intl": "^2.4.0",
+    "react-router-dom": "4.2.2",
+    "react-scripts": "^1.1.0",
+    "react-select": "^1.2.1",
+    "react-sweet-progress": "^1.1.0",
+    "react-trend": "^1.2.4",
+    "rss-to-json": "^1.0.4",
+    "styled-components": "^2.4.0",
+    "webpack": "^3.10.0"
+  },
+  "scripts": {
+    "start": "nf start -p 3000",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "electron": "electron .",
+    "electron-start": "node src/electron-wait-react",
+    "react-start": "react-scripts start",
+    "pack": "build --dir",
+    "dist": "npm run build && build",
+    "postinstall": "install-app-deps",
+    "precommit": "cross-env npm run lint && npm test",
+    "prepush": "cross-env npm run lint && npm test"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.1",
+    "electron-packager": "^10.1.2",
+    "eslint": "4.13.0",
+    "eslint-config-airbnb": "16.1.0",
+    "eslint-loader": "1.9.0",
+    "eslint-plugin-import": "2.8.0",
+    "eslint-plugin-jsx-a11y": "6.0.3",
+    "eslint-plugin-react": "7.5.1"
+  }
+}
