@@ -1,5 +1,5 @@
 const config = require('config');
-const logger = require('./logger');
+const logger = require('../../../infrastructure/logger');
 const weather = require('yahoo-weather');
 
 function fetchWeather(city, unit = config.get('services.weather.extra.unit')) {

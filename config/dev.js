@@ -1,9 +1,18 @@
 const config = {
-  env: 'local',
+  env: 'dev',
   defaultTimezone: 'Europe/Brussels',
   country: 'BE',
-  port: 3000,
-  mongo: 'mongodb://localhost:27017/intnewscr',
+  port: process.env.PORT || 3000,
+  mongo: process.env.MONGO,
+  services: {
+    weather: {
+      ttl: 86400,
+      extra: {
+        unit: 'c',
+        city: 'brussels',
+      },
+    },
+  },
 };
 
 module.exports = config;

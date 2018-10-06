@@ -1,8 +1,6 @@
-const express = require('express');
+const router = require('express').Router({ mergeParams: true });
 const config = require('config');
 const { weatherServices } = require('../../services');
-
-const router = express.Router({ mergeParams: true });
 
 router.get('/city/:city',
   (req, res, next) => weatherServices
