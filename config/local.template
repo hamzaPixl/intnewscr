@@ -6,10 +6,18 @@ const config = {
   mongo: 'mongodb://localhost:27017/intnewscr',
   services: {
     weather: {
+      stub: false,
       ttl: 86400,
       extra: {
         unit: 'c',
         city: 'brussels',
+      },
+    },
+    news: {
+      stub: false,
+      ttl: 86400,
+      extra: {
+        sources: ['rtl']
       },
     },
   },
