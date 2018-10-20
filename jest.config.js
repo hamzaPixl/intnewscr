@@ -5,6 +5,7 @@ module.exports = {
     '/node_modules/',
     '/config/',
     '/logs/',
+    '/client/',
   ],
   testURL: 'http://localhost',
 };
