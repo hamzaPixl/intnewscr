@@ -1,7 +1,7 @@
-version: '1'
+version: '2'
 services:
-    mongo:
-      image: mongo
-      container_name: mongo-int
-      ports:
-      - "27017:27017"
+  mongo:
+    image: mongo
+    container_name: mongo-intnewscr
+    ports:
+    - "27017:27017"

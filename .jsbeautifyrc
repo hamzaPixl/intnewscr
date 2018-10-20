@@ -1,0 +1,7 @@
+{
+    "js": {
+      "end_with_newline": true,
+      "indent_size": 2,
+      "unindent_chained_methods": true
+  }
+}

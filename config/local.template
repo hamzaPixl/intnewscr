@@ -1,0 +1,26 @@
+const config = {
+  env: 'local',
+  defaultTimezone: 'Europe/Brussels',
+  country: 'BE',
+  port: 3000,
+  mongo: 'mongodb://localhost:27017/intnewscr',
+  services: {
+    weather: {
+      stub: false,
+      ttl: 86400,
+      extras: {
+        unit: 'c',
+        city: 'brussels',
+      },
+    },
+    news: {
+      stub: false,
+      ttl: 86400,
+      extras: {
+        sources: ['rtl']
+      },
+    },
+  },
+};
+
+module.exports = config;

@@ -1,10 +1,11 @@
 [
   {
     "name": "INT NEWS SCR",
-    "script": "main.js",
+    "script": "./server/server.js",
     "env": {
         "NODE_ENV": process.env.ENV || 'local',
-        "PROCESS_NAME": "app"
+        "NODE_CONFIG_DIR": "./config",
+        "PROCESS_NAME": "intnewscr"
     },
     "watch" : process.env.ENV ? false : ".",
     "ignore_watch" : [ "./database", "./logs", ".git", "./node_modules", "./test"],

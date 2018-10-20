@@ -5,6 +5,8 @@
 
 .idea/
 
+local.js
+
 ## File-based project format:
 *.iws
 
@@ -13,8 +15,6 @@
 # IntelliJ
 /out/
 
-*.env
-.myconfig/
 .vscode/
 
 # mpeltonen/sbt-idea plugin
