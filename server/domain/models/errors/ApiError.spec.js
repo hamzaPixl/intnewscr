@@ -9,6 +9,7 @@ describe('INT NEWS SCREEN - models - errors - ApiError', () => {
   });
   it('should create a valid instance with specific message', () => {
     const error = new ApiError('Specific message');
+    expect(error).toBeDefined();
     expect(error.message).toBe('Specific message');
     expect(error.name).toBe('ApiError');
   });
