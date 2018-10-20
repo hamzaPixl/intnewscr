@@ -1,3 +1,3 @@
-const localConf = require('../config/local');
+const testConf = require('../config/test');
 
-module.exports = localConf;
+module.exports = testConf;

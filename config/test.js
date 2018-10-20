@@ -6,7 +6,7 @@ const config = {
   mongo: process.env.MONGO,
   services: {
     weather: {
-      stub: false,
+      stub: true,
       ttl: 86400,
       extras: {
         unit: 'c',
@@ -14,7 +14,7 @@ const config = {
       },
     },
     news: {
-      stub: false,
+      stub: true,
       ttl: 86400,
       extras: {
         sources: ['rtl'],
