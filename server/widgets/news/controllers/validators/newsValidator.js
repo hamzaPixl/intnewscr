@@ -5,7 +5,7 @@ const newsSchema = {
   id: 'news',
   type: 'object',
   properties: {
-    source: { type: 'string', enum: get(config, 'services.news.extra.sources', []) },
+    source: { type: 'string', enum: get(config, 'services.news.extras.sources', []) },
   },
   required: ['source'],
 };

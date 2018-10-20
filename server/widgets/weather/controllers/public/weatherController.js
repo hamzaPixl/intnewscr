@@ -15,7 +15,7 @@ router.get('/city/:city',
 
 router.get('/',
   (req, res, next) => weatherServices
-  .get(config.get('services.weather.extra.city'))
+  .get(config.get('services.weather.extras.city'))
     .then(result => res.json(weatherMapper.map(result)))
   .catch(next)
 );
