@@ -7,7 +7,7 @@ const { fetchNews } = require('../infrastructure');
 
 const sources = get(config, 'services.news.extra.sources', []);
 
-async function getBySource(source) {
+async function getBySource({ source }) {
   if (!sources.includes(source)) {
     throw new erros.NotFoundError(`The source ${source} was not found`);
   }
