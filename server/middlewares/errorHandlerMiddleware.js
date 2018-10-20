@@ -1,9 +1,11 @@
-const NotFoundError = require('../domain/models/errors/NotFoundError'); // 404
+const errors = require('../domain/models/errors');
 
 function errorHandlerMiddleware(err, req, res, next) {
   let status;
 
-  if (err instanceof NotFoundError) {
+  if (err instanceof errors.ValidationError) {
+    status = 400;
+  } else if (err instanceof errors.NotFoundError) {
     status = 404;
   } else {
     status = 500;

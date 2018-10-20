@@ -8,7 +8,7 @@ const config = {
     weather: {
       stub: false,
       ttl: 86400,
-      extra: {
+      extras: {
         unit: 'c',
         city: 'brussels',
       },
@@ -16,7 +16,7 @@ const config = {
     news: {
       stub: false,
       ttl: 86400,
-      extra: {
+      extras: {
         sources: ['rtl']
       },
     },

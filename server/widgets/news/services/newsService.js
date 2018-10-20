@@ -5,9 +5,9 @@ const { newsRepository } = require('../domain/repositories');
 const { newsFactory } = require('../domain/factories');
 const { fetchNews } = require('../infrastructure');
 
-const sources = get(config, 'services.news.extra.sources', []);
+const sources = get(config, 'services.news.extras.sources', []);
 
-async function getBySource(source) {
+async function getBySource({ source }) {
   if (!sources.includes(source)) {
     throw new erros.NotFoundError(`The source ${source} was not found`);
   }

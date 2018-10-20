@@ -7,7 +7,7 @@ const config = {
   services: {
     weather: {
       ttl: 86400,
-      extra: {
+      extras: {
         unit: 'c',
         city: 'brussels',
       },
