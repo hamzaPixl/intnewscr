@@ -8,15 +8,15 @@ const middlewares = require('../../../../middlewares/http');
 router.get('/city/:city',
   middlewares.validateParamMiddleware(weatherValidator),
   (req, res, next) => weatherServices
-    .get(req.params.city)
-    .then(result => res.json(weatherMapper.map(result)))
-    .catch(next)
+  .get(req.params.city)
+  .then(result => res.json(weatherMapper.map(result)))
+  .catch(next)
 );
 
 router.get('/',
   (req, res, next) => weatherServices
   .get(config.get('services.weather.extras.city'))
-    .then(result => res.json(weatherMapper.map(result)))
+  .then(result => res.json(weatherMapper.map(result)))
   .catch(next)
 );
 

@@ -6,10 +6,18 @@ const config = {
   mongo: process.env.MONGO,
   services: {
     weather: {
+      stub: false,
       ttl: 86400,
       extras: {
         unit: 'c',
         city: 'brussels',
+      },
+    },
+    news: {
+      stub: false,
+      ttl: 86400,
+      extras: {
+        sources: ['rtl'],
       },
     },
   },
