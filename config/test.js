@@ -4,6 +4,9 @@ const config = {
   country: 'BE',
   port: process.env.PORT || 3000,
   mongo: process.env.MONGO,
+  server: {
+    http: 'http://localhost:3000',
+  },
   services: {
     weather: {
       stub: true,

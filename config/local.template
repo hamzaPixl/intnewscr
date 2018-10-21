@@ -4,6 +4,9 @@ const config = {
   country: 'BE',
   port: 3000,
   mongo: 'mongodb://localhost:27017/intnewscr',
+  server: {
+    http: 'http://localhost:3000',
+  },
   services: {
     weather: {
       stub: false,
