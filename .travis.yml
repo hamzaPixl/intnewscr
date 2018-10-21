@@ -4,6 +4,7 @@ node_js:
   - "8"
   - "7"
 install:
+  - npm install pm2 -g
   - npm install
 before_script:
   - NODE_ENV=test
