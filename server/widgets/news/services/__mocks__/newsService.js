@@ -1,8 +1,7 @@
-const logger = require('../../../../infrastructure/logger');
 const news = require('./news.json');
 
 async function getBySource() {
-  logger.info('STUB - News widget');
+  // STUB - News widget
   return Promise.resolve(news);
 }
 
