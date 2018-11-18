@@ -1,6 +1,8 @@
 module.exports = {
   restoreMocks: true,
-  testMatch: ['**/?(*.)(spec).js?(x)'],
+  clearMocks: true,
+  testMatch: ['**/*.integration.js', '**/?(*.)(spec).js?(x)'],
+  verbose: true,
   testPathIgnorePatterns: [
     '/node_modules/',
     '/config/',
