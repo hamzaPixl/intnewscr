@@ -2,6 +2,7 @@ const config = require('config');
 const bluebird = require('bluebird');
 const passport = require('passport');
 const mongoose = require('mongoose');
+const expressSession = require('express-session');
 const logger = require('./infrastructure/logger').init('intnewscr');
 
 const express = require('express');
@@ -25,6 +26,7 @@ server.use(morgan('short', { stream: logger.stream }));
 server.use(cookiesParser());
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
+server.use(expressSession({ secret: config.secret }));
 server.use(passport.initialize());
 server.use(passport.session());
 server.use('/', controllers);
