@@ -1,5 +1,6 @@
 const config = require('config');
 const bluebird = require('bluebird');
+const passport = require('passport');
 const mongoose = require('mongoose');
 const logger = require('./infrastructure/logger').init('intnewscr');
 
@@ -24,6 +25,8 @@ server.use(morgan('short', { stream: logger.stream }));
 server.use(cookiesParser());
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
+server.use(passport.initialize());
+server.use(passport.session());
 server.use('/', controllers);
 
 server.use(middlewares.notFoundMiddleware);
