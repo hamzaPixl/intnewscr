@@ -11,6 +11,14 @@ function save(user) {
 }
 
 /**
+ * Retrieve user by its email
+ * @returns {Users}
+ */
+function findOne(email) {
+  return Users.findOne({ email });
+}
+
+/**
  * Retrieve all user by role
  * @returns {Array[Users]}
  */
@@ -32,4 +40,5 @@ module.exports = {
   save,
   deleteOne,
   findAllByRole,
+  findOne,
 };

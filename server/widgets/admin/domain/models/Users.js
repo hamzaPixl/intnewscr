@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 const mongoosePaginate = require('mongoose-paginate');
 
 const { Schema } = mongoose;
@@ -18,6 +19,7 @@ const users = new Schema({
   },
   email: {
     type: String,
+    unique: true,
     required: true,
   },
   password: {
@@ -54,6 +56,29 @@ users.plugin(mongoosePaginate);
 users.methods.setRole = function setRole(role) {
   this.role = role;
   return this;
+};
+
+/**
+ * Hash the password of the user.
+ *
+ * @param {String} password
+ * @return {User}
+ */
+users.methods.setPassword = async function setPassword(password) {
+  const hash = await bcrypt.hash(password, 10);
+  this.password = hash;
+  return this;
+};
+
+/**
+ * Compare the password.
+ *
+ * @param {String} password
+ * @return {User}
+ */
+users.methods.isValidPassword = async function isValidPassword(password) {
+  const compare = await bcrypt.compare(password, this.password);
+  return compare;
 };
 
 module.exports = mongoose.model('Users', users);
