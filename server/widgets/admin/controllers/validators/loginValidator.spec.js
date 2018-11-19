@@ -21,10 +21,4 @@ describe('INT NEWS SCREEN - schema - admin', () => {
     expect(result.length).toBe(1);
     expect(result[0].property).toBe('instance');
   });
-  test('should not validate this payload, email is in bad format', () => {
-    payload.email = 'ppppppp';
-    const result = validate(payload, loginValidator);
-    expect(result.length).toBe(2);
-    expect(result[0].property).toBe('instance.email');
-  });
 });

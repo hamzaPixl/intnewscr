@@ -3,19 +3,19 @@ const userMapper = require('./userMapper');
 describe('INT NEWS SCREEN - ADMIN - mappers - userMapper', () => {
   it('should map an array of user', () => {
     const payload = [{
-      source: 'source',
-      link: 'link',
-      content: 'content',
-      title: 'title',
-      createdAt: 'createdAt',
+      _id: 'id',
+      firstName: 'firstName',
+      lastName: 'lastName',
+      email: 'email',
     }];
     const user = userMapper.map(payload);
     expect(user).toBeDefined();
     expect(user.length).toBe(1);
-    expect(user[0].source).toBe(payload[0].source);
-    expect(user[0].link).toBe(payload[0].link);
-    expect(user[0].content).toBe(payload[0].content);
-    expect(user[0].title).toBe(payload[0].title);
+    expect(user[0].email).toBe(payload[0].email);
+    expect(user[0].avatar).toBeDefined();
+    expect(user[0].id).toBe(payload[0]._id);
+    expect(user[0].firstName).toBe(payload[0].firstName);
+    expect(user[0].lastName).toBe(payload[0].lastName);
     expect(user[0].date).toBe(payload[0].createdAt);
   });
   it('should map an empty array', () => {
