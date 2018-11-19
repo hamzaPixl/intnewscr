@@ -15,6 +15,7 @@ const controllers = require('./controllers');
 
 // Global Promise
 global.Promise = bluebird;
+mongoose.Promise = global.Promise;
 
 require('./infrastructure/db')(mongoose, config.mongo);
 
