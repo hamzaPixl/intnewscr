@@ -1,0 +1,8 @@
+{
+  "_id": ObjectId("5bf2c63c053ec5b60648e17b"),
+  "firstName": "Hamza",
+  "lastName": "Mounir",
+  "email": "hamza@intnewscr.com",
+  "password": "$2b$10$g/81quKouMyBN./0jhEroOfC9XE//zlvgslWpmmH9M/x55esL3E22",
+  "role": "admin"
+}

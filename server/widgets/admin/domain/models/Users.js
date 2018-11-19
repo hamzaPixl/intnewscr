@@ -5,10 +5,6 @@ const mongoosePaginate = require('mongoose-paginate');
 const { Schema } = mongoose;
 
 const users = new Schema({
-  id: {
-    type: Schema.Types.ObjectId,
-    required: true,
-  },
   firstName: {
     type: String,
     required: false,

@@ -15,7 +15,7 @@ function save(user) {
  * @returns {Users}
  */
 function findOneId(id) {
-  return Users.findOne({ id });
+  return Users.findOne({ _id: id });
 }
 
 /**

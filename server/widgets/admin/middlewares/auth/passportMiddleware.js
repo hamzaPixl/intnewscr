@@ -7,7 +7,7 @@ const errors = require('../../../../domain/models/errors');
 const { userRepository } = require('../../domain/repositories');
 
 const loginOptions = { usernameField: 'email', passwordField: 'password' };
-const jwtOptions = { secretOrKey: config.secret, jwtFromRequest: ExtractJWT.fromUrlQueryParameter(config.secret) };
+const jwtOptions = { secretOrKey: config.secret, jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken() };
 
 passport.serializeUser((user, done) => done(null, user.id));
 
@@ -30,9 +30,13 @@ passport.use('login', new Strategy(loginOptions, async (email, password, done) =
   return done(null, user, { message: 'Logged in Successfully' });
 }));
 
-passport.use('jwt', new JWTstrategy(jwtOptions, async (token, done) => {
+passport.use('jwt', new JWTstrategy(jwtOptions, async (payload, done) => {
   try {
-    return done(null, token.user);
+    const user = await userRepository.findOne(payload.email);
+    if (!user) {
+      return done(new errors.AuthenticationError('User was not found !'));
+    }
+    return done(null, user);
   } catch (error) {
     throw done(new errors.AuthenticationError('JWT malformed !'));
   }

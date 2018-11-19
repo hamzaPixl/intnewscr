@@ -1,13 +1,13 @@
 const gravatar = require('gravatar');
 
 const mapOne = ({
-  id,
+  _id,
   firstName,
   lastName,
   email,
   role,
 }) => ({
-  id,
+  id: _id,
   firstName,
   lastName,
   email,
