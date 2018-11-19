@@ -2,11 +2,12 @@ const errors = require('../domain/models/errors');
 
 function errorHandlerMiddleware(err, req, res, next) {
   let status;
-
   if (err instanceof errors.ValidationError) {
     status = 400;
   } else if (err instanceof errors.NotFoundError) {
     status = 404;
+  } else if (err instanceof errors.AuthenticationError) {
+    status = 403;
   } else {
     status = 500;
     err.name = 'API error';
