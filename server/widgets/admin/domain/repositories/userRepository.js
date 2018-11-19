@@ -11,6 +11,14 @@ function save(user) {
 }
 
 /**
+ * Retrieve user by its id
+ * @returns {Users}
+ */
+function findOneId(id) {
+  return Users.findOne({ id });
+}
+
+/**
  * Retrieve user by its email
  * @returns {Users}
  */
@@ -38,6 +46,7 @@ function deleteOne(id) {
 
 module.exports = {
   save,
+  findOneId,
   deleteOne,
   findAllByRole,
   findOne,
