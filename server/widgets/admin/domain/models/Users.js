@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const { has } = require('lodash');
 const mongoosePaginate = require('mongoose-paginate');
 
 const { Schema } = mongoose;
@@ -43,8 +44,27 @@ const users = new Schema({
 
 users.plugin(mongoosePaginate);
 
+users.methods.mergeUpdate = async function mergeUpdate(payload) {
+  if (has(payload, 'fristName')) {
+    this.firstName = payload.firstName;
+  }
+  if (has(payload, 'lastName')) {
+    this.lastName = payload.lastName;
+  }
+  if (has(payload, 'email')) {
+    this.email = payload.email;
+  }
+  if (has(payload, 'role')) {
+    this.setRole(payload.role);
+  }
+  if (has(payload, 'password')) {
+    await this.setPassword(payload.password);
+  }
+  return this;
+};
+
 /**
- * Change the role of a user.
+ * Change the role of a user
  *
  * @param {['client', 'admin']} role
  * @return {User}
