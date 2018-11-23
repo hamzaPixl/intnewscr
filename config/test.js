@@ -8,6 +8,9 @@ const config = {
     http: 'http://localhost:3000',
   },
   services: {
+    admin: {
+      stub: true,
+    },
     weather: {
       stub: true,
       ttl: 86400,

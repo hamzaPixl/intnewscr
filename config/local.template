@@ -3,11 +3,15 @@ const config = {
   defaultTimezone: 'Europe/Brussels',
   country: 'BE',
   port: 3000,
+  secret: process.env.SECRET,
   mongo: 'mongodb://localhost:27017/intnewscr',
   server: {
     http: 'http://localhost:3000',
   },
   services: {
+    admin: {
+      stub: false,
+    },
     weather: {
       stub: false,
       ttl: 86400,

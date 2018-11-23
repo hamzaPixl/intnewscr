@@ -4,10 +4,14 @@ const config = {
   country: 'BE',
   port: process.env.PORT || 3000,
   mongo: process.env.MONGO,
+  secret: process.env.SECRET,
   server: {
     http: 'http://localhost:3000',
   },
   services: {
+    admin: {
+      stub: false,
+    },
     weather: {
       stub: false,
       ttl: 86400,
