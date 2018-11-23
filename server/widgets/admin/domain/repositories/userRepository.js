@@ -40,7 +40,7 @@ function findAllByRole(role) {
  * @returns {}
  */
 function deleteOne(id) {
-  return Users.deleteOne({ id });
+  return Users.deleteOne({ _id: id });
 }
 
 
