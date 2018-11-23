@@ -6,7 +6,7 @@ const payload = {
   password: '******',
 };
 
-describe('INT NEWS SCREEN - schema - admin', () => {
+describe('INT NEWS SCREEN - schema - admin - login', () => {
   test('should validate this payload', () => {
     const result = validate(payload, loginValidator);
     expect(result).toBeNull();
