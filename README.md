@@ -200,7 +200,7 @@ Hamza Mounir
 
   First one : the goal of the widget, a simple `README.md`.
 
-  Second one : the routes documentation as a swagger file `[widgetName]Api.json`.
+  Second one : the routes documentation as a swagger file `[widgetName]Api.yml`.
 
   ## Tests
 
