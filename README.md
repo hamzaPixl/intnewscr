@@ -313,8 +313,8 @@ Hamza Mounir
 
   ## Existing Widgets
 
-  - [Admin](https://github.com/hamzaPixl/intnewscr/tree/adapt-read-me/server/widgets/admin)
+  - [Admin](https://github.com/hamzaPixl/intnewscr/tree/master/server/widgets/admin)
 
-  - [Weather](https://github.com/hamzaPixl/intnewscr/tree/adapt-read-me/server/widgets/weather)
+  - [Weather](https://github.com/hamzaPixl/intnewscr/tree/master/server/widgets/weather)
 
-  - [News](https://github.com/hamzaPixl/intnewscr/tree/adapt-read-me/server/widgets/news)
+  - [News](https://github.com/hamzaPixl/intnewscr/tree/master/server/widgets/news)
