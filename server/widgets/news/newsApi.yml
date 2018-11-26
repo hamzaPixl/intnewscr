@@ -1,0 +1,71 @@
+swagger: "2.0"
+host: "intnewscr.io"
+basePath: "/"
+info:
+  description: "News widget. Get all news for this week for a specific source."
+  version: "1.0.0"
+  title: "News"
+  contact:
+    email: "hamza@intnewscr.com"
+  license:
+    name: "MIT"
+    url: "https://github.com/hamzaPixl/intnewscr/blob/devlop/LICENSE"
+tags:
+- name: "news"
+  description: "Everything about News"
+schemes:
+- "http"
+paths:
+  /news/{source}:
+    get:
+      tags:
+      - "news"
+      summary: "Find news with a specific source"
+      description: "Returns news for this source"
+      operationId: "getNewsBySource"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "source"
+        in: "path"
+        description: "Source to retrieve the information"
+        required: true
+        type: "string"
+        enum:
+        - "rtl"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/News"
+        400:
+          description: "Validation error"
+        404:
+          description: "Source not found"
+definitions:
+  News:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      source:
+        type: "string"
+        enum:
+        - "rtl"
+      link:
+        type: "string"
+      content:
+        type: "string"
+      title:
+        type: "string"
+      createdAt:
+        type: "string"
+        format: "date-time"
+      updatedAt:
+        type: "string"
+        format: "date-time"
+      ttl:
+        type: "string"
+        default: 86400
+    xml:
+      name: "News"
