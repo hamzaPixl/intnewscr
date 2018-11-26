@@ -309,3 +309,12 @@ Hamza Mounir
       });
     });
   ```
+
+
+  ## Existing Widgets
+
+  - [Admin](https://github.com/hamzaPixl/intnewscr/tree/adapt-read-me/server/widgets/admin)
+
+  - [Weather](https://github.com/hamzaPixl/intnewscr/tree/adapt-read-me/server/widgets/weather)
+
+  - [News](https://github.com/hamzaPixl/intnewscr/tree/adapt-read-me/server/widgets/news)

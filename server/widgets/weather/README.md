@@ -1,3 +1,3 @@
-# INTNEWSCR - Weather WIDGET
+# INTNEWSCR - WEATHER WIDGET
 
   This widget is about weather only !
