@@ -1,0 +1,209 @@
+swagger: "2.0"
+host: "intnewscr.io"
+basePath: "/admin"
+info:
+  description: "Admin widget. Handle the whole application."
+  version: "1.0.0"
+  title: "Admin"
+  contact:
+    email: "hamza@intnewscr.com"
+  license:
+    name: "MIT"
+    url: "https://github.com/hamzaPixl/intnewscr/blob/devlop/LICENSE"
+tags:
+- name: "admin"
+  description: "Backoffice"
+schemes:
+- "http"
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+paths:
+  /auth:
+    get:
+      tags:
+      - "authenticate"
+      summary: "Authenticate the user in the backoffice"
+      description: "Returns token to be able to call other routes"
+      operationId: "auth"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Auth"
+        400:
+          description: "Validation error"
+        401:
+          description: "AuthenticationError"
+  /users/me:
+    get:
+      security:
+        - Bearer: []
+      tags:
+      - "user"
+      summary: "Find profil of the authenticate user"
+      description: "Returns profil"
+      operationId: "getMe"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        400:
+          description: "Validation error"
+        404:
+          description: "Not found error"
+        401:
+          description: "AuthenticationError"
+  /users:
+    post:
+      tags:
+      - "user"
+      security:
+        - Bearer: []
+      summary: "Add a user"
+      description: "Add a user"
+      operationId: "addUser"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "User object that needs to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        400:
+          description: "Validation error"
+        404:
+          description: "Not found error"
+        401:
+          description: "AuthenticationError"
+  /users/{email}:
+    delete:
+      tags:
+      - "user"
+      security:
+        - Bearer: []
+      summary: "Delete user"
+      description: "Delete user"
+      operationId: "deleteUser"
+      parameters:
+      - name: "email"
+        in: "path"
+        description: "Email of the user"
+        required: true
+        type: "string"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        400:
+          description: "Validation error"
+        404:
+          description: "Not found error"
+        401:
+          description: "AuthenticationError"
+    put:
+      tags:
+      - "user"
+      security:
+        - Bearer: []
+      summary: "Update user"
+      description: "Update user"
+      operationId: "updateUser"
+      parameters:
+      - name: "email"
+        in: "path"
+        description: "Email of the user"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "User object that needs to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        400:
+          description: "Validation error"
+        404:
+          description: "Not found error"
+        401:
+          description: "AuthenticationError"
+    get:
+      tags:
+      - "user"
+      security:
+        - Bearer: []
+      summary: "Find user"
+      description: "Returns user"
+      operationId: "getUser"
+      parameters:
+      - name: "email"
+        in: "path"
+        description: "Email of the user"
+        required: true
+        type: "string"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        400:
+          description: "Validation error"
+        404:
+          description: "Not found error"
+        401:
+          description: "AuthenticationError"
+definitions:
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      email:
+        type: "string"
+      role:
+        type: "string"
+      avatar:
+        type: "string"
+    xml:
+      name: "User"
+  Auth:
+    type: "object"
+    properties:
+      token:
+        type: "string"
+    xml:
+      name: "Auth"
