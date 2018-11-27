@@ -84,7 +84,7 @@ Hamza Mounir
 
   We are going to create a `news` widget. It will allows us to call the API and retrieve the informations of today.
 
-  ## Creation
+  **Creation**
 
   Let's start.
 
@@ -186,7 +186,7 @@ Hamza Mounir
       |-- integration-tests
   ```
 
-  ## Stub
+  **Stub**
 
   Remember the stub flag on the config file ? Of course, if its true, no request in external mode will be done. We will use the `mocks` object to return a defined value.
 
@@ -194,7 +194,7 @@ Hamza Mounir
 
   See how it used in an existing widget.
 
-  ## Documentation
+  **Documentation**
 
   Each Widget contains some files for the documentation, to make it easier to understand.
 
@@ -202,11 +202,11 @@ Hamza Mounir
 
   Second one : the routes documentation as a swagger file `apiDoc.yml`.
 
-  ## Tests
+  **Tests**
 
   Tests are there to avoid failure or regression in a widget. Make sure that all things that you devlopped is going well.
 
-  ### Unit tests
+  **Unit tests**
 
   For example this file named `example.js` the file for the unit tests need to be `example.spec.js`.
 
@@ -265,7 +265,7 @@ Hamza Mounir
     });
   ```
 
-  ### Integration tests
+  **Integration tests**
 
   In the folder `tests/integration-tests` you can define tests for your end to end test, with an API call and so on.
 
@@ -311,7 +311,7 @@ Hamza Mounir
   ```
 
 
-  ## Existing Widgets
+  **Existing Widgets**
 
   - [Admin](https://github.com/hamzaPixl/intnewscr/tree/master/server/widgets/admin)
 
