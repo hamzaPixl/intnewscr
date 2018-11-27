@@ -1,4 +1,4 @@
-remote_theme: ankitsultana/accent@gem
+remote_theme: chesterhow/tale
 title: Intnewscr.
 
 avatar: https://avatars3.githubusercontent.com/u/20286003?s=460&v=4
@@ -24,4 +24,3 @@ share-links-active:
 read_time: true
 words_per_minute: 200
 search: true
-
