@@ -1,7 +1,7 @@
 # INTNEWSCR
 
 [![GitHub](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/hamzaPixl/intnewscr/blob/devlop/LICENSE)
-[![GitHub ast commit](https://img.shields.io/github/last-commit/google/skia.svg)](https://github.com/hamzaPixl/intnewscr/commits/devlop)
+[![GitHub last commit](https://img.shields.io/github/last-commit/google/skia.svg)](https://github.com/hamzaPixl/intnewscr/commits/devlop)
 [![Travis](https://img.shields.io/appveyor/ci/gruntjs/grunt.svg)](https://travis-ci.org/hamzaPixl/intnewscr#)
 
 # Author
@@ -200,7 +200,7 @@ Hamza Mounir
 
   First one : the goal of the widget, a simple `README.md`.
 
-  Second one : the routes documentation as a swagger file `[widgetName]Api.yml`.
+  Second one : the routes documentation as a swagger file `apiDoc.yml`.
 
   ## Tests
 
