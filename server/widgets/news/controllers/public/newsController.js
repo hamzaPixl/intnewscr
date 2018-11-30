@@ -4,6 +4,13 @@ const { newsValidator } = require('../validators');
 const { newsMapper } = require('../mappers');
 const middlewares = require('../../../../middlewares/http');
 
+router.get('/sources',
+  (req, res, next) => newsServices
+  .getSources()
+  .then(result => res.json(result))
+  .catch(next)
+);
+
 router.get('/:source',
   middlewares.validateParamMiddleware(newsValidator),
   (req, res, next) => newsServices
