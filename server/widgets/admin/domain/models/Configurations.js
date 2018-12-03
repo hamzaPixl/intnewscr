@@ -52,6 +52,13 @@ configurations.methods.mergeUpdate = function mergeUpdate(payload) {
   return this;
 };
 
+configurations.methods.getView = function getView(viewId) {
+  if (!this.views || !this.views.length) {
+    return null;
+  }
+  return this.views.find(v => v._id === viewId);
+};
+
 configurations.methods.addView = function addView(payload) {
   if (!this.views || !this.views.length) {
     this.views = [];
