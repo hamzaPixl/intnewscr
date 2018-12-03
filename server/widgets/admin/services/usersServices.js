@@ -53,6 +53,7 @@ async function getUser(admin, email) {
  * @throws {ValidationError} user already exists
  */
 async function addUser(admin, payload) {
+  userHasRight(admin);
   const userExists = await userRepository.findOne(payload.email);
   if (userExists) {
     throw new errors.ValidationError('User already exits');
