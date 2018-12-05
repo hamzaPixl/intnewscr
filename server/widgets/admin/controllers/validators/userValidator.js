@@ -3,8 +3,8 @@ const userSchema = {
   type: 'object',
   properties: {
     email: { type: 'email' },
-    firstName: { type: 'firstName' },
-    lastName: { type: 'lastName' },
+    firstName: { type: 'string' },
+    lastName: { type: 'string' },
     password: { type: 'string' },
   },
   required: ['email', 'password', 'firstName', 'lastName'],

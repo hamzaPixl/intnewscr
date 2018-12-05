@@ -2,8 +2,8 @@ const configurationsSchema = {
   id: 'configuration',
   type: 'object',
   properties: {
-    name: { type: 'name' },
-    description: { type: 'description' },
+    name: { type: 'string' },
+    description: { type: 'string' },
   },
   required: ['name', 'description'],
 };
