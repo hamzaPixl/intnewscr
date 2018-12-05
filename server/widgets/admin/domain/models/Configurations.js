@@ -56,7 +56,7 @@ configurations.methods.getView = function getView(viewId) {
   if (!this.views || !this.views.length) {
     return null;
   }
-  return this.views.find(v => v._id === viewId);
+  return this.views.find(v => `${v._id}` === viewId);
 };
 
 configurations.methods.addView = function addView(payload) {
@@ -69,7 +69,7 @@ configurations.methods.addView = function addView(payload) {
 };
 
 configurations.methods.updateView = function updateView(id, payload) {
-  const view = this.views.find(v => v._id === id);
+  const view = this.views.find(v => `${v._id}` === id);
   if (!view) {
     throw new errors.NotFoundError('View not found');
   }
@@ -77,11 +77,11 @@ configurations.methods.updateView = function updateView(id, payload) {
 };
 
 configurations.methods.deleteView = function deleteView(id) {
-  const view = this.views.find(v => v._id === id);
+  const view = this.views.find(v => `${v._id}` === id);
   if (!view) {
     throw new errors.NotFoundError('View not found');
   }
-  this.views = this.views.filter(v => v._id !== id);
+  this.views = this.views.filter(v => `${v._id}` !== id);
   return this;
 };
 

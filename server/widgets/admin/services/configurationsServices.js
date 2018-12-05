@@ -38,11 +38,12 @@ async function getAllConfigurations(user) {
  * @returns {Object} configuration
  */
 async function getConfiguration(user, configurationId) {
-  const configuration = await configurationRepository.findOne(user.email, configurationId);
-  if (!configuration) {
+  try {
+    const configuration = await configurationRepository.findOne(user.email, configurationId);
+    return configuration;
+  } catch (error) {
     throw new errors.NotFoundError('Configuration was not found');
   }
-  return configuration;
 }
 
 /**
