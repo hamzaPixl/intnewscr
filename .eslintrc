@@ -9,6 +9,7 @@
   ],
   "rules": {
     "no-use-before-define": "off",
+    "no-underscore-dangle": "off",
     "max-len": "off",
     "comma-dangle": ["error", {
       "arrays": "always-multiline",

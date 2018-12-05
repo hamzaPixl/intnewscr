@@ -5,8 +5,8 @@ const userValidator = require('./userValidator');
 const payload = {
   email: 'email@example.com',
   password: '******',
-  firstName: '******',
-  lastName: '******',
+  firstName: 'firstName',
+  lastName: 'lastName',
 };
 
 describe('INT NEWS SCREEN - schema - admin - user', () => {

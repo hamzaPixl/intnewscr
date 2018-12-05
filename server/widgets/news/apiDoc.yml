@@ -16,6 +16,23 @@ tags:
 schemes:
 - "http"
 paths:
+  /news/sources:
+    get:
+      tags:
+      - "news"
+      summary: "Give all available sources"
+      description: "Give all available sources"
+      operationId: "getSources"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+              type: array
+              items:
+                type: string
+                example: "rtl"
   /news/{source}:
     get:
       tags:

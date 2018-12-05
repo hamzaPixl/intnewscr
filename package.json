@@ -8,8 +8,9 @@
     "node": "8.9.2"
   },
   "scripts": {
-    "test": "jest spec testPathIgnorePatterns",
-    "test-integration": "jest integration",
+    "test": "NODE_ENV=test jest spec testPathIgnorePatterns",
+    "test-coverage": "NODE_ENV=test jest spec testPathIgnorePatterns --coverage",
+    "test-integration": "NODE_ENV=integration jest integration",
     "poststart": "pm2 logs --lines 0",
     "lint": "eslint . --ext .js",
     "start": "pm2 start pm2.json",

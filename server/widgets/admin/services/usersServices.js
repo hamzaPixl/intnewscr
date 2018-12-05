@@ -3,19 +3,6 @@ const { userRepository } = require('../domain/repositories');
 const { userFactory } = require('../domain/factories');
 
 /**
- * Verify that the user has right access
- *
- * @param {Object} user
- * @throws {AuthenticationError} user does not have access
- */
-function userHasRight(user) {
-  const hasRight = user.role === 'admin';
-  if (!hasRight) {
-    throw new errors.AuthenticationError('You dont have right to this action');
-  }
-}
-
-/**
  * Get profil from req
  *
  * @param {Object} user
@@ -35,7 +22,7 @@ async function getProfil(user) {
  * @throws {NotFoundError} user does not exists
  */
 async function getUser(admin, email) {
-  userHasRight(admin);
+  admin.hasRight();
   const user = await userRepository.findOne(email);
   if (!user) {
     throw new errors.NotFoundError('User was not found');
@@ -53,6 +40,7 @@ async function getUser(admin, email) {
  * @throws {ValidationError} user already exists
  */
 async function addUser(admin, payload) {
+  admin.hasRight();
   const userExists = await userRepository.findOne(payload.email);
   if (userExists) {
     throw new errors.ValidationError('User already exits');

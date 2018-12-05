@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const { has } = require('lodash');
 const mongoosePaginate = require('mongoose-paginate');
+const errors = require('../../../../domain/models/errors');
 
 const { Schema } = mongoose;
 
@@ -61,6 +62,18 @@ users.methods.mergeUpdate = async function mergeUpdate(payload) {
     await this.setPassword(payload.password);
   }
   return this;
+};
+
+/**
+ * Verify that the user has right access
+ *
+ * @param {Object} user
+ * @throws {AuthenticationError} user does not have access
+*/
+users.methods.hasRight = function hasRight() {
+  if (this.role !== 'admin') {
+    throw new errors.AuthenticationError('You dont have right to this action');
+  }
 };
 
 /**
