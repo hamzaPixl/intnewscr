@@ -11,7 +11,7 @@ info:
     name: "MIT"
     url: "https://github.com/hamzaPixl/intnewscr/blob/devlop/LICENSE"
 tags:
-- name: "admin"
+- name: "Admin"
   description: "Backoffice"
 schemes:
 - "http"
@@ -182,6 +182,291 @@ paths:
           description: "Not found error"
         401:
           description: "AuthenticationError"
+  /configurations:
+    get:
+      tags:
+      - "configurations"
+      security:
+        - Bearer: []
+      summary: "Find all configurations"
+      description: "Returns call configurations"
+      operationId: "getConfigurations"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Configuration"
+        400:
+          description: "Validation error"
+        404:
+          description: "Not found error"
+        401:
+          description: "AuthenticationError"
+    post:
+      security:
+        - Bearer: []
+      tags:
+      - "configurations"
+      summary: "Add a configuration for the user"
+      description: "Create a configuration in admin side"
+      operationId: "createConfiguration"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Configuration object that needs to be added"
+        required: true
+        schema:
+          type: "object"
+          properties:
+            name:
+              type: "string"
+            description:
+              type: "string"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Configuration"
+        400:
+          description: "Validation error"
+        401:
+          description: "AuthenticationError"
+  /configurations/{configurationId}:
+    delete:
+      tags:
+      - "configurations"
+      security:
+        - Bearer: []
+      summary: "Delete a configuration"
+      description: "Delete configuration"
+      operationId: "deleteConfiguration"
+      parameters:
+      - name: "configurationId"
+        in: "path"
+        description: "Id of the configuration"
+        required: true
+        type: "string"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+        400:
+          description: "Validation error"
+        404:
+          description: "Not found error"
+        401:
+          description: "AuthenticationError"
+    put:
+      tags:
+      - "configurations"
+      security:
+        - Bearer: []
+      summary: "Update configuration"
+      description: "Update configuration"
+      operationId: "updateConfiguration"
+      parameters:
+      - name: "configurationId"
+        in: "path"
+        description: "Id of the configuration"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Configuration object that needs to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/Configuration"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Configuration"
+        400:
+          description: "Validation error"
+        404:
+          description: "Not found error"
+        401:
+          description: "AuthenticationError"
+    get:
+      tags:
+      - "configurations"
+      security:
+        - Bearer: []
+      summary: "Find configuration"
+      description: "Returns configuration"
+      operationId: "getConfiguration"
+      parameters:
+      - name: "configurationId"
+        in: "path"
+        description: "Id of the configuration"
+        required: true
+        type: "string"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Configuration"
+        400:
+          description: "Validation error"
+        404:
+          description: "Not found error"
+        401:
+          description: "AuthenticationError"
+  /configurations/{configurationId}/views:
+   post:
+      security:
+        - Bearer: []
+      tags:
+      - "views"
+      summary: "Add a view for a configuration"
+      description: "Create a view in admin side"
+      operationId: "createView"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "View object that needs to be added"
+        required: true
+        schema:
+          type: "object"
+          properties:
+            name:
+              type: "string"
+            widget:
+              type: "string"
+            path:
+              type: "string"
+            queryParams:
+              type: "string"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/View"
+        400:
+          description: "Validation error"
+        401:
+          description: "AuthenticationError"
+  /configurations/{configurationId}/views/{viewId}:
+    delete:
+      tags:
+      - "views"
+      security:
+        - Bearer: []
+      summary: "Delete a view"
+      description: "Delete ciew"
+      operationId: "deleteView"
+      parameters:
+      - name: "configurationId"
+        in: "path"
+        description: "Id of the configuration"
+        required: true
+        type: "string"
+      - name: "viewId"
+        in: "path"
+        description: "Id of the view"
+        required: true
+        type: "string"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Successful operation"
+        400:
+          description: "Validation error"
+        404:
+          description: "Not found error"
+        401:
+          description: "AuthenticationError"
+    put:
+      tags:
+      - "views"
+      security:
+        - Bearer: []
+      summary: "Update view"
+      description: "Update view"
+      operationId: "updateView"
+      parameters:
+      - name: "configurationId"
+        in: "path"
+        description: "Id of the configuration"
+        required: true
+        type: "string"
+      - name: "viewId"
+        in: "path"
+        description: "Id of the view"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "View object that needs to be added"
+        required: true
+        schema:
+          $ref: "#/definitions/View"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Configuration"
+        400:
+          description: "Validation error"
+        404:
+          description: "Not found error"
+        401:
+          description: "AuthenticationError"
+    get:
+      tags:
+      - "views"
+      security:
+        - Bearer: []
+      summary: "Find view"
+      description: "Returns view"
+      operationId: "getView"
+      parameters:
+      - name: "configurationId"
+        in: "path"
+        description: "Id of the configuration"
+        required: true
+        type: "string"
+      - name: "viewId"
+        in: "path"
+        description: "Id of the view"
+        required: true
+        type: "string"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Configuration"
+        400:
+          description: "Validation error"
+        404:
+          description: "Not found error"
+        401:
+          description: "AuthenticationError"
 definitions:
   User:
     type: "object"
@@ -200,6 +485,38 @@ definitions:
         type: "string"
     xml:
       name: "User"
+  View:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      name:
+        type: "string"
+      widget:
+        type: "string"
+      path:
+        type: "string"
+      queryParams:
+        type: "string"
+    xml:
+      name: "View"
+  Configuration:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      name:
+        type: "string"
+      description:
+        type: "string"
+      author:
+        type: "string"
+      views:
+        type: "array"
+        items:
+          $ref: "#/definitions/View"
+    xml:
+      name: "Configuration"
   Auth:
     type: "object"
     properties:

@@ -24,6 +24,11 @@ async function getBySource({ source }) {
     .then(() => newsRepository.findAllBySource(source));
 }
 
+async function getSources() {
+  return Promise.resolve(sources);
+}
+
 module.exports = {
   getBySource,
+  getSources,
 };

@@ -8,4 +8,10 @@ describe('INT NEWS SCREEN - NEWS - services mock - newsService', () => {
     expect(news.length).toBe(resultService.length);
     expect(news).toMatchObject(resultService);
   });
+  it('should always get sources', async () => {
+    const resultService = await newsService.getSources();
+    expect(resultService).toBeDefined();
+    expect(resultService.length).toBe(1);
+    expect(['rtl']).toMatchObject(resultService);
+  });
 });

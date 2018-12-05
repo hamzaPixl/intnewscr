@@ -9,257 +9,695 @@
 			"name": "ADMIN",
 			"item": [
 				{
-					"name": "Authenticate",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
+					"name": "auth",
+					"item": [
+						{
+							"name": "Authenticate",
+							"event": [
 								{
-									"key": "email",
-									"value": "hamza@intnewscr.com",
-									"type": "text"
+									"listen": "test",
+									"script": {
+										"id": "a73df777-bbcb-4a1f-8568-7407360aed39",
+										"exec": [
+											"postman.setEnvironmentVariable(\"token\", JSON.parse(responseBody).token);",
+											"pm.globals.set(\"token\", JSON.parse(responseBody).token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/x-www-form-urlencoded",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "email",
+											"value": "{{username}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{password}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{host}}{{port}}/admin/auth",
+									"host": [
+										"{{host}}{{port}}"
+									],
+									"path": [
+										"admin",
+										"auth"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "users",
+					"item": [
+						{
+							"name": "Add users",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "18053ebb-c512-4121-9c0f-dfa206e4af0f",
+										"exec": [
+											"postman.setEnvironmentVariable(\"user\", JSON.parse(responseBody).email);",
+											"pm.globals.set(\"user\", JSON.parse(responseBody).email);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"firstName\": \"hamza\",\n\t\"lastName\": \"mounir\",\n\t\"email\": \"test@intnewscr.com\",\n\t\"password\": \"admin\"\n}"
+								},
+								"url": {
+									"raw": "{{host}}{{port}}/admin/users",
+									"host": [
+										"{{host}}{{port}}"
+									],
+									"path": [
+										"admin",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete users",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"firstName\": \"hamza\",\n\t\"lastName\": \"mounir\",\n\t\"email\": \"client@intnewscr.com\",\n\t\"password\": \"admin\"\n}"
+								},
+								"url": {
+									"raw": "{{host}}{{port}}/admin/users/{{user}}",
+									"host": [
+										"{{host}}{{port}}"
+									],
+									"path": [
+										"admin",
+										"users",
+										"{{user}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update users",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"firstName\": \"hamza\",\n\t\"lastName\": \"mounir\",\n\t\"password\": \"azerty\"\n}"
+								},
+								"url": {
+									"raw": "{{host}}{{port}}/admin/users/{{user}}",
+									"host": [
+										"{{host}}{{port}}"
+									],
+									"path": [
+										"admin",
+										"users",
+										"{{user}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get user",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}{{port}}/admin/users/{{user}}",
+									"host": [
+										"{{host}}{{port}}"
+									],
+									"path": [
+										"admin",
+										"users",
+										"{{user}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get profil",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}{{port}}/admin/users/me",
+									"host": [
+										"{{host}}{{port}}"
+									],
+									"path": [
+										"admin",
+										"users",
+										"me"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "configurations",
+					"item": [
+						{
+							"name": "views",
+							"item": [
+								{
+									"name": "Add view",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "96ed70b0-fb7e-46c8-90be-53033f8d8beb",
+												"exec": [
+													"postman.setEnvironmentVariable(\"viewId\", JSON.parse(responseBody).id);",
+													"pm.globals.set(\"viewId\", JSON.parse(responseBody).id);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6ImhhbXphQGludG5ld3Njci5jb20iLCJpYXQiOjE1NDI5NzYyNDZ9.Tux2uNNKl8EjEMuuVR0QIjX6g9SGxew5h_ioPHgoCik",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"name\": \"view 1\",\n\t\"widget\": \"news\",\n\t\"path\": \"/news/rtl\",\n\t\"queryParams\": \"\"\n}"
+										},
+										"url": {
+											"raw": "{{host}}{{port}}/admin/configurations/{{configurationId}}/views",
+											"host": [
+												"{{host}}{{port}}"
+											],
+											"path": [
+												"admin",
+												"configurations",
+												"{{configurationId}}",
+												"views"
+											]
+										}
+									},
+									"response": []
 								},
 								{
-									"key": "password",
-									"value": "azerty",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://localhost:3000/admin/auth",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"admin",
-								"auth"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Add users",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
+									"name": "Get view",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6ImhhbXphQGludG5ld3Njci5jb20iLCJpYXQiOjE1NDI5NzYyNDZ9.Tux2uNNKl8EjEMuuVR0QIjX6g9SGxew5h_ioPHgoCik",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"name\": \"configuration 1\",\n\t\"description\": \"First configuration by default\"\n}"
+										},
+										"url": {
+											"raw": "{{host}}{{port}}/admin/configurations/{{configurationId}}/views/{{viewId}}",
+											"host": [
+												"{{host}}{{port}}"
+											],
+											"path": [
+												"admin",
+												"configurations",
+												"{{configurationId}}",
+												"views",
+												"{{viewId}}"
+											]
+										}
+									},
+									"response": []
+								},
 								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6ImhhbXphQGludG5ld3Njci5jb20iLCJpYXQiOjE1NDI5NzYyNDZ9.Tux2uNNKl8EjEMuuVR0QIjX6g9SGxew5h_ioPHgoCik",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"firstName\": \"hamza\",\n\t\"lastName\": \"mounir\",\n\t\"email\": \"client@intnewscr.com\",\n\t\"password\": \"admin\"\n}"
-						},
-						"url": {
-							"raw": "http://localhost:3000/admin/users",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"admin",
-								"users"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete users",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
+									"name": "Update view",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6ImhhbXphQGludG5ld3Njci5jb20iLCJpYXQiOjE1NDI5NzYyNDZ9.Tux2uNNKl8EjEMuuVR0QIjX6g9SGxew5h_ioPHgoCik",
+													"type": "string"
+												}
+											]
+										},
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n\t\"name\": \"First view\"\n}"
+										},
+										"url": {
+											"raw": "{{host}}{{port}}/admin/configurations/{{configurationId}}/views/{{viewId}}",
+											"host": [
+												"{{host}}{{port}}"
+											],
+											"path": [
+												"admin",
+												"configurations",
+												"{{configurationId}}",
+												"views",
+												"{{viewId}}"
+											]
+										}
+									},
+									"response": []
+								},
 								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6ImhhbXphQGludG5ld3Njci5jb20iLCJpYXQiOjE1NDI5ODExNTl9.iDE84m6OXA1_65NypQcgBNeE7HV-cfl-arV4-AovVWo",
-									"type": "string"
+									"name": "Delete view",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6ImhhbXphQGludG5ld3Njci5jb20iLCJpYXQiOjE1NDI5NzYyNDZ9.Tux2uNNKl8EjEMuuVR0QIjX6g9SGxew5h_ioPHgoCik",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": ""
+										},
+										"url": {
+											"raw": "{{host}}{{port}}/admin/configurations/{{configurationId}}/views/{{viewId}}",
+											"host": [
+												"{{host}}{{port}}"
+											],
+											"path": [
+												"admin",
+												"configurations",
+												"{{configurationId}}",
+												"views",
+												"{{viewId}}"
+											]
+										}
+									},
+									"response": []
 								}
-							]
-						},
-						"method": "DELETE",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"firstName\": \"hamza\",\n\t\"lastName\": \"mounir\",\n\t\"email\": \"client@intnewscr.com\",\n\t\"password\": \"admin\"\n}"
-						},
-						"url": {
-							"raw": "http://localhost:3000/admin/users/client@intnewscr.com",
-							"protocol": "http",
-							"host": [
-								"localhost"
 							],
-							"port": "3000",
-							"path": [
-								"admin",
-								"users",
-								"client@intnewscr.com"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update users",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
+							"_postman_isSubFolder": true
+						},
+						{
+							"name": "Add configuration",
+							"event": [
 								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6ImhhbXphQGludG5ld3Njci5jb20iLCJpYXQiOjE1NDI5NzYyNDZ9.Tux2uNNKl8EjEMuuVR0QIjX6g9SGxew5h_ioPHgoCik",
-									"type": "string"
+									"listen": "test",
+									"script": {
+										"id": "ee82b9f2-3a28-49e5-9cb0-e1fb2d6e3502",
+										"exec": [
+											"postman.setEnvironmentVariable(\"configurationId\", JSON.parse(responseBody).id);",
+											"pm.globals.set(\"configurationId\", JSON.parse(responseBody).id);"
+										],
+										"type": "text/javascript"
+									}
 								}
-							]
-						},
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"firstName\": \"hamza\",\n\t\"lastName\": \"mounir\",\n\t\"password\": \"azerty\"\n}"
-						},
-						"url": {
-							"raw": "http://localhost:3000/admin/users/hamza@intnewscr.com",
-							"protocol": "http",
-							"host": [
-								"localhost"
 							],
-							"port": "3000",
-							"path": [
-								"admin",
-								"users",
-								"hamza@intnewscr.com"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get user",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6ImhhbXphQGludG5ld3Njci5jb20iLCJpYXQiOjE1NDI5ODExNTl9.iDE84m6OXA1_65NypQcgBNeE7HV-cfl-arV4-AovVWo",
-									"type": "string"
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"configuration 1\",\n\t\"description\": \"First configuration by default\"\n}"
+								},
+								"url": {
+									"raw": "{{host}}{{port}}/admin/configurations",
+									"host": [
+										"{{host}}{{port}}"
+									],
+									"path": [
+										"admin",
+										"configurations"
+									]
 								}
-							]
+							},
+							"response": []
 						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "http://localhost:3000/admin/users/hamza@intnewscr.com",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"admin",
-								"users",
-								"hamza@intnewscr.com"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get profil",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJlbWFpbCI6ImhhbXphQGludG5ld3Njci5jb20iLCJpYXQiOjE1NDI5ODExNTl9.iDE84m6OXA1_65NypQcgBNeE7HV-cfl-arV4-AovVWo",
-									"type": "string"
+						{
+							"name": "Get all configurations",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}{{port}}/admin/configurations",
+									"host": [
+										"{{host}}{{port}}"
+									],
+									"path": [
+										"admin",
+										"configurations"
+									]
 								}
-							]
+							},
+							"response": []
 						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/json",
-								"type": "text",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
+						{
+							"name": "Get configuration",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}{{port}}/admin/configurations/{{configurationId}}",
+									"host": [
+										"{{host}}{{port}}"
+									],
+									"path": [
+										"admin",
+										"configurations",
+										"{{configurationId}}"
+									]
+								}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "http://localhost:3000/admin/users/me",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"admin",
-								"users",
-								"me"
-							]
+						{
+							"name": "Update configuration",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"First Configuration\"\n}"
+								},
+								"url": {
+									"raw": "{{host}}{{port}}/admin/configurations/{{configurationId}}",
+									"host": [
+										"{{host}}{{port}}"
+									],
+									"path": [
+										"admin",
+										"configurations",
+										"{{configurationId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete configuration",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}{{port}}/admin/configurations/{{configurationId}}",
+									"host": [
+										"{{host}}{{port}}"
+									],
+									"path": [
+										"admin",
+										"configurations",
+										"{{configurationId}}"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					],
+					"_postman_isSubFolder": true
 				}
 			]
 		},
@@ -276,15 +714,35 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:3000/news/rtl",
-							"protocol": "http",
+							"raw": "{{host}}{{port}}/news/rtl",
 							"host": [
-								"localhost"
+								"{{host}}{{port}}"
 							],
-							"port": "3000",
 							"path": [
 								"news",
 								"rtl"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get sources",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{host}}{{port}}/news/sources",
+							"host": [
+								"{{host}}{{port}}"
+							],
+							"path": [
+								"news",
+								"sources"
 							]
 						}
 					},
@@ -305,12 +763,10 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:3000/weathers",
-							"protocol": "http",
+							"raw": "{{host}}{{port}}/weathers",
 							"host": [
-								"localhost"
+								"{{host}}{{port}}"
 							],
-							"port": "3000",
 							"path": [
 								"weathers"
 							]
@@ -328,12 +784,10 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "http://localhost:3000/weathers/city/casablanca",
-							"protocol": "http",
+							"raw": "{{host}}{{port}}/weathers/city/casablanca",
 							"host": [
-								"localhost"
+								"{{host}}{{port}}"
 							],
-							"port": "3000",
 							"path": [
 								"weathers",
 								"city",
@@ -344,6 +798,68 @@
 					"response": []
 				}
 			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "353140a0-5865-4c0b-bcb4-9104f8c1d702",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "a88215c7-a65a-4964-86f6-2c0d9d7c5bfe",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "8320609e-f807-4e93-90fb-eac6b7dfcdee",
+			"key": "username",
+			"value": "hamza@intnewscr.com",
+			"type": "string"
+		},
+		{
+			"id": "332e5766-dce6-4463-8194-56beb91cd43e",
+			"key": "password",
+			"value": "azerty",
+			"type": "string"
+		},
+		{
+			"id": "5d21ac0d-c5bb-4f1f-b137-484f799e3e8c",
+			"key": "configurationId",
+			"value": "",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"id": "d192056a-5a78-4b98-8388-9dcca44886d6",
+			"key": "viewId",
+			"value": "",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"id": "c41df8fa-6634-4f5f-9299-361b1ea10541",
+			"key": "host",
+			"value": "http://localhost:",
+			"type": "string"
+		},
+		{
+			"id": "dd9962e8-1f95-4234-acd3-daea96225f64",
+			"key": "port",
+			"value": "3000",
+			"type": "string"
 		}
 	]
 }
