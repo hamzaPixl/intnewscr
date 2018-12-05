@@ -27,7 +27,6 @@ router.get('/:configurationId',
 );
 
 router.put('/:configurationId',
-  middlewares.validateContentMiddleware(configurationsValidator),
   (req, res, next) => configurationsServices
   .updateConfiguration(req.user, req.params.configurationId, req.body)
   .then(configuration => res.json(configurationsMapper.mapOne(configuration)))
@@ -59,7 +58,6 @@ router.get('/:configurationId/views/:viewId',
 );
 
 router.put('/:configurationId/views/:viewId',
-  middlewares.validateContentMiddleware(viewValidator),
   (req, res, next) => configurationsServices
   .updateView(req.user, req.params.configurationId, req.params.viewId, req.body)
   .then(view => res.json(viewMapper.mapOne(view)))
