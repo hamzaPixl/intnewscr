@@ -51,6 +51,7 @@
     "pm2": "^3.2.2",
     "rss-parser": "^3.5.2",
     "superagent": "^4.0.0-beta.5",
+    "swagger-ui-express": "^4.0.1",
     "traverse": "^0.6.6",
     "winston": "^2.3.1",
     "yahoo-weather": "^2.2.2"
