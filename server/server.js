@@ -29,6 +29,8 @@ server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(passport.initialize());
 server.use(passport.session());
+
+server.use('/docs', middlewares.docMiddleware.serve, middlewares.docMiddleware.setup);
 server.use('/', controllers);
 
 server.use(middlewares.notFoundMiddleware);
