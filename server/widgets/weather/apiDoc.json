@@ -1,0 +1,134 @@
+{
+  "swagger": "2.0",
+  "host": "intnewscr.io",
+  "basePath": "/",
+  "info": {
+    "description": "Weather widget. Get the weather forecast to see if an umbrella is needed.",
+    "version": "1.0.0",
+    "title": "Weather",
+    "contact": {
+      "email": "hamza@intnewscr.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://github.com/hamzaPixl/intnewscr/blob/devlop/LICENSE"
+    }
+  },
+  "tags": [
+    {
+      "name": "weather",
+      "description": "Weather forecast"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/weathers": {
+      "get": {
+        "tags": [
+          "weather"
+        ],
+        "summary": "Find weather forecast for local city",
+        "description": "Returns weather forecast for local city",
+        "operationId": "getWeather",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/Weather"
+            }
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        }
+      }
+    },
+    "/weathers/{city}": {
+      "get": {
+        "tags": [
+          "weather"
+        ],
+        "summary": "Find weather forecast for specific city",
+        "description": "Returns weather forecast for this city",
+        "operationId": "getWeatherByCity",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "city",
+            "in": "path",
+            "description": "City to retrieve the weather forecast",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/Weather"
+            }
+          },
+          "400": {
+            "description": "Validation error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Weather": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "location": {
+          "type": "string"
+        },
+        "units": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "day": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "high": {
+          "type": "integer"
+        },
+        "low": {
+          "type": "integer"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ttl": {
+          "type": "string",
+          "default": 86400
+        }
+      },
+      "xml": {
+        "name": "Weather"
+      }
+    }
+  }
+}
