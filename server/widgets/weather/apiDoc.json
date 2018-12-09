@@ -1,28 +1,4 @@
 {
-  "swagger": "2.0",
-  "host": "intnewscr.io",
-  "basePath": "/",
-  "info": {
-    "description": "Weather widget. Get the weather forecast to see if an umbrella is needed.",
-    "version": "1.0.0",
-    "title": "Weather",
-    "contact": {
-      "email": "hamza@intnewscr.com"
-    },
-    "license": {
-      "name": "MIT",
-      "url": "https://github.com/hamzaPixl/intnewscr/blob/devlop/LICENSE"
-    }
-  },
-  "tags": [
-    {
-      "name": "weather",
-      "description": "Weather forecast"
-    }
-  ],
-  "schemes": [
-    "http"
-  ],
   "paths": {
     "/weathers": {
       "get": {

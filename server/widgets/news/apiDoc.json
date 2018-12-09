@@ -1,28 +1,4 @@
 {
-  "swagger": "2.0",
-  "host": "intnewscr.io",
-  "basePath": "/",
-  "info": {
-    "description": "News widget. Get all news for this week for a specific source.",
-    "version": "1.0.0",
-    "title": "News",
-    "contact": {
-      "email": "hamza@intnewscr.com"
-    },
-    "license": {
-      "name": "MIT",
-      "url": "https://github.com/hamzaPixl/intnewscr/blob/devlop/LICENSE"
-    }
-  },
-  "tags": [
-    {
-      "name": "news",
-      "description": "Everything about News"
-    }
-  ],
-  "schemes": [
-    "http"
-  ],
   "paths": {
     "/news/sources": {
       "get": {
