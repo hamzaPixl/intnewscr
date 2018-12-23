@@ -14,7 +14,8 @@
     "poststart": "pm2 logs --lines 0",
     "lint": "eslint . --ext .js",
     "start": "pm2 start pm2.json",
-    "stop": "pm2 stop all"
+    "stop": "pm2 stop all",
+    "pr": "./hooks/pull-request.sh"
   },
   "repository": {
     "type": "git",
