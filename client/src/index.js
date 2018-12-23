@@ -1,17 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { IntlProvider } from 'react-intl';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import registerServiceWorker from './registerServiceWorker';
+import App from './containers/App';
 
 ReactDOM.render(
-  <MuiThemeProvider>
-    <IntlProvider locale="en">
-    <Router>
-    </Router>
-    </IntlProvider>
-  </MuiThemeProvider>,
+  <App />,
   document.getElementById('root'),
 );
 
