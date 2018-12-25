@@ -1,9 +1,9 @@
-import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT } from '../constants';
+import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT } from '../constants/authConstants';
 
 const user = JSON.parse(localStorage.getItem('user'));
 const initialState = user ? { loggedIn: true, user } : {};
 
-const authentication = function authentication(state = initialState, action) {
+export function authentication(state = initialState, action) {
   switch (action.type) {
     case LOGIN_REQUEST:
       return {
@@ -22,8 +22,4 @@ const authentication = function authentication(state = initialState, action) {
     default:
       return state;
   }
-};
-
-export {
-  authentication,
-};
+}
