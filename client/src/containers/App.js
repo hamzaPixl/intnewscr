@@ -1,29 +1,26 @@
-import React, { Component } from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import theme from '../theme';
+import React from 'react';
+import { Router, Route } from 'react-router-dom';
 
-const Container = styled.div`
-  background-color: ${props => props.theme.bodyColor};
-  height: 100%;
-`;
+import history from '../helpers/history';
+import { PrivateRoute } from '../components/PrivateRoute';
+import { Home } from './Home';
+import { Login } from './Login';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      theme: theme.light,
-    };
-  }
-
-  render() {
-    return (
-      <ThemeProvider theme={this.state.theme}>
-        <Container>
-            Hello world
-        </Container>
-      </ThemeProvider>
-    );
-  }
+function App() {
+  return (
+    <div>
+      <div>
+        <div>
+          <Router history={history}>
+            <div>
+              <PrivateRoute exact path="/" component={Home} />
+              <Route path="/login" component={Login} />
+            </div>
+          </Router>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default App;
