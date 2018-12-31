@@ -4,27 +4,17 @@ const basic = {
   lineHeight: 2,
   letterSpacing: 0.01,
   titleSize: 40,
-  mainColor: '#ff3d00',
+  error: '#FF0033',
 };
 
-const dark = {
-  name: 'dark',
-  bodyColor: '#131418',
-  primaryColor: '#ffffff',
-  backgroundColor: '#2c3e50',
-  ...basic,
-};
-
-const light = {
+export const light = {
   name: 'light',
-  bodyColor: '#fafafa',
-  primaryColor: '#212121',
-  backgroundColor: '#eceff1',
+  bodyColor: '#FFFFFF',
+  textColor: '#000000',
+  primaryColor: '#FF2C68',
+  secondaryColor: '#7223FF',
+  lightColor: '#FFC552',
+  darkColor: '#535572',
+  disableColor: '#F4F3F9',
   ...basic,
-};
-
-export default {
-  light,
-  dark,
-  basic,
 };
