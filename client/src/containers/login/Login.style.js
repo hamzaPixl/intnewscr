@@ -23,7 +23,7 @@ export const FormContainer = styled.div`
 `;
 
 export const Form = styled.form`
-  border-radius: 5px;
+  border-radius: 15px;
   border-style: solid;
   border-color: ${props => props.theme.disableColor};
   background-color: ${props => props.theme.bodyColor};
@@ -45,7 +45,8 @@ export const FormTitle = styled.h3`
 export const Submit = styled.button.attrs({ type: 'submit' })`
   border-style: none;
   border: solid ${props => props.theme.textColor} 2px;
-  border-radius: 3px;
+  margin-top: 10px;
+  border-radius: 10px;
   color: ${props => props.theme.textColor};
   font-family: roboto, sans-serif;
   font-size: 14px;
