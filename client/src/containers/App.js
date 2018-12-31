@@ -1,15 +1,18 @@
 import React from 'react';
 import { Router, Route } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+import { IntlProvider } from 'react-intl';
 
 import history from '../helpers/history';
-import { PrivateRoute } from '../components/PrivateRoute';
+import { PrivateRoute } from '../components';
 import { Home } from './Home';
-import { Login } from './Login';
+import Login from './login/Login';
+import { light } from '../theme';
 
 function App() {
   return (
-    <div>
-      <div>
+    <IntlProvider locale="en">
+      <ThemeProvider theme={light}>
         <div>
           <Router history={history}>
             <div>
@@ -18,8 +21,8 @@ function App() {
             </div>
           </Router>
         </div>
-      </div>
-    </div>
+      </ThemeProvider>
+    </IntlProvider>
   );
 }
 

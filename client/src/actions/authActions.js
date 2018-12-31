@@ -9,7 +9,6 @@ function failure(error) { return { type: LOGIN_FAILURE, error }; }
 export function loginUser(username, password) {
   return (dispatch) => {
     dispatch(request({ username }));
-
     login(username, password)
       .then(
         (user) => {
