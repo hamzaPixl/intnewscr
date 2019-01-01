@@ -31,6 +31,7 @@ server.use(passport.initialize());
 server.use(passport.session());
 
 server.use('/docs', middlewares.docMiddleware.serve, middlewares.docMiddleware.setup);
+server.use(middlewares.corsMiddleware);
 server.use('/', controllers);
 
 server.use(middlewares.notFoundMiddleware);
