@@ -5,7 +5,7 @@ import { IntlProvider } from 'react-intl';
 
 import history from '../helpers/history';
 import { PrivateRoute } from '../components';
-import { Home } from './Home';
+import Home from './Home';
 import Login from './login/Login';
 import { light } from '../theme';
 

@@ -1,7 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
-import { loginUser } from '../../actions/authActions';
+import { login } from '../../services';
 import LoginForm from './Login.form';
 
 class Login extends React.Component {
@@ -11,9 +10,19 @@ class Login extends React.Component {
       username: '',
       password: '',
       submitted: false,
+      loading: false,
+      error: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    const user = localStorage.getItem('user');
+    const token = localStorage.getItem('token');
+    if (user && token) {
+      this.props.history.push('/');
+    }
   }
 
   handleChange(e) {
@@ -23,12 +32,15 @@ class Login extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    this.setState({ submitted: true });
     const { username, password } = this.state;
-    const { dispatch } = this.props;
-    if (username && password) {
-      dispatch(loginUser(username, password)
-        .then(() => this.setState({ submitted: true })));
-    }
+    this.setState({ loading: true });
+    login(username, password)
+      .then(() => {
+        const { from } = this.props.location.state || { from: { pathname: '/' } };
+        this.props.history.push(from);
+      })
+      .catch(error => this.setState({ error, loading: false }));
   }
 
   render() {
@@ -43,9 +55,4 @@ class Login extends React.Component {
   }
 }
 
-
-const mapStateToProps = state => ({
-  loggingIn: state.authentication,
-});
-
-export default connect(mapStateToProps)(Login);
+export default Login;

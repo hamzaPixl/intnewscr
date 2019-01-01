@@ -1,90 +1,46 @@
+import { request } from '../helpers/request';
 import authHeader from '../helpers/auth-header';
 
-function logout() {
-  // remove user from local storage to log user out
-  localStorage.removeItem('user');
-}
-
 function handleResponse(response) {
-  return response.text().then((text) => {
-    const data = text && JSON.parse(text);
-    if (!response.ok) {
-      if (response.status === 401) {
-        // auto logout if 401 response returned from api
-        logout();
+  return response.json()
+    .then((res) => {
+      if (res.status && res.status !== 200) {
+        const error = `${res.name} : ${res.message}`;
+        return Promise.reject(error);
       }
-
-      const error = (data && data.message) || response.statusText;
-      return Promise.reject(error);
-    }
-
-    return data;
-  });
+      return res;
+    });
 }
 
-
-function login(username, password) {
-  const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ username, password }),
-  };
-
-  return fetch('/users/authenticate', requestOptions)
+function getProfil() {
+  return request('admin/users/me', 'GET', null, authHeader())
     .then(handleResponse)
     .then((user) => {
-      if (user.token) {
-        localStorage.setItem('user', JSON.stringify(user));
-      }
-
+      localStorage.setItem('user', JSON.stringify(user));
       return user;
     });
 }
 
-
-function getAll() {
-  const requestOptions = {
-    method: 'GET',
-    headers: authHeader(),
-  };
-
-  return fetch('/users', requestOptions).then(handleResponse);
+function logout() {
+  localStorage.removeItem('user');
+  localStorage.removeItem('token');
 }
 
-function getById(id) {
-  const requestOptions = {
-    method: 'GET',
-    headers: authHeader(),
-  };
+function login(email, password) {
+  const body = `email=${email}&password=${password}`;
+  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
 
-  return fetch(`/users/${id}`, requestOptions).then(handleResponse);
-}
-
-function register(user) {
-  const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(user),
-  };
-
-  return fetch('/users/register', requestOptions).then(handleResponse);
-}
-
-function update(user) {
-  const requestOptions = {
-    method: 'PUT',
-    headers: { ...authHeader(), 'Content-Type': 'application/json' },
-    body: JSON.stringify(user),
-  };
-
-  return fetch(`/users/${user.id}`, requestOptions).then(handleResponse);
+  return request('admin/auth', 'POST', body, headers)
+    .then(handleResponse)
+    .then(({ token }) => {
+      localStorage.setItem('token', token);
+      return token;
+    })
+    .then(() => getProfil());
 }
 
 export {
   login,
   logout,
-  register,
-  getAll,
-  getById,
-  update,
+  getProfil,
 };

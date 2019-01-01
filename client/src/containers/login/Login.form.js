@@ -1,11 +1,11 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { Input } from '../../components';
-import { Container, Footer, Form, FormContainer, FormTitle, Submit, Background } from './Login.style';
+import { Container, Footer, Form, FormContainer, FormTitle, Submit, Background, Error } from './Login.style';
 import loginBackground from '../../assets/login.svg';
 
 function LoginForm({
-  onSubmit, onChange, username, password,
+  onSubmit, onChange, username, password, error,
 }) {
   return (
     <Container>
@@ -34,6 +34,7 @@ function LoginForm({
           <Submit>
             <FormattedMessage id="login.signIn" defaultMessage="Sign in" />
           </Submit>
+          {typeof error === 'string' && <Error>{error}</Error>}
         </Form>
       </FormContainer>
       <Footer>INTNEWSCR</Footer>

@@ -7,6 +7,18 @@ export const Container = styled.div`
   min-height: 100%;
 `;
 
+export const Error = styled.div`
+  background: ${props => props.theme.disableColor};
+  color: ${props => props.theme.error};
+  border-radius: 10px;
+  font-family: roboto, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.56;
+  text-align: center;
+  margin-top: 5%;
+`;
+
 export const Background = styled.img`
   height: 200px;
   position: relative;
