@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  color: ${props => props.theme.textColor};
+  color: ${props => props.theme.bodyColor};
   font-family: ${props => props.theme.fontFamily}, sans-serif;
   display: flex;
   align-items: center;
   padding: 10px;
   justify-content: space-between;
   height: 40px;
-  background-color: ${props => props.theme.disableColor};
+  background-color: ${props => props.theme.darkColor};
+  box-shadow: 1px 1px 21px #aaaaaa;
 `;
 
 export const UserPart = styled.div`

@@ -2,6 +2,7 @@ const basic = {
   fontFamily: 'Roboto',
   fontWeight: 300,
   lineHeight: 2,
+  fontsize: 20,
   letterSpacing: 0.01,
   titleSize: 40,
   error: '#FF0033',

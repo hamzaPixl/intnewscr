@@ -13,9 +13,9 @@ function App() {
   return (
     <IntlProvider locale="en">
       <ThemeProvider theme={light}>
-        <div>
+        <div style={{ height: '100%' }}>
           <Router history={history}>
-            <div>
+            <div style={{ height: '100%' }}>
               <PrivateRoute exact path="/" component={Home} />
               <Route path="/login" component={Login} />
             </div>
