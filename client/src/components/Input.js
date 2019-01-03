@@ -20,7 +20,7 @@ const TextFieldContainer = styled.div`
   width: ${props => props.width};
   input {
     width: 100%;
-    font-family: 'Roboto', sans-serif;
+    font-family: ${props => props.theme.fontFamily}, sans-serif;
     background-color: rgba(0, 0, 0, 0);
     border: 0;
     border-bottom: 2px solid ${props => props.theme.primaryColor};
@@ -52,7 +52,7 @@ const Error = styled.div`
   font-size: 12px;
   line-height: 12px;
   padding-top: 2px;
-  font-family: 'Roboto', sans-serif;
+  font-family: ${props => props.theme.fontFamily}, sans-serif;
 `;
 
 export default function Input(props) {

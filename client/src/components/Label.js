@@ -7,25 +7,13 @@ const StyledLabel = styled.label`
   margin: ${props => props.margin};
   padding: ${props => props.padding};
   width: ${props => props.width};
-  font-family: 'Roboto', sans-serif;
+  font-family: ${props => props.theme.fontFamily}, sans-serif;
   color: ${props => props.theme.textColor};
   display: inline-block;
   text-align: left;
+  font-size: 12px;
+  line-height: 14px;
 `;
-
-const styles = [
-  StyledLabel.extend`
-    font-size: 12px;
-    line-height: 14px;
-  `,
-  StyledLabel.extend`
-    font-size: 15px;
-  `,
-  StyledLabel.extend`
-    font-size: 15px;
-    font-weight: bold;
-  `,
-];
 
 export default function Label({
   id,
@@ -35,13 +23,10 @@ export default function Label({
   margin = '0',
   padding = '6px 0',
   width = '100%',
-  size = 1,
   children,
 }) {
-  const Component = styles[size - 1];
-
   return (
-    <Component
+    <StyledLabel
       htmlFor={htmlFor}
       fontsize={fontsize}
       margin={margin}
@@ -49,6 +34,6 @@ export default function Label({
       width={width}
     >
       {children || <FormattedMessage id={id} defaultMessage={defaultMessage} />}
-    </Component>
+    </StyledLabel>
   );
 }
