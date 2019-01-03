@@ -1,12 +1,12 @@
 import { request } from '../helpers/request';
 import authHeader from '../helpers/auth-header';
+import history from '../helpers/history';
 
 function handleResponse(response) {
   return response.json()
     .then((res) => {
       if (res.status && res.status !== 200) {
-        const error = `${res.name} : ${res.message}`;
-        return Promise.reject(error);
+        return Promise.reject(res.message);
       }
       return res;
     });
@@ -24,6 +24,7 @@ function getProfil() {
 function logout() {
   localStorage.removeItem('user');
   localStorage.removeItem('token');
+  history.push('/');
 }
 
 function login(email, password) {
