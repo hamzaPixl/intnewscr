@@ -1,4 +1,5 @@
 import React from 'react';
+import Admin from './Admin';
 
 class Home extends React.Component {
   constructor(props) {
@@ -10,11 +11,10 @@ class Home extends React.Component {
 
   render() {
     const { user } = this.state;
-    return (
-      <div>
-        <h1>Hi {user.firstName}!</h1>
-      </div>
-    );
+    if (user.role === 'admin') {
+      return <Admin />;
+    }
+    return (<div>Hello client</div>);
   }
 }
 
