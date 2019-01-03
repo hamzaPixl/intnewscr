@@ -11,7 +11,7 @@ export const Error = styled.div`
   background: ${props => props.theme.disableColor};
   color: ${props => props.theme.error};
   border-radius: 10px;
-  font-family: roboto, sans-serif;
+  font-family: ${props => props.theme.fontFamily}, sans-serif;
   font-size: 15px;
   font-weight: 400;
   line-height: 1.56;
@@ -47,7 +47,7 @@ export const Form = styled.form`
 
 export const FormTitle = styled.h3`
   color: ${props => props.theme.primaryColor};
-  font-family: roboto, sans-serif;
+  font-family: ${props => props.theme.fontFamily}, sans-serif;
   font-size: 18px;
   font-weight: 400;
   line-height: 1.56;
@@ -60,13 +60,16 @@ export const Submit = styled.button.attrs({ type: 'submit' })`
   margin-top: 10px;
   border-radius: 10px;
   color: ${props => props.theme.textColor};
-  font-family: roboto, sans-serif;
+  font-family: ${props => props.theme.fontFamily}, sans-serif;
   font-size: 14px;
   font-weight: bold;
   height: 45px;
   text-align: center;
   width: 100%;
   cursor: pointer;
+  &:focus {
+    outline:0;
+  }
   &:hover {
     color: ${props => props.theme.bodyColor};
     background: ${props => props.theme.primaryColor};
@@ -77,7 +80,7 @@ export const Submit = styled.button.attrs({ type: 'submit' })`
 export const Footer = styled.div`
   color: ${props => props.theme.secondaryColor};
   flex-shrink: 0;
-  font-family: 'roboto', sans-serif;
+  font-family: ${props => props.theme.fontFamily}, sans-serif;
   font-size: 11px;
   height: 50px;
   letter-spacing: 0.2px;
