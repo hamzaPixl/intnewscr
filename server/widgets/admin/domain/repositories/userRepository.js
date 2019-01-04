@@ -1,4 +1,6 @@
+const config = require('config');
 const Users = require('../models/Users');
+const mongoQueryBuilder = require('../../../../tools/mongo/mongoQueryBuilder');
 
 /**
  * Save a new user in the database
@@ -28,10 +30,22 @@ function findOne(email) {
 
 /**
  * Retrieve all users
+ * @param {Object} sortFilterConfiguration
  * @returns {Array[Users]}
  */
-function findAll() {
-  return Users.find({ });
+function findAll(sortFilterConfiguration) {
+  const options = {
+    select: 'id role firstName lastName email createdAt',
+    sort: {},
+    lean: false,
+    page: sortFilterConfiguration.pageNumber,
+    limit: config.pageSize,
+  };
+
+  const query = mongoQueryBuilder.buildFilter(sortFilterConfiguration);
+  options.sort = mongoQueryBuilder.buildSort(sortFilterConfiguration);
+
+  return Users.paginate(query, options);
 }
 
 /**
