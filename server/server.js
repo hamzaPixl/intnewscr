@@ -1,4 +1,5 @@
 const config = require('config');
+const cors = require('cors');
 const bluebird = require('bluebird');
 const passport = require('passport');
 const mongoose = require('mongoose');
@@ -23,6 +24,7 @@ logger.info(`ENV ${config.env}`);
 
 const server = express();
 
+server.use(cors());
 server.use(morgan('short', { stream: logger.stream }));
 server.use(cookiesParser());
 server.use(bodyParser.json());

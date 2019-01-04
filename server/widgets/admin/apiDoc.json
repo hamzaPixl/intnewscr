@@ -109,6 +109,41 @@
             "description": "Not found error"
           }
         }
+      },
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "summary": "Find all users",
+        "description": "Returns users",
+        "operationId": "getAllUsers",
+        "parameters": [
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "400": {
+            "description": "Validation error"
+          },
+          "401": {
+            "description": "AuthenticationError"
+          },
+          "404": {
+            "description": "Not found error"
+          }
+        }
       }
     },
     "/users/{email}": {

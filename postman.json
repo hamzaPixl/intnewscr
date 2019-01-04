@@ -244,7 +244,7 @@
 							"response": []
 						},
 						{
-							"name": "Get profil",
+							"name": "Get all users",
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -261,11 +261,43 @@
 									{
 										"key": "Content-Type",
 										"name": "Content-Type",
-										"value": "application/json",
 										"type": "text",
+										"value": "application/json",
 										"disabled": true
 									}
 								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}{{port}}/admin/users",
+									"host": [
+										"{{host}}{{port}}"
+									],
+									"path": [
+										"admin",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get profil",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
 								"body": {
 									"mode": "raw",
 									"raw": ""
@@ -824,42 +856,49 @@
 	],
 	"variable": [
 		{
-			"id": "8320609e-f807-4e93-90fb-eac6b7dfcdee",
+			"id": "9cb74a59-3c00-4743-99ae-b891b764125e",
 			"key": "username",
 			"value": "hamza@intnewscr.com",
 			"type": "string"
 		},
 		{
-			"id": "332e5766-dce6-4463-8194-56beb91cd43e",
+			"id": "a253dd40-3fe6-447e-be51-c0c243062a66",
 			"key": "password",
 			"value": "azerty",
 			"type": "string"
 		},
 		{
-			"id": "5d21ac0d-c5bb-4f1f-b137-484f799e3e8c",
+			"id": "6a04de32-48c9-48f7-bc5f-a129710efbd7",
 			"key": "configurationId",
 			"value": "",
 			"type": "string",
 			"disabled": true
 		},
 		{
-			"id": "d192056a-5a78-4b98-8388-9dcca44886d6",
+			"id": "36b310e5-aece-4973-9a64-c9ca7eac8dc9",
 			"key": "viewId",
 			"value": "",
 			"type": "string",
 			"disabled": true
 		},
 		{
-			"id": "c41df8fa-6634-4f5f-9299-361b1ea10541",
+			"id": "254246be-0f28-4dd6-94cb-820a4e3d40d1",
 			"key": "host",
 			"value": "http://localhost:",
 			"type": "string"
 		},
 		{
-			"id": "dd9962e8-1f95-4234-acd3-daea96225f64",
+			"id": "23f7fd41-81c8-4d0c-a22e-14faa6c0fb8a",
+			"key": "port",
+			"value": "5000",
+			"type": "string"
+		},
+		{
+			"id": "21e16ad2-3ede-435e-be00-6db5a739448a",
 			"key": "port",
 			"value": "3000",
-			"type": "string"
+			"type": "string",
+			"disabled": true
 		}
 	]
 }

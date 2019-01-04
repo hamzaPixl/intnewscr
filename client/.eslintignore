@@ -1,0 +1,4 @@
+**/node_modules/
+**/build/
+registerServiceWorker.js
+build/

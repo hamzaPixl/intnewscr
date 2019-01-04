@@ -31,6 +31,18 @@ async function getUser(admin, email) {
 }
 
 /**
+ * Get all users
+ *
+ * @param {Object} admin
+ * @returns {[Object]} users
+ * @throws {AuthenticationError} user does not have access
+ */
+async function getAllUsers(admin) {
+  admin.hasRight();
+  return userRepository.findAll();
+}
+
+/**
  * Add user
  *
  * @param {Object} admin
@@ -91,6 +103,7 @@ async function deleteUser(admin, email) {
 module.exports = {
   getProfil,
   getUser,
+  getAllUsers,
   addUser,
   updateUser,
   deleteUser,

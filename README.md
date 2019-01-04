@@ -4,6 +4,9 @@
 [![GitHub last commit](https://img.shields.io/github/last-commit/google/skia.svg)](https://github.com/hamzaPixl/intnewscr/commits/devlop)
 [![Travis](https://img.shields.io/appveyor/ci/gruntjs/grunt.svg)](https://travis-ci.org/hamzaPixl/intnewscr#)
 
+
+[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)]()
+
 # Author
 
 Hamza Mounir

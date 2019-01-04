@@ -18,6 +18,13 @@ router.post('/',
   .catch(next)
 );
 
+router.get('/',
+  (req, res, next) => usersServices
+  .getAllUsers(req.user)
+  .then(users => res.json(userMapper.map(users)))
+  .catch(next)
+);
+
 router.get('/:email',
   (req, res, next) => usersServices
   .getUser(req.user, req.params.email)
