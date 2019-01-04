@@ -3,6 +3,7 @@ const config = {
   defaultTimezone: 'Europe/Brussels',
   country: 'BE',
   port: 3000,
+  pageSize: 50,
   secret: process.env.SECRET,
   mongo: 'mongodb://localhost:27017/intnewscr',
   server: {

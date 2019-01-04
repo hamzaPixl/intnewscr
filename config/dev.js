@@ -2,6 +2,7 @@ const config = {
   env: 'dev',
   defaultTimezone: 'Europe/Brussels',
   country: 'BE',
+  pageSize: 50,
   port: process.env.PORT || 3000,
   mongo: process.env.MONGO,
   secret: process.env.SECRET,
