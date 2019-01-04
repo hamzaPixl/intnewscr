@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-export const Container = styled.div`
+export const Container = styled.nav`
   top: 0;
   display: flex;
   flex-direction: column;
@@ -13,14 +14,11 @@ export const Container = styled.div`
   box-shadow: 1px 2px 30px #aaaaaa;
 `;
 
-export const Link = styled.a`
+export const LinkStyled = styled(Link)`
   margin-bottom: 10px;
   width: 30px;
   transition: transform .3s ease-out;
   &:hover {
-    color: ${props => props.theme.primaryColor};
-  }
-  &.selected {
     color: ${props => props.theme.primaryColor};
   }
 `;

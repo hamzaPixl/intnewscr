@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { IntlProvider } from 'react-intl';
 
@@ -13,14 +13,12 @@ function App() {
   return (
     <IntlProvider locale="en">
       <ThemeProvider theme={light}>
-        <div style={{ height: '100%' }}>
-          <Router history={history}>
-            <div style={{ height: '100%' }}>
-              <PrivateRoute exact path="/" component={Home} />
-              <Route path="/login" component={Login} />
-            </div>
-          </Router>
-        </div>
+        <Router history={history}>
+          <Switch>
+            <Route exact path="/login" component={Login} />
+            <PrivateRoute path="/" component={Home} />
+          </Switch>
+        </Router>
       </ThemeProvider>
     </IntlProvider>
   );

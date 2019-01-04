@@ -3,7 +3,7 @@ import { Container, Title } from '../../components';
 
 function Configurations() {
   return (
-    <Container >
+    <Container className="page">
       <Title id="title.configurations" defaultMessage="Configurations" />
     </Container>
   );

@@ -3,7 +3,7 @@ import { Container, Title } from '../../components';
 
 function Dashboard() {
   return (
-    <Container >
+    <Container className="page">
       <Title id="title.dashboard" defaultMessage="Dashboard" />
     </Container>
   );
