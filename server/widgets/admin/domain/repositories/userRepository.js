@@ -27,6 +27,14 @@ function findOne(email) {
 }
 
 /**
+ * Retrieve all users
+ * @returns {Array[Users]}
+ */
+function findAll() {
+  return Users.find({ });
+}
+
+/**
  * Retrieve all user by role
  * @returns {Array[Users]}
  */
@@ -50,4 +58,5 @@ module.exports = {
   deleteOne,
   findAllByRole,
   findOne,
+  findAll,
 };
