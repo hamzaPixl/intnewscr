@@ -1,5 +1,6 @@
 /* eslint jsx-a11y/anchor-is-valid: 0 */
 import React from 'react';
+import { Popup } from 'semantic-ui-react';
 import { Container, LinkStyled, Links, Logo } from './Navigation.style';
 
 import dashboard from '../../assets/dashboard.svg';
@@ -43,7 +44,12 @@ function Navigation() {
             key={l.name}
             to={l.path}
           >
-            <Logo src={l.logo} />
+            <Popup
+              trigger={<Logo src={l.logo} />}
+              content={l.label}
+              position="right center"
+              on="hover"
+            />
           </LinkStyled>
           ))}
       </Links>
