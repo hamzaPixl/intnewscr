@@ -7,8 +7,8 @@ export const Container = styled.div`
   align-items: center;
   padding: 10px;
   justify-content: space-between;
-  height: 40px;
-  background-color: ${props => props.theme.darkColor};
+  height: 50px;
+  background: linear-gradient(to right, #0083B0, #00B4DB);
   box-shadow: 1px 1px 21px #aaaaaa;
 `;
 
@@ -23,15 +23,16 @@ export const User = styled.div`
   padding-right: 20px;
 `;
 
-export const Avatar = styled.img`
-  width: 2%;
+export const Avatar = styled.div`
+  width: 30px;
 `;
 
 export const AppName = styled.div`
+  font-size: 20px;
 `;
 
 export const Logout = styled.img`
-  width: 2%;
+  width: 30px;
   padding-right: 10px;
   cursor: pointer;
   &:focus {

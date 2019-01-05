@@ -1,16 +1,6 @@
-import { request } from '../helpers/request';
+import { request, handleResponse } from '../helpers/request';
 import authHeader from '../helpers/auth-header';
 import history from '../helpers/history';
-
-function handleResponse(response) {
-  return response.json()
-    .then((res) => {
-      if (res.status && res.status !== 200) {
-        return Promise.reject(res.message);
-      }
-      return res;
-    });
-}
 
 function getProfil() {
   return request('admin/users/me', 'GET', null, authHeader())

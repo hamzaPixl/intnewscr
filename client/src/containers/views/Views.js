@@ -3,7 +3,7 @@ import { Container, Title } from '../../components';
 
 function Views() {
   return (
-    <Container >
+    <Container className="page">
       <Title id="title.views" defaultMessage="Views" />
     </Container>
   );

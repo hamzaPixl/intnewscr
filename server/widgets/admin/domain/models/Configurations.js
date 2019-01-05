@@ -63,6 +63,11 @@ configurations.methods.addView = function addView(payload) {
   if (!this.views || !this.views.length) {
     this.views = [];
   }
+
+  if (this.views.length === 10) {
+    throw new errors.ValidationError('You have enough views on this configuration.');
+  }
+
   const view = viewFactory.createFromPayload(payload);
   this.views.push(view);
   return view;

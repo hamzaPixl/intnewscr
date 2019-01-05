@@ -2,6 +2,26 @@ const errors = require('../../../domain/models/errors');
 const { userRepository } = require('../domain/repositories');
 const { userFactory } = require('../domain/factories');
 
+const SortConfigurationBuilder = require('../../../tools/mongo/SortConfigurationBuilder');
+const FilterConfigurationBuilder = require('../../../tools//mongo/FilterConfigurationBuilder');
+const SortFilterConfigurationBuilder = require('../../../tools/mongo/SortFilterConfigurationBuilder');
+
+const sortConfiguration = new SortConfigurationBuilder();
+const filterConfigurationBuilder = new FilterConfigurationBuilder();
+
+sortConfiguration
+  .addConfiguration('createdAt', 'createdAt')
+  .addConfiguration('lastName', 'lastName')
+  .addConfiguration('firstName', 'firstName')
+  .addConfiguration('role', 'role')
+  .setDefault('createdAt', false);
+
+filterConfigurationBuilder
+  .addConfiguration('general', 'role', false)
+  .addConfiguration('general', 'lastName', false)
+  .addConfiguration('general', 'firstName', false)
+  .addConfiguration('general', 'id', false);
+
 /**
  * Get profil from req
  *
@@ -37,9 +57,26 @@ async function getUser(admin, email) {
  * @returns {[Object]} users
  * @throws {AuthenticationError} user does not have access
  */
-async function getAllUsers(admin) {
+async function getAllUsers(admin, pagingSortingFiltering) {
   admin.hasRight();
-  return userRepository.findAll();
+
+  const sortFilterConfiguration = new SortFilterConfigurationBuilder(
+    sortConfiguration.configurations,
+    filterConfigurationBuilder.configurations
+  );
+  sortFilterConfiguration
+    .page(pagingSortingFiltering.page)
+    .sortBy(pagingSortingFiltering.sort);
+
+  if (pagingSortingFiltering.sortDirection && pagingSortingFiltering.sortDirection === 'desc') {
+    sortFilterConfiguration.descending();
+  } else {
+    sortFilterConfiguration.ascending();
+  }
+
+  pagingSortingFiltering.filters.forEach(f => sortFilterConfiguration.filterOn(f.name, f.value));
+
+  return userRepository.findAll(sortFilterConfiguration);
 }
 
 /**

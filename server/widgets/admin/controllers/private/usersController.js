@@ -3,6 +3,7 @@ const { usersServices } = require('../../services');
 const { userValidator } = require('../validators');
 const { userMapper } = require('../mappers');
 const middlewares = require('../../../../middlewares/http');
+const httpQueriesExtractor = require('../../../../tools/http/httpQueriesExtractor');
 
 router.get('/me',
   (req, res, next) => usersServices.getProfil(req.user)
@@ -20,8 +21,8 @@ router.post('/',
 
 router.get('/',
   (req, res, next) => usersServices
-  .getAllUsers(req.user)
-  .then(users => res.json(userMapper.map(users)))
+  .getAllUsers(req.user, httpQueriesExtractor.buildSortFilterPagingObject(req.query))
+  .then(data => res.json({ ...data, docs: data.docs.map(userMapper.mapOne) }))
   .catch(next)
 );
 

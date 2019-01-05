@@ -57,7 +57,7 @@ export const FormTitle = styled.h3`
 export const Submit = styled.button.attrs({ type: 'submit' })`
   border-style: none;
   border: solid ${props => props.theme.textColor} 2px;
-  margin-top: 10px;
+  margin-top: 20px;
   border-radius: 10px;
   color: ${props => props.theme.textColor};
   font-family: ${props => props.theme.fontFamily}, sans-serif;
@@ -78,7 +78,7 @@ export const Submit = styled.button.attrs({ type: 'submit' })`
 `;
 
 export const Footer = styled.div`
-  color: ${props => props.theme.secondaryColor};
+  color: ${props => props.theme.primaryColor};
   flex-shrink: 0;
   font-family: ${props => props.theme.fontFamily}, sans-serif;
   font-size: 11px;
