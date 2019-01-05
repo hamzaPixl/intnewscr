@@ -26,23 +26,23 @@ router.get('/',
   .catch(next)
 );
 
-router.get('/:email',
+router.get('/:id',
   (req, res, next) => usersServices
-  .getUser(req.user, req.params.email)
+  .getUser(req.user, req.params.id)
   .then(user => res.json(userMapper.mapOne(user)))
   .catch(next)
 );
 
-router.put('/:email',
+router.put('/:id',
   (req, res, next) => usersServices
-  .updateUser(req.user, req.params.email, req.body)
+  .updateUser(req.user, req.params.id, req.body)
   .then(user => res.json(userMapper.mapOne(user)))
   .catch(next)
 );
 
-router.delete('/:email',
+router.delete('/:id',
   (req, res, next) => usersServices
-  .deleteUser(req.user, req.params.email)
+  .deleteUser(req.user, req.params.id)
   .then(() => res.json({}))
   .catch(next)
 );

@@ -33,17 +33,17 @@ async function getProfil(user) {
 }
 
 /**
- * Get user
+ * Get user by id
  *
  * @param {Object} admin
- * @param {String} email
+ * @param {String} id
  * @returns {Object} user
  * @throws {AuthenticationError} user does not have access
  * @throws {NotFoundError} user does not exists
  */
-async function getUser(admin, email) {
+async function getUser(admin, id) {
   admin.hasRight();
-  const user = await userRepository.findOne(email);
+  const user = await userRepository.findOneId(id);
   if (!user) {
     throw new errors.NotFoundError('User was not found');
   }
@@ -104,15 +104,15 @@ async function addUser(admin, payload) {
  * Update existing user
  *
  * @param {Object} admin
- * @param {String} email
+ * @param {String} id
  * @param {Object} payload
  * @returns {Object} user
  * @throws {AuthenticationError} user does not have access
- * @throws {ValidationError} user already exists with this email
+ * @throws {ValidationError} user already exists with this id
  * @throws {NotFoundError} user does not exists
  */
-async function updateUser(admin, email, payload) {
-  const user = await getUser(admin, email);
+async function updateUser(admin, id, payload) {
+  const user = await getUser(admin, id);
   if (payload.email) {
     const userExists = await getUser(admin, payload.email);
     if (userExists) {
@@ -127,13 +127,13 @@ async function updateUser(admin, email, payload) {
  * Delete existing user
  *
  * @param {Object} admin
- * @param {String} email
+ * @param {String} id
  * @returns {Object} user
  * @throws {AuthenticationError} user does not have access
  * @throws {NotFoundError} user already exists
  */
-async function deleteUser(admin, email) {
-  const user = await getUser(admin, email);
+async function deleteUser(admin, id) {
+  const user = await getUser(admin, id);
   return userRepository.deleteOne(user._id);
 }
 

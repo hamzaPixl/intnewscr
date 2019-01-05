@@ -6,6 +6,12 @@ function getAllUsers(queryParams) {
     .then(handleResponse);
 }
 
+function deleteUser(id) {
+  return request(`admin/users/${id}`, 'DELETE', null, authHeader())
+    .then(handleResponse);
+}
+
 export {
   getAllUsers,
+  deleteUser,
 };
