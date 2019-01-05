@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { Segment } from 'semantic-ui-react';
+import { Segment, Label } from 'semantic-ui-react';
 
 import { Container, Title, Table, DeleteButton, CreateButton } from '../../components';
 import history from '../../helpers/history';
@@ -11,11 +11,28 @@ import UserForm from './user.form';
 import userValidator from './user.validator';
 
 const model = handleDelete => ({
-  id: { title: 'User id' },
-  role: { title: 'Role' },
+  id: {
+    title: 'User id',
+    format: (value, rowData) => (
+      <Label color="teal" horizontal>
+        {rowData.id}
+      </Label>
+    ),
+    width: 1,
+  },
   firstName: { title: 'First Name' },
   lastName: { title: 'Last Name' },
   email: { title: 'Email' },
+  role: {
+    title: 'Role',
+    format: (value, rowData) => {
+      if (rowData.role === 'admin') {
+        return (<Label as="a" color="red" tag>Admin</Label>);
+      }
+      return (<Label as="a" color="teal" tag>Client</Label>);
+    },
+    width: 1,
+  },
   delete: {
     title: <FormattedMessage id="users.delete" defaultMessage="Delete" />,
     format: (value, rowData) => (
