@@ -8,7 +8,8 @@ const Container = styled.div`
   &.page {
     margin: 50px;
     width: 100%;
-    display: block;
+    display: flex;
+    flex-direction: column;
   }
   &.full{
     height: 100%;

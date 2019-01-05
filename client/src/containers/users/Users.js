@@ -1,11 +1,14 @@
 import React from 'react';
-import { Button } from 'semantic-ui-react';
 import { FormattedMessage } from 'react-intl';
+import { Segment } from 'semantic-ui-react';
 
-import { Container, Title, Table, DeleteButton } from '../../components';
+import { Container, Title, Table, DeleteButton, CreateButton } from '../../components';
 import history from '../../helpers/history';
-import { getAllUsers, deleteUser } from '../../services';
+import { getAllUsers, deleteUser, addUser } from '../../services';
 import { getParams } from '../../helpers/request';
+
+import UserForm from './user.form';
+import userValidator from './user.validator';
 
 const model = handleDelete => ({
   id: { title: 'User id' },
@@ -34,7 +37,6 @@ const model = handleDelete => ({
   },
 });
 
-
 class Users extends React.Component {
   constructor(props) {
     super(props);
@@ -45,10 +47,13 @@ class Users extends React.Component {
       },
       sorting: {},
       users: [],
+      showCreateForm: false,
     };
     this.handleDelete = this.handleDelete.bind(this);
     this.findUsers = this.findUsers.bind(this);
     this.handlePageChange = this.handlePageChange.bind(this);
+    this.handleCreate = this.handleCreate.bind(this);
+    this.createUser = this.createUser.bind(this);
   }
 
   componentDidMount() {
@@ -74,11 +79,35 @@ class Users extends React.Component {
       .then(() => this.findUsers());
   }
 
+  handleCreate() {
+    this.setState({ showCreateForm: !this.state.showCreateForm });
+  }
+
+  createUser(user) {
+    addUser(user)
+      .then(() => {
+        this.setState({ showCreateForm: !this.state.showCreateForm });
+        return this.findUsers();
+      })
+      .catch(() => { });
+  }
+
   render() {
     return (
       <Container className="page">
-        <Title id="title.users" defaultMessage="Users" />
-        <Button className="addButton" positive icon="add" content="Add a user" />
+        <div>
+          <Title id="title.users" defaultMessage="Users" />
+          <CreateButton onClick={this.handleCreate} open={this.state.showCreateForm} />
+        </div>
+        {this.state.showCreateForm && (
+          <Segment secondary>
+            <UserForm
+              actionLabel={<FormattedMessage id="create" defaultMessage="Create" />}
+              onSubmit={this.createUser}
+              validate={userValidator}
+            />
+          </Segment>
+        )}
         <Table
           model={model(this.handleDelete)}
           dataType="pai-drafts"

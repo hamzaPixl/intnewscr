@@ -11,7 +11,19 @@ function deleteUser(id) {
     .then(handleResponse);
 }
 
+function addUser(user) {
+  let headers = authHeader();
+  headers = {
+    ...headers,
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  };
+  return request('admin/users', 'POST', JSON.stringify(user), headers)
+    .then(handleResponse);
+}
+
 export {
   getAllUsers,
   deleteUser,
+  addUser,
 };
