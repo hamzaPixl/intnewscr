@@ -17,12 +17,14 @@ function LoginForm({
           </FormTitle>
           <Input
             padding="0px 0px 50px 0px"
+            margin="0px 0px 20px 0px"
             id="username"
             label="User name"
             labelId="username"
             input={{ name: 'username', onChange, value: username }}
           />
           <Input
+            margin="0px 0px 20px 0px"
             padding="0px 0px 50px 0px"
             id="password"
             label="Password"

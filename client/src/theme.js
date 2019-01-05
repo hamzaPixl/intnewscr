@@ -13,9 +13,7 @@ export const light = {
   bodyColor: '#FFFFFF',
   textColor: '#000000',
   primaryColor: '#FF2C68',
-  secondaryColor: '#7223FF',
-  lightColor: '#FFC552',
-  darkColor: '#535572',
+  secondaryColor: '#5487C7',
   disableColor: '#F4F3F9',
   ...basic,
 };

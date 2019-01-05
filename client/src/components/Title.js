@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { FormattedMessage } from 'react-intl';
 
 const StyledTitle = styled.div`
-  font-size: ${props => props.theme.fontsize}px;
+  font-size: 40px;
   margin: ${props => props.margin};
   padding: ${props => props.padding};
   font-family: ${props => props.theme.fontFamily}, sans-serif;
@@ -17,8 +17,8 @@ const StyledTitle = styled.div`
 function Title({
   defaultMessage,
   id,
-  margin = '0',
-  padding = '6px 0',
+  margin = '5px 0px 40px 0px',
+  padding = '0',
 }) {
   return (
     <StyledTitle
