@@ -127,9 +127,8 @@ class Users extends React.Component {
         )}
         <Table
           model={model(this.handleDelete)}
-          dataType="pai-drafts"
           docs={this.state.users}
-          onRowClick={() => {}}
+          onRowClick={({ id }) => { return this.props.history.push(`${this.props.history.location.pathname}/${id}`); }}
           pagination={this.state.pagination}
           handlePageChange={this.handlePageChange}
           sorting={this.state.sorting}

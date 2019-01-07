@@ -114,8 +114,8 @@ async function addUser(admin, payload) {
 async function updateUser(admin, id, payload) {
   const user = await getUser(admin, id);
   if (payload.email) {
-    const userExists = await getUser(admin, payload.email);
-    if (userExists) {
+    const userExists = await userRepository.findOne(payload.email);
+    if (userExists && userExists.id !== id) {
       throw new errors.ValidationError(`A user already exists with the email ${payload.email}`);
     }
   }

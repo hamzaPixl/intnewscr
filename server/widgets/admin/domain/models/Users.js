@@ -46,7 +46,7 @@ const users = new Schema({
 users.plugin(mongoosePaginate);
 
 users.methods.mergeUpdate = async function mergeUpdate(payload) {
-  if (has(payload, 'fristName')) {
+  if (has(payload, 'firstName')) {
     this.firstName = payload.firstName;
   }
   if (has(payload, 'lastName')) {

@@ -6,6 +6,11 @@ function getAllUsers(queryParams) {
     .then(handleResponse);
 }
 
+function getUser(id) {
+  return request(`admin/users/${id}`, 'GET', null, authHeader())
+    .then(handleResponse);
+}
+
 function deleteUser(id) {
   return request(`admin/users/${id}`, 'DELETE', null, authHeader())
     .then(handleResponse);
@@ -22,8 +27,21 @@ function addUser(user) {
     .then(handleResponse);
 }
 
+function updateUser(id, payload) {
+  let headers = authHeader();
+  headers = {
+    ...headers,
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  };
+  return request(`admin/users/${id}`, 'PUT', JSON.stringify(payload), headers)
+    .then(handleResponse);
+}
+
 export {
   getAllUsers,
   deleteUser,
   addUser,
+  getUser,
+  updateUser,
 };
