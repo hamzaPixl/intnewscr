@@ -7,12 +7,9 @@ const TableRow = styled(Table.Row)`
   cursor: pointer;
 `;
 
-const TableContainer = styled(Table)`
-`;
-
 function TableComponent(props) {
   return (
-    <TableContainer basic="very" striped>
+    <Table basic="very" striped>
       <Table.Header>
         <Table.Row>
           {Object.keys(props.model).map(column => (
@@ -62,7 +59,7 @@ function TableComponent(props) {
           </Table.Row>
         </Table.Footer>
       )}
-    </TableContainer>
+    </Table>
   );
 }
 
